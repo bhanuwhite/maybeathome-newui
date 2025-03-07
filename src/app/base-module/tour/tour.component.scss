@@ -1,0 +1,306 @@
+.tour-banner {
+    width: 100%;
+    background-image: url(/assets/images/tour-banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tour-banner-text h1 {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+    color: #ffffff;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.options-wrapper {
+    background-color: #32567f;
+    padding: 60px 60px 80px 60px;
+}
+
+.options-wrapper-block {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.options-wrapper-block h4 {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+    color: #ffffff;
+}
+
+.options-wrapper-block .form-check-input {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.buyer-info-wrapper {
+    padding: 60px 60px;
+}
+
+.buyer-info {
+    background-color: #32567f;
+    padding: 40px;
+    border-radius: 40px;
+}
+
+.buyer-info h2 {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.buyer-block-content ul {
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.buyer-block-content ul li {
+    font-size: 32px;
+    color: #fff;
+    line-height: 40px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.buyer-block-content ul li::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    /* margin-right: 20px; */
+    left: 0;
+    border-radius: 25px;
+}
+
+.buyer-block-content h4 {
+    font-weight: 900;
+    font-size: 32px;
+    color: #fff;
+    line-height: 40px;
+    width: 80%;
+    margin-top: 40px;
+}
+
+.buyer-block-image {
+    text-align: center;
+}
+
+.buyer-block-image img {
+    width: 100%;
+    border-radius: 80px;
+}
+
+.buyer-block-image button,
+.quality-service-block-image button {
+    height: 45px;
+    border-radius: 25px;
+    font-size: 32px;
+    border: 0;
+    outline: 0;
+    background-color: #a91f23;
+    color: #fff;
+    padding: 0px 40px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.prev-nav {
+    width: auto;
+    left: -60px;
+    opacity: 1;
+    .carousel-control-prev-icon {
+        background-image: url(/assets/images/chevron-left.png);
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.next-nav {
+    width: auto;
+    right: -60px;
+    opacity: 1;
+    .carousel-control-next-icon {
+        background-image: url(/assets/images/chevron-right.png);
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.quality-service-wraper {
+    background-color: #f3f4f7;
+    padding: 60px 60px;
+}
+
+.quality-service-block span {
+    background-color: #32567f;
+    padding: 20px 10px;
+    width: 60%;
+    display: block;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+    border-radius: 40px;
+    font-weight: 500;
+}
+
+.quality-service-block h4 {
+    margin: 30px 0px !important;
+    text-align: left !important;
+}
+
+.quality-service-block ul {
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.quality-service-block ul li {
+    font-size: 32px;
+    line-height: 40px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.quality-service-block ul li::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url(/assets/images/circle-with-tick.png);
+    /* margin-right: 20px; */
+    left: 0;
+    background-size: cover;
+}
+
+.quality-service-block-image {
+    text-align: center;
+    img {
+        width: 90%;
+        margin-left: auto;
+    }
+}
+
+.quality-service-wraper h4 {
+    text-align: center;
+    margin: 30px 0px 0px 0px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.no-gutters {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .tour-banner {
+        height: 420px;
+    }
+    .tour-banner-text h1 {
+        font-size: 22px;
+        width: 85%;
+        margin-bottom: 16px;
+    }
+    .options-wrapper {
+        padding: 20px 0px 40px 0px;
+    }
+    .options-wrapper-block h4 {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+    .options-wrapper-block .form-check-input {
+        width: 18px;
+        height: 18px;
+    }
+    .buyer-info-wrapper,
+    .buyer-info {
+        padding: 20px 30px;
+    }
+    .buyer-info h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .buyer-block-content ul,
+    .quality-service-block ul {
+        gap: 10px;
+    }
+    .buyer-block-content ul li {
+        font-size: 16px;
+        line-height: 22px;
+        padding-left: 20px;
+    }
+    .buyer-block-content ul li::before {
+        width: 18px;
+        height: 18px;
+        border-radius: 18px;
+    }
+    .buyer-block-content h4 {
+        font-size: 16px;
+        line-height: 20px;
+        width: 100%;
+        margin-top: 16px;
+    }
+    .buyer-block-image img {
+        width: 100%;
+        border-radius: 20px;
+    }
+    .buyer-block-image button,
+    .quality-service-block-image button {
+        height: 36px;
+        font-size: 14px;
+    }
+    .prev-nav {
+        left: -30px;
+        .carousel-control-prev-icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .next-nav {
+        right: -30px;
+        .carousel-control-next-icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .quality-service-wraper {
+        padding: 20px 30px;
+    }
+    .quality-service-block span {
+        font-size: 18px;
+        width: 100%;
+    }
+    .quality-service-wraper h4 {
+        font-size: 22px;
+        line-height: 25px;
+        margin: 20px 0px !important;
+    }
+    .quality-service-block ul li {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}

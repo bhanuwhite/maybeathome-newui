@@ -1,0 +1,429 @@
+<div class="Search-Listings-Grid">
+    <div>
+        <app-general-header></app-general-header>
+    </div>
+    <div *ngIf="searchLoader" class="overlay">
+        <div class="center">
+            <mat-progress-spinner diameter=70 mode="indeterminate">
+            </mat-progress-spinner>
+        </div>
+    </div>
+    <!--searchInfo starts here-->
+    <!--Mobile filter button-->
+    <div class="mobile-filter-button">
+        <button (click)="searchGrid()">Filter</button>
+    </div>
+    <!--Mobile Search grid-->
+    <div class="searchInfo AvenirLTStd-Regular mobile-search-info" *ngIf="mobileSearchGrid">
+        <div class="position-relative firm">
+            <div (mouseleave)="showDropDown = false">
+                <button class="form-control searchBeds" (click)="showDropDown=!showDropDown">
+                    <span *ngIf="showSelect">{{"label.propertyType"|translate}}</span>
+                    <span *ngIf="showValue">{{checkedList.length}} {{"label.Selected" | translate}}</span>
+                    <i class="fa fa-angle-down ml-2"></i>
+                </button>
+                <div class="drop-show" *ngIf="showDropDown">
+
+                    <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
+                        <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
+                        <span>{{ list.list }}</span>
+                        <span class="select-checkmark"></span>
+                    </lable>
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+            <auto-complete placeholder="{{'label.location' | translate}}*" class="hm-lc searchBeds ml-2" (setAddress)="getAddress($event)" #location [(ngModel)]="place"></auto-complete>
+            <span class="material-icons place-icon">place</span>
+            <div class="notValidated" *ngIf="((place == '' || place == undefined) &&  notValidated == true)">
+                This field is required
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <div class="model-width-align">
+                <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advPriceDropDown=!advPriceDropDown">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons mr-2 place-icon" style="background: white;width: 11%;cursor: default;"> euro_symbol</span>
+                        <span>{{"label.price" | translate}}</span>
+                    </div>
+                </button>
+                <div class="drop-show drop-show-width" *ngIf="advPriceDropDown">
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMin' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="advMinPrice" name="advMinPrice" (change)="filter(minPrice)" />
+                    <br>
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMax' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="advMaxPrice" name="advMaxPrice" (change)="filter(maxprice)" />
+                </div>
+            </div>
+        </div>
+
+        <div class="position-relative firm">
+
+
+            <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-room-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+                {{"label.room"|translate}}
+            </span>
+            <div class="mt-2 collapse custom-checkboxCollapse" id="clps-room-btn" [ngClass]="{'show': roomShowButton === true}">
+                <div class="d-flex buttons-modal">
+                    <div class="squaredOne" *ngFor="let roomNumber of roomNumbers">
+                        <input type="checkbox" name="arrayModel" id={{roomNumber.value}} name="check" (change)="filter('room')" [(ngModel)]="roomNumber.checked" />
+                        <label for={{roomNumber.value}}> {{roomNumber.id}}
+                            <span class="add-symbol" *ngIf="roomNumber.id == 5">+</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-relative firm">
+
+
+            <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-bed-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+                {{"label.beds"|translate}}
+            </span>
+            <div class="mt-2 collapse custom-checkboxCollapse" id="clps-bed-btn" [ngClass]="{'show': bedShowButton === true}">
+                <div class="d-flex buttons-modal">
+                    <div class="squaredOne" *ngFor="let bedNumber of bedNumbers">
+                        <input type="checkbox" name="bedSelect" id={{bedNumber.value}} name="check" (change)="filter('bed')" [(ngModel)]="bedNumber.checked" />
+                        <label for={{bedNumber.value}}> {{bedNumber.id}}
+                            <span class="add-symbol" *ngIf="bedNumber.id == 5">+</span> </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <div class="model-width-align">
+                <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advsizeDropDown=!advsizeDropDown">
+                    <div class="d-flex align-items-center">
+                        <span>{{"label.Size" | translate }}</span>
+                    </div>
+                </button>
+                <div class="drop-show drop-show-width" *ngIf="advsizeDropDown">
+                    <input type="text" appNumberDirective placeholder="Min Size" class="form-control ml-2 mt-2" [(ngModel)]="advMinSize" name="advMinSize" (change)="filter(minPrice)" />
+                    <br>
+                    <input type="text" appNumberDirective placeholder="Max Size" class="form-control ml-2 mb-2" [(ngModel)]="advMaxSize" name="advMaxSize" (change)="filter(maxprice)" />
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <button class="form-control searchBeds ml-2 text_custom_alignment" (click)="onClickMore()">
+                {{"label.moreAdvanced" | translate}} </button>
+        </div>
+    </div>
+    <!--Desktop Search grid-->
+    <div class="searchInfo AvenirLTStd-Regular">
+        <div class="position-relative firm">
+            <div (mouseleave)="showDropDown = false">
+                <button class="form-control searchBeds" (click)="showDropDown=!showDropDown">
+                <span *ngIf="showSelect">{{"label.propertyType"|translate}}</span>
+                <span *ngIf="showValue">{{checkedList.length}} {{"label.Selected" | translate}}</span>
+                <i class="fa fa-angle-down ml-2"></i>
+            </button>
+                <div class="drop-show" *ngIf="showDropDown">
+
+                    <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
+                        <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
+                        <span>{{ list.list }}</span>
+                        <span class="select-checkmark"></span>
+                    </lable>
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+            <auto-complete placeholder="{{'label.location' | translate}}*" class="hm-lc searchBeds ml-2" (setAddress)="getAddress($event)" #location [(ngModel)]="place"></auto-complete>
+            <span class="material-icons place-icon">place</span>
+            <div class="notValidated" *ngIf="((place == '' || place == undefined) &&  notValidated == true)">
+                This field is required
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <div class="model-width-align">
+                <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advPriceDropDown=!advPriceDropDown">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons mr-2 place-icon" style="background: white;width: 11%;cursor: default;"> euro_symbol</span>
+                    <span>{{"label.price" | translate}}</span>
+                </div>
+            </button>
+                <div class="drop-show drop-show-width" *ngIf="advPriceDropDown">
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMin' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="advMinPrice" name="advMinPrice" (change)="filter(minPrice)" />
+                    <br>
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMax' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="advMaxPrice" name="advMaxPrice" (change)="filter(maxprice)" />
+                </div>
+            </div>
+        </div>
+
+        <div class="position-relative firm">
+
+
+            <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-room-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+            {{"label.room"|translate}}
+        </span>
+            <div class="mt-2 collapse custom-checkboxCollapse" id="clps-room-btn" [ngClass]="{'show': roomShowButton === true}">
+                <div class="d-flex buttons-modal">
+                    <div class="squaredOne" *ngFor="let roomNumber of roomNumbers">
+                        <input type="checkbox" name="arrayModel" id={{roomNumber.value}} name="check" (change)="filter('room')" [(ngModel)]="roomNumber.checked" />
+                        <label for={{roomNumber.value}}> {{roomNumber.id}}
+                        <span class="add-symbol" *ngIf="roomNumber.id == 5">+</span>
+                    </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-relative firm">
+
+
+            <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-bed-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+            {{"label.beds"|translate}}
+        </span>
+            <div class="mt-2 collapse custom-checkboxCollapse" id="clps-bed-btn" [ngClass]="{'show': bedShowButton === true}">
+                <div class="d-flex buttons-modal">
+                    <div class="squaredOne" *ngFor="let bedNumber of bedNumbers">
+                        <input type="checkbox" name="bedSelect" id={{bedNumber.value}} name="check" (change)="filter('bed')" [(ngModel)]="bedNumber.checked" />
+                        <label for={{bedNumber.value}}> {{bedNumber.id}}
+                        <span class="add-symbol" *ngIf="bedNumber.id == 5">+</span> </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <div class="model-width-align">
+                <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advsizeDropDown=!advsizeDropDown">
+                <div class="d-flex align-items-center">
+                    <span>{{"label.Size" | translate }}</span>
+                </div>
+            </button>
+                <div class="drop-show drop-show-width" *ngIf="advsizeDropDown">
+                    <input type="text" appNumberDirective placeholder="Min Size" class="form-control ml-2 mt-2" [(ngModel)]="advMinSize" name="advMinSize" (change)="filter(minPrice)" />
+                    <br>
+                    <input type="text" appNumberDirective placeholder="Max Size" class="form-control ml-2 mb-2" [(ngModel)]="advMaxSize" name="advMaxSize" (change)="filter(maxprice)" />
+                </div>
+            </div>
+        </div>
+        <div class="position-relative firm">
+
+            <button class="form-control searchBeds ml-2 text_custom_alignment" (click)="onClickMore()">
+            {{"label.moreAdvanced" | translate}} </button>
+        </div>
+    </div>
+    <!--cards section starts here-->
+    <div class="searchResults row justify-content-center">
+        <!-- <div class="col-3 advertisements">
+            <div class="advertisement">
+                <p class="adv-p">{{"label.advertisement1"|translate}}</p>
+            </div>
+            <div class="advertisement advertisement-two">
+                <p class="adv-p">{{"label.advertisement2"|translate}}</p>
+                <p class="adv-sticky">{{"label.sticky"|translate}}</p>
+            </div>
+        </div> -->
+
+        <div class="col-lg-11 col-sm-9  search-results">
+            <div class="d-flex search-changeType">
+                <div class="search-changeType-showResults">{{"label.showing" | translate}} {{listTotal}} {{"label.showingresult" | translate}}</div>
+                <div class="d-flex align-items-center search-changeType-btns">
+
+                    <!-- <span class="material-icons ml-2 changeType" (click)="typeChange = false ; typeChanges = true" [ngStyle]="{'color': typeChanges ? 'blue' : '' }">list</span> -->
+                </div>
+            </div>
+            <!-- typeLIst -->
+            <div class="searchingList" *ngIf="!typeChange">
+                <div class="listBody mt-3" *ngFor="let list of propertiesList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: listTotal};index as i">
+                    <div class="listCard d-flex row">
+                        <div class="col-lg-4 col-12">
+                            <div class="list-img">
+                                <i *ngIf="list.activeindex < list.houseImg.length-1" (click)="getImg(list,i,'next')" class="fa fa-chevron-right" aria-hidden="true"></i>
+                                <i *ngIf="list.activeindex > 0" (click)="getImg(list,i,'prev')" class="fa fa-chevron-left" aria-hidden="true"></i>
+                                <div>
+                                    <img class="list-img-wrapper imgDimen img-fluid" (click)="navigatetoListing(list)" [src]="list.acttiveImg">
+
+                                </div>
+
+
+
+                                <div class="icon-img-inner">
+                                    <div class="text-center">
+                                        <p class="new-tag" *ngIf="list.role === 'developer'">New</p>
+                                    </div>
+                                    <div>
+                                        <button class="icon-img-inner-button" (click)="list.heart = !list.heart">
+                                    <img src="assets/images/heart.png" class="heartImg" alt="heart"
+                                        *ngIf="!list.heart" />
+                                    <i class="fa fa-heart" aria-hidden="true" *ngIf="list.heart"></i>
+                                </button>
+                                    </div>
+                                </div>
+                                <div class="list-price-details AvenirLTStd-Regular">
+                                    <div class="d-flex align-items-center list-inner-icon-txt list-inner-icon-background">
+                                        <span class="material-icons list-img-icon-card mb-auto">
+                                        perm_media
+                                    </span>
+                                        <p class="text-white font-weight-bold ml-1 mb-2">{{list.houseImg.length}}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center list-inner-icon-txt list-inner-icon-background">
+                                        <span class="material-icons list-img-icon-card mb-auto">
+                                        video_library
+                                    </span>
+                                        <p class="text-white font-weight-bold ml-1 mb-2">{{list.houseVideos.length}}</p>
+                                    </div>
+                                    <p class="list-inner-text-card list-inner-background">{{list.inc_fees | number}}€</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-12">
+                            <div class="list-house-info">
+                                <div class="list-house-info-content">
+                                    <div class="heading_ref">
+                                        <a class=" AvenirLTStd-Regular" (click)="navigatetoListing(list)" (mousedown)="checkEvent($event)" target="_blank" oncontextmenu="return false;">{{list.listing_title | titlecase}}
+                                </a>
+                                        <!-- href="javascript:void(0)" target="_blank" rel="noopener noreferrer" (mousedown)="checkEvent($event)-->
+                                        <span class="">Ref:{{list.listing_reference}}</span>
+                                        <!-- <small class="ref_display">Ref:{{list.listing_reference}}</small> -->
+                                    </div>
+
+                                    <div class="d-flex align-items-center listing-text-wrapper pb-3">
+                                        <p class="list-residence-address mt-2 mr-2 custom-homeType-font">
+                                            {{list.home_type | titlecase}}</p>
+                                        <span class="material-icons list-residence-address-icon mt-2">place</span>
+                                        <p class="list-residence-address mt-2">{{ list.commune }}</p>
+                                    </div>
+                                    <div class="detail-info AvenirLTStd-Regular">
+                                        <pre>{{list.description}}</pre>
+                                    </div>
+                                </div>
+                                <div class="align-items-center list-avator-firm row">
+                                    <div class="d-flex align-items-center  avatar-search-firm col-md-5 col-6">
+                                        <img src="{{list.userPhoto}}" alt="Avatar" class="list-avatar img-fluid position-relative" />
+                                        <p class="list-avator-text mt-3 ml-2">{{(list.listingUser | titlecase )}}</p>
+                                    </div>
+                                    <div class="list-residence-details d-flex col-md-7 col-6">
+                                        <div class="d-flex mr-2 align-items-center cstm-details">
+                                            <span class="material-icons mr-1">meeting_room</span>
+                                            <p>{{list.num_rooms}} {{"label.Rooms" | translate}}</p>
+                                        </div>
+                                        <div class="d-flex  mr-2 align-items-center cstm-details">
+                                            <span class="material-icons mr-1">single_bed</span>
+                                            <p>{{list.num_beds}} {{"label.Bedrooms" | translate}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center cstm-details">
+                                            <span class="material-icons mr-2">photo_size_select_small</span>
+                                            <div *ngIf="list.unit_type == 'm2'">
+                                                <p>{{list.surface}} m²</p>
+                                            </div>
+                                            <div *ngIf="list.unit_type != 'm2'">
+                                                <p>{{list.surface}} {{list.unit_type}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="listTotal == 0">
+                    <h1>{{errorOfNoData}}</h1>
+                </div>
+                <div class="grid-page-firm" *ngIf="listTotal > 9">
+                    
+                    <pagination-controls (pageChange)="p = $event;pagination($event)" directionLinks="true" class="my-pagination">
+                        
+                    </pagination-controls>
+                    
+
+                </div>
+            </div>
+            <!-- typeList end -->
+            <!-- typeGrid -->
+            <div class="searchingGrid" *ngIf="typeChange">
+                <div class="card-wrapper wrapper-grid pb-3 pt-3" *ngFor="let list of propertiesList | paginate: { itemsPerPage: 10, currentPage: p, totalItems: listTotal}; index as i">
+                    <div class="card">
+                        <div class="results-img">
+                            <i *ngIf="list.activeindex < list.houseImg.length-1" (click)="getImg(list,i,'next')" class="fa fa-chevron-right" aria-hidden="true"></i>
+                            <i *ngIf="list.activeindex > 0" (click)="getImg(list,i,'prev')" class="fa fa-chevron-left" aria-hidden="true"></i>
+                            <div style="height:160px;">
+                                <img *ngIf="!list.acttiveImg.includes('mp4')" id="rotated-pics" class="img-fluid" style="height: 158px; width: 100%;" [src]="list.acttiveImg">
+                                <video *ngIf="list.acttiveImg.includes('mp4') && loader[i]" style="height: 158px; width: 255px;background: slategray;" class="video-fluid z-depth-1" autoplay loop [muted]="true">
+                                    <source [src]="list.acttiveImg" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="position-absolute icon-img-inner">
+                                <button class="icon-img-inner-button" (click)="list.heart = !list.heart">
+                                    <img src="assets/images/heart.png" class="heartImg" alt="heart"
+                                        *ngIf="!list.heart" />
+                                    <i class="fa fa-heart" aria-hidden="true" *ngIf="list.heart"></i>
+                                </button>
+                            </div>
+                            <div class="price-details">
+                                <div class="d-flex inner-icon-txt">
+                                    <span class="material-icons img-icon-card">perm_media</span>
+                                    <p class="text-white num-text">{{list.houseImg.length}}</p>
+                                </div>
+                                <div class="d-flex inner-icon-txt">
+                                    <span class="material-icons img-icon-card">video_library</span>
+                                    <p class="text-white num-text">{{list.houseVideos.length}}</p>
+                                </div>
+                                <p class="inner-text-card">${{list.inc_fees | number}}</p>
+                            </div>
+                        </div>
+                        <div class="house-info">
+                            <div class="heading_ref">
+                                <h4 class="residence ref_display_left" (click)="navigatetoListing(list)">
+                                    {{list.listing_title | titlecase}}
+                                </h4>
+                                <small class="ref_display">Ref:{{list.listing_reference | slice:0:10}}...</small>
+                            </div>
+
+
+                            <p class="residence-address">{{ list.address }}</p>
+                            <div class="residence-details d-flex">
+                                <div class="d-flex mr-2">
+                                    <span class="material-icons mr-1">meeting_room</span>
+                                    <p>{{list.num_rooms}} {{"label.Rooms" | translate}}</p>
+                                </div>
+                                <div class="d-flex mr-2">
+                                    <span class="material-icons mr-1">single_bed</span>
+                                    <p>{{list.num_beds}} {{"label.beds" | translate}}</p>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="material-icons mr-2">photo_size_select_small</span>
+                                    <p>{{list.surface}} Sqft</p>
+                                </div>
+
+                            </div>
+                            <div class="d-flex align-items-center avator-firm">
+                                <img src="assets/images/house-img.png" alt="Avatar" class="avatar img-fluid" />
+                                <p class="avator-text">{{list.first_name + (list.last_name ? list.last_name : '')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="listTotal == 0">
+                    <h1>{{errorOfNoData}}</h1>
+                </div>
+                <div class="grid-page-firm" *ngIf="listTotal > 9">
+                    <pagination-controls (pageChange)="p = $event;pagination($event)" directionLinks="false" class="my-pagination"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- askQuestion-wrapper starts here -->
+    <div class="askQuestion-wrapper">
+        <div class="container ask-wrapper">
+            <div class="question-firm">
+                <h1 class="touch-text text-white AvenirLTStd-Regular">
+                    {{"label.questions"|translate}}?
+                </h1>
+                <button class="touch-btn AvenirLTStd-Regular text-center" [routerLink]="['/contact-us']">
+                    {{"label.button"|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer starts here -->
+    <app-new-footer></app-new-footer>
+</div>

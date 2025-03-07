@@ -1,0 +1,92 @@
+<!-- <app-header></app-header> -->
+<div class="main-content-wrapper">
+    <div class="container container-main-wrapper">
+        <div class="text-center banner-text" style="margin-top: 189px;">
+            <h4 class="us-firm-text">{{"label.getintouchetitle"|translate}}</h4>
+        </div>
+    </div>
+</div>
+<!--work-section starts here-->
+<section class="work-section">
+    <div class="container work-main-wrapper">
+        <div class="d-flex work-inner-firm">
+            <div class="border-set">
+                <div class="border-subset">
+                    <h4 class="contact-text ml-3">{{"label.contact"|translate}}</h4>
+                    <div class="d-flex align-items-center subject-wrapper">
+                        <div class="">
+                            <p class="contact-inner-text mb-0">{{"label.hello"|translate}}!</p>
+                        </div>
+                        <select class="form-select input-inner-firm custom-select" aria-label="Default select example"
+                            [(ngModel)]="subject" name="subject">
+                            <option value="" selected disabled hidden>{{"label.contactsubject" |translate}}</option>
+                            <option value="maybeathome">{{"label.askmaybe" |translate}}</option>
+                            <option value="help">{{"label.ineedhelp" |translate}}</option>
+                            <option value="feedback">{{"label.feedback" |translate}}</option>
+                            <option value="complain">{{"label.partnership" |translate}}</option>
+                            <option value="pertner">{{"label.complain" |translate}}</option>
+                            <option value="property_test">{{"label.testmyproperty" |translate}}
+                            </option>
+                            <option value="make_test">{{"label.howdoitest" |translate}}</option>
+                            <option value="other">{{"label.contactother" |translate}}</option>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center input-wrapper">
+                        <div class="inner-inputfirm1">
+                            <input type="text" placeholder="{{ 'label.contactfirstname' | translate }}*"
+                                class="input-inner-firm" [(ngModel)]="firstName" name="firstName">
+                        </div>
+                        <div class="inner-inputfirm2">
+                            <input type="text" placeholder="{{ 'label.contactlastname' | translate }}*"
+                                class="input-inner-firm" [(ngModel)]="lastName" name="lastName">
+                        </div>
+                    </div>
+                    <div class="input-email-wrapper">
+                        <input type="email" placeholder="{{ 'label.contactmailaddress' | translate }}*"
+                            class="input-inner-wrapper" [(ngModel)]="email" name="email">
+                    </div>
+                </div>
+                <div class="area-wrapper">
+                    <textarea id="w3review" name="w3review" rows="5" cols="75" class="area-inner-wrapper"
+                        [(ngModel)]="discription" name="discription">
+
+                    </textarea>
+                </div>
+                <div class="submit-button-wrapper">
+                    <button type="submit" class="submit-btn" (click)="submit()">{{"label._submit"|translate}}</button>
+                </div>
+
+            </div>
+            <div id="demo" class="carousel slide office-address" data-ride="carousel">
+                <ul class="carousel-indicators">
+
+                </ul>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="border-subset2">
+                            <h4 class="contact-address ml-3">{{"label.office"|translate}}</h4>
+                            <p class="nevis-text">
+                                {{"label.add"|translate}},<br> {{"label.west"|translate}}
+                                <br>
+                            </p>
+                            <div class="d-flex caribbean-wrapper mt-3">
+                                <p class="phone-text"> {{"label.phone"|translate}}:</p>
+                                <p class="nevis-num-text">{{"label.contactusphone" | translate}}</p>
+                            </div>
+
+                            <div class="d-flex caribbean-wrapper">
+                                <p class="phone-text">{{"label.email"|translate}}:</p>
+                                <p class="nevis-num-text example-text">{{"label.example"|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--work-section ends here-->
+
+<app-new-footer></app-new-footer>
+<div id="destination"></div>

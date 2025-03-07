@@ -1,0 +1,121 @@
+<!-- <div>
+    <app-header></app-header>
+</div> -->
+<div *ngIf="showSpinner" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter=70 mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<!-- organization-bg starts here-->
+<div class="organization-bg">
+    <div class="d-flex align-items-center summary-bg-firm">
+        <button class="perform-mes-wrapper tab-active" routerLink='/agency/agents'>{{"label.ourMember" | translate}}</button>
+        <button class="perform-mes-wrapper" routerLink='/agency/applications'>{{"label.Application" | translate}}</button>
+    </div>
+    <div class="handle-wrapper">
+        <div class="container">
+            <div class="d-flex align-items-center person-firm">
+                <div class="position-relative required-input">
+                    <input type="text" placeholder="{{'label.Search' | translate}}" class="required-form-input ml-2" (keyup)="applyOrgMembersSearch($event.target.value)"><span class="material-icons required-arrow">search</span>
+                </div>
+                <div class="d-flex align-items-center add-firm" data-toggle="modal" data-target="#myModal">
+                    <img src="assets/images/person-blue.png" class="img-fluid" alt="person">
+                    <p class="Member-text">{{"label.ORG_application_addMem" | translate}}</p>
+                </div>
+            </div>
+
+            <div class="d-flex avator-card-wrapper">
+                <mat-card *ngFor="let elm of membersData" class="willis-card position-relative">
+                    <mat-header>
+                        <mat-slide-toggle *ngIf="elm.status === 1" [checked]="true" (change)="updateOrganizationMemberStatus(elm.user_id, elm.status)"></mat-slide-toggle>
+                        <mat-slide-toggle *ngIf="elm.status === 0" [checked]="false" (change)="updateOrganizationMemberStatus(elm.user_id, elm.status)"></mat-slide-toggle>
+
+                        <button class="deleteBtn" (click)="openDeleteCard(elm)" data-toggle="modal" data-target="#myDeleteModal">
+                            <span class="material-icons nav-material-icons mr-2">delete_outline</span>
+                        </button>
+                    </mat-header>
+
+                    <img mat-card-image src="{{elm.profile_image}}" alt="per-img" class="img-fluid person-don-img">
+                    <mat-card-content style="margin: 10px 0 10px 0;">
+                        <p class="don-text mb-0">{{elm.first_name}} {{elm.last_name}}</p>
+                        <p class="url-text mb-0">{{elm.email}}</p>
+                        <p class="num-text mb-0">{{elm.telephone}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+           
+            <div class="d-flex align-items-center justify-content-end items-page-wrapper">
+                <p class="items-firm pl-3">Items per page</p>
+                <div class="d-flex align-items-center dropdown-firm ml-3">
+                    <p class="items-firm">{{perPage}}</p>
+                    <img src="assets/images/dropdown.png" class="img-fluid" alt="dropdown">
+                </div>
+                <p class="items-firm pl-3">{{from}} - {{to}} of {{total}}</p>
+                <div class="d-flex align-items-center mb-3">
+                    <button class="btn-light prevBtn" (click)="prevPage()"><img src="assets/images/left-side.png"
+                            class="img-fluid ml-2" alt="page"></button>
+                    <button class="btn-light nextBtn" (click)="nextPage()"><img src="assets/images/right-side.png"
+                            class="img-fluid ml-2" alt="page"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- organization-bg ends here-->
+
+<!--delete-icon-code starts here-->
+
+<div class="modal fade delete-modal-wrapper" id="myDeleteModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" #modalclose>&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="delete-card-wrapper">
+                    <div class="inner-card-firm mt-3">
+                        <p class="delete-text">Delete this member ?</p>
+                        <div class="d-flex align-items-center delete-firm justify-content-around mt-5">
+                            <button class="detele-btn" type="button" (click)="deleteOrgMember()">Yes, Delete
+                            </button>
+                            <button class="cancel-text" type="button" data-dismiss="modal">Cancel
+                            </button>
+                            <!-- <p class="cancel-text" data-dismiss="modal">Cancel</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--delete-icon-code ends here-->
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h4 class="add-firm2">{{"label.ORG_application_addMem" | translate}}</h4>
+                <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+                    <input type="email" placeholder="{{'label.ORG_application_addMem_emailAddress' | translate}}" class="address-firm" formControlName="emailid">
+                    <button type="submit" class="send-wrapper position-relative" [disabled]="addmemberLoader">
+                        {{"label.ORG_application_addMem_send" | translate}}
+                        <mat-spinner *ngIf="addmemberLoader" [diameter]="25"></mat-spinner>
+                    </button>
+                </form>
+                <p class="copy-link-firm">{{"label.ORG_application_addMem_copyLinkBelow" | translate}}</p>
+                <div class="position-relative" [formGroup]="linkForm">
+                    <input type="url" class="address-firm" formControlName="link">
+                    <button type="button" #t="ngbTooltip" [ngbTooltip]="tipContent" class="copy-input position-absolute" (click)="copyLink(t)">Copy</button>
+                    <ng-template #tipContent>{{"label.ORG_application_addMem_copied" | translate}}</ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

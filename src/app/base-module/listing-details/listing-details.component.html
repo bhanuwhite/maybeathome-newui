@@ -1,0 +1,735 @@
+<!-- <div>
+    <app-general-header></app-general-header>
+</div> -->
+<div *ngIf="detailLoader" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter="70" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<div class="list-details-fullview">
+    <div class="d-flex align-items-center cascade-tour-wrapper">
+        <h4 class="house-modal-firm case-wrapper AvenirLTStd-Regular">
+            {{ list.listing_title | titlecase }}
+        </h4>
+        <!-- Cascade Residence -->
+        <div class="d-flex align-items-center btns-tour-wrapper" (clickOutSide)="clickOutSide()">
+            <div class="dropdown">
+
+                <button #toggleButton type="button" class="tour-btn AvenirLTStd-Regular position-relative"
+                    (click)="bookAVisit()">
+                    {{ "label.book" | translate }}
+                </button>
+                <div #dropDown class="request-tabs-wrapper position-absolute" [class.d-none]="!hoverDisplay">
+                    <div *ngIf="!isAuthenticated">
+                        <h3 class="tabs-tour-text">{{ "label.request" | translate }}</h3>
+                        <p class="tabs-tour-paragraph">{{ "label.InfoVisit" | translate }}.</p>
+                        <h3 class="tabs-tour-logged">{{ "label.logged" | translate }}</h3>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="request-login" (click)="login()">
+                                {{ "label.submit" | translate }}
+                            </button>
+                            <p class="tour-or-firm">{{ "label.or" | translate }}</p>
+                            <button type="button" class="request-login" (click)="register()">
+                                {{ "label.submit_value" | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="" *ngIf="isAuthenticated && slotsAvailability">
+                        <h3 class="tabs-tour-text">{{ "label.request" | translate }}</h3>
+                        <p class="tabs-tour-paragraph">{{ "label.send" | translate }}.</p>
+                        <div class="position-relative required-firm pt-3">
+
+                            <div class="content-section implementation carousel-demo">
+                                <div class="card">
+                                    <p-carousel [value]="storeSlots" [numVisible]="3" [numScroll]="1"
+                                        [responsiveOptions]="responsiveOptions">
+                                        <ng-template let-slot pTemplate="item">
+                                            <div class="slots-firm"
+                                                [ngClass]="{ 'active-slot': slotIndex == slot.index }"
+                                                (click)="addSlotTime(slot, slot.index)">
+                                                <p class="slot-day-firm">{{ slot.day }}</p>
+                                                <p class="slot-date-firm">
+                                                    {{ slot.date | date: "MMM d" }}
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                    </p-carousel>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative required-firm">
+
+                            <select *ngIf="showSlotTimesLength != 0" (change)="getEndDate($event)"
+                                [ngStyle]="{'border-color' : hoursSelected ? 'darkgray':'red'}"
+                                class="required-date-firm ml-2" [(ngModel)]="time" name="time">
+                                <option selected="selected" value="" hidden>{{"label.SelectTime" | translate}}</option>
+                                <option value="{{ list.start }}" *ngFor="let list of showSlotTimes">
+                                    {{ list.start }}-{{ list.end }}
+                                </option>
+                            </select>
+                            <span *ngIf="showSlotTimesLength != 0"><img src="assets/images/time.png" alt="event-black"
+                                    class="img-fluid time-img" />
+                            </span>
+                            <div class="notValidated" *ngIf="showSlotTimesLength == 0">
+                                Slots not available
+                            </div>
+                        </div>
+                        <p class="optional-wrapper mt-3">{{"label.InfoOption" | translate}}</p>
+                        <textarea id="w3review" class="text-area-firm" name="w3review" rows="4" cols="33"
+                            [(ngModel)]="optInfo" name="optInfo">
+          </textarea>
+                        <button type="button" class="send-firm position-relative" [disabled]="addEventLoader"
+                            (click)="send()">
+                            {{"label.MessageSend" | translate}}
+                            <mat-spinner *ngIf="addEventLoader" [diameter]="25"></mat-spinner>
+                        </button>
+                    </div>
+                    <div *ngIf="isAuthenticated && !slotsAvailability" class="no-slots">
+                        <p>{{"label.noSlot" | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button #contactToggleButton type="button" class="contact-btn AvenirLTStd-Regular position-relative"
+                    (click)="sliceContactValue(list)">
+                    {{"label.contact1" | translate}}
+                </button>
+
+                <div #contactDropDown class="contact-tabs-wrapper position-absolute"
+                    aria-labelledby="dropdownMenuButton" [class.d-none]="!contactDisplay">
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active cool-link email-link-wrapper" id="nav-home-tab"
+                            data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+                            aria-selected="true">{{"label.ContactTel" |
+                            translate}}</a>
+                        <a class="nav-item nav-link cool-link" id="nav-profile-tab" data-toggle="tab"
+                            href="#nav-profile" role="tab" aria-controls="nav-profile"
+                            aria-selected="false">{{"label.Message" | translate}}</a>
+                    </div>
+
+                    <div class="tab-content py-3 px-3 px-sm-0 AvenirLTStd-Regular" id="nav-tabContent">
+                        <div class="tab-pane fade show active AvenirLTStd-Regular" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <div class="d-flex address-main-firm">
+                                <span class="address-wrapper"> {{"label.ContactName" | translate}}: </span>
+                                <span class="ml-2">{{
+                                    (list.first_name | titlecase) +
+                                    " " +
+                                    (list.last_name ? (list.last_name | titlecase) : "")
+                                    }}</span>
+                            </div>
+
+                            <div class="d-flex address-main-firm">
+                                <span class="address-wrapper"> {{"label.ContactMail" | translate}}: </span>
+                                <span class="ml-2">{{ emailSliceValue }}</span>
+                            </div>
+                            <div class="d-flex address-main-firm" style="width: fit-content">
+                                <span class="address-wrapper" style="width: 107px">
+                                    {{"label.ContactTel" | translate}}:
+                                </span>
+                                <span class="ml-2" style="width: 131px">{{
+                                    mobileSliceValue | mask: "0000000000"
+                                    }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane fade AvenirLTStd-Regular" id="nav-profile" role="tabpanel"
+                            aria-labelledby="nav-profile-tab">
+                            <p>
+                                {{"label.InfoMessage" | translate}} </p>
+                            <p class="optional-wrapper">{{"label.MessageContent" | translate}}<span style="color: #800000;">*</span> </p>
+                            <form [formGroup]="messageForm">
+                            <textarea id="w3review" class="text-area-firm" name="w3review" rows="4" cols="35" 
+                                [(ngModel)]="message" name="message" formControlName="message">
+                            </textarea>
+                            <button type="button" class="send-wrapper position-relative" [disabled]="messageForm.invalid || msgLoader"
+                            
+                                (click)="sendMessage()">
+                                {{"label.MessageSend" | translate}}
+                                <mat-spinner *ngIf="msgLoader" [diameter]="25"></mat-spinner>
+                            </button>
+                        </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex align-items-center usa-firm address-firm-cstm" style="position: relative">
+        <p class="residence-address AvenirLTStd-Regular">
+            {{ list.commune | titlecase }} {{ list.code_postal }}
+        </p>
+        <div class="residence-details d-flex ml-2">
+            <div class="d-flex mr-2">
+                <span class="material-icons mr-1">meeting_room</span>
+                <p>{{ list.num_rooms }} {{"label.Rooms" | translate}}</p>
+            </div>
+            <div class="d-flex mr-2">
+                <span class="material-icons mr-1">single_bed</span>
+                <p>{{ list.num_beds }} {{"label.beds" | translate}}</p>
+            </div>
+            <div class="d-flex">
+                <span class="material-icons mr-2">photo_size_select_small</span>
+                <div *ngIf="list.unit_type == 'm2'">
+                    <p>{{ list.surface }} m²</p>
+                </div>
+                <div *ngIf="list.unit_type != 'm2'">
+                    <p>{{ list.surface }} {{ list.unit_type }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex usa-firm setCustomRelative">
+            <div class="setCustomAbsolute">
+                <p class="choice-links price-custom">
+                    {{ list.inc_fees | number }}
+                    <span _ngcontent-ika-c257="" class="material-icons euro-icon price-custom-symbol">
+                        euro_symbol
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex usa-firm setCustomRelative map-and-photos-cstm" style="position: relative">
+        <div class="setCustomAbsolute">
+            <ul style="list-style-type: none; color: blue; font-weight: bold;">
+                <li style="display: inline">
+                    <a class="choice-links" (click)="section('Photos')">{{"label.photos" | translate}}</a>
+                </li>
+                <li style="display: inline">
+                    <a class="choice-links" *ngIf="getVideoLinks.length > 0"
+                        (click)="section('Videos')">{{"label.videos" |
+                        translate}}</a>
+                </li>
+                <li style="display: inline">
+                    <a style="cursor: pointer" (click)="section('Map')">Map</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf="setPhotos" class="d-flex group-houses-firm">
+        <div class="house-modal-img" data-toggle="modal" data-target="#myModal">
+            <img [src]="activeImage" (error)="onImgError($event)" alt="house1"
+                class="img-fluid house-innermodal w-100" />
+        </div>
+        <div class="photo-modal-firm">
+            <div class="photo-img-firm" style="width: 140px"
+                (click)="activeImage = item; changeImg(i); getImageIndex = i"
+                *ngFor="let item of list.houseImg; index as i">
+                <img style="width: 140px" [src]="item" alt="house1" class="img-fluid modal-house-wrapper" />
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" style="z-index: 9999">
+        <div class="modal-dialog modal-xl modal-dialog-centered position-relative">
+            <div class="modal-content">
+                <button type="button" class="close modal-cross-icon dismiss-toggle icon-cross-btn" data-dismiss="modal"
+                    #modalclose>
+                    &times;
+                </button>
+                <div class="modal-body img-bg-firm" style="padding: 0rem">
+                    <div class="mainImgDiv">
+                        <span class="material-icons arrow-backword nav-material-icons" [class.disabled]="disablePrev"
+                            (click)="prev(activeImage)">
+                            navigate_before
+                        </span>
+                        <div style="width: 65rem;text-align: center;">
+                            <img [src]="activeImage" (error)="onImgError($event)" alt="house1"
+                                class="img-fluid img-modal" />
+                        </div>
+                        <span class="material-icons arrow-_forword nav-material-icons" [class.disabled]="disableNext"
+                            (click)="next(activeImage)">
+                            navigate_next
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="column inner-img-firm1" style="width: 140px"
+                            (click)="activeImage = item; changeImg(i); checkImageIndex = i"
+                            *ngFor="let item of list.houseImg; index as i">
+                            <img style="width: 140px" [src]="item" alt="house1"
+                                class="img-fluid modal-house-wrapper inner-house-firm1"
+                                [class.houseb-firm]="checkImageIndex === i" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- video starts here -->
+    <div *ngIf="setVideos" class="d-flex group-houses-firm">
+        <div *ngIf="videoThumbnails.length == 0" class="house-modal-img">
+            <img src="assets/images/no-video.png" class="img-fluid house-innermodal w-100" />
+        </div>
+        <div *ngIf="videoThumbnails.length > 0" class="house-modal-img">
+            <img [src]="activeVideoThumbnail" alt="video" class="img-fluid house-innermodal w-100" />
+            <a [href]="activeVideo" target="_blank">
+                <span *ngIf="!showRotationIcon" class="material-icons set_play nav-material-icons">
+                    play_circle_outline
+                </span>
+                <img *ngIf="showRotationIcon" class="set_play" style="width: 160px"
+                    src="assets/images/rotationwithout360.png" />
+            </a>
+        </div>
+        <div class="photo-modal-firm">
+            <div class="photo-img-firm" style="width: 140px" (click)="checkChangedVideo(item)"
+                *ngFor="let item of videoThumbnails">
+                <img style="width: 140px" [src]="item.videoThumbnail" alt="video"
+                    class="img-fluid modal-house-wrapper" />
+            </div>
+        </div>
+    </div>
+    <!--video ends here-->
+    <!-- map starts here -->
+    <div *ngIf="setMaps" class="d-flex group-houses-firm">
+        <div class="house-modal-img">
+
+            <div #gmapContainerPreview id="map" style="height: 450px"></div>
+
+        </div>
+
+
+        <div class="photo-modal-firm">
+            <div class="photo-img-firm" style="width: 140px" (click)="activeImage = item; changeImg(i)"
+                *ngFor="let item of list.houseImg">
+                <img style="width: 140px" [src]="item" alt="house1" class="img-fluid modal-house-wrapper" />
+            </div>
+        </div>
+    </div>
+    <!--map ends here-->
+    <!-- tabs starts here -->
+    <div class="container mt-4">
+        <mat-tab-group class="fill-tab-menu" animationDuration="0ms" selectedIndex="{{ tabIndex }}">
+            <mat-tab label="{{'label.Overview' | translate}}" (click)="tabSelected('overview')">
+                <div>
+                    <div *ngIf="list.description">
+                        <h2 class="overViewH2">{{"label.ListingDescription" | translate}}</h2>
+                        <p style="font-size: 1rem;">{{ list.description }}</p>
+                    </div>
+                    <div class="d-flex justify-content-sm-between w-50 home-firm2">
+                        <div *ngIf="list.home_type" class="inner-home-firm2">
+                            <h2 class="overViewH2">{{"label.homeType" | translate}}</h2>
+                            <p>{{homeType | translate}} </p>
+                        </div>
+                        <div *ngIf="list.surface" class="inner-home-firm2">
+                            <h2 class="overViewH2" style="width: 126px">{{"label.surface" | translate}}</h2>
+                            <p>{{ list.surface | number }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-sm-between w-50 rooms-firm2">
+                        <div *ngIf="list.num_rooms" class="inner-home-firm2">
+                            <h2 class="overViewH2">{{"label.NumberRooms" | translate}}</h2>
+                            <p>{{ list.num_rooms }}</p>
+                        </div>
+                        <div *ngIf="
+              list.land_surface &&
+              (list.home_type == 'house' || list.home_type == 'hotel')
+            " class="inner-home-firm2">
+                            <h2 class="overViewH2">{{"label.LandSurface" | translate}}</h2>
+                            <p>{{ list.land_surface }}</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="{{'label.FactsFeatures' | translate}}" (click)="tabSelected('facts')">
+                <h2 class="overViewH2 mb-2">{{"label.further" | translate}}</h2>
+                <div class="furtherInfo">
+                    <div *ngIf="
+            (list.num_beds > 0 && list.num_beds) ||
+            list.dining_room == 'yes' ||
+            (list.num_baths && list.num_baths > 0) ||
+            list.janitor == 'yes' ||  list.sep_toilet == 'yes'
+          ">
+                        <h2 class="overViewH2">Parts Details</h2>
+                        <div class="d-flex w-50 mt-3 mb-2 cstm-part-deatils">
+                            <div class="mr-5 w-50">
+                                <div class="d-flex align-items-center" *ngIf="list.num_beds > 0 && list.num_beds">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{ list.num_beds }} {{"label.Bedrooms" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.dining_room == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.diningRoom" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.num_baths && list.num_baths > 0">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{ list.num_baths }} {{"label.Bathrooms" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.janitor == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.janitor" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.sep_toilet == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.separateToilet" | translate}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center" *ngIf="list.living_room == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.LivingRoom" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.wheelchairs == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.people" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="
+            list.construction_year ||
+            list.name_boxes ||
+            list.car_parks ||
+            list.good_as_new == 'yes' ||
+            list.work_needed == 'yes' ||
+            list.wheelchairs == 'yes'
+          ">
+                        <h2 class="overViewH2">{{"label.condition" | translate}}</h2>
+                        <div class="d-flex w-50 mt-3 mb-2 condition-cstm">
+                            <div class="mr-5 w-50">
+                                <div class="d-flex align-items-center" *ngIf="list.construction_year">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{ list.construction_year }}-{{"label.construction" | translate}}</p>
+                                </div>
+
+                                <div class="d-flex align-items-center" *ngIf="list.name_boxes || list.car_parks">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.parkings" | translate}}</p>
+                                </div>
+                                <div class="parking-firm" *ngIf="list.name_boxes || list.car_parks">
+                                    <div class="d-flex align-items-center" *ngIf="list.name_boxes">
+                                        <p style="font-weight: bold" class="mr-3">{{"label.boxes" | translate}} -</p>
+                                        <p class="">
+                                            <span>{{ list.name_boxes }}</span>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center" *ngIf="list.car_parks">
+                                        <p style="font-weight: bold" class="mr-3">{{"label.parks" | translate}} -</p>
+                                        <p class="">
+                                            <span>{{ list.car_parks }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center" *ngIf="list.good_as_new == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.good" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.work_needed == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.work" | translate}}</p>
+                                </div>
+
+                                <div class="d-flex align-items-center" *ngIf="list.wheelchairs == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.wheelchairs" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="
+            list.firstFloor == 'yes' ||
+            list.gardenFloor ||
+            list.garden =='yes'|| 
+            list.num_terraces ||
+            list.num_balconies
+          ">
+                        <h2 class="overViewH2">{{"label.balconies" | translate}}</h2>
+                        <div class="d-flex w-50 mt-3 mb-2 garden-firm2">
+                            <div class="mr-5 w-50 d-none">
+                                <div class="d-flex align-items-center" *ngIf="list.firstFloor == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>1st Floor</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.gardenFloor">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{ list.gardenFloor }}</p>
+                                </div>
+
+                                <div class="d-flex align-items-center" *ngIf="list.garden=='yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>
+                                        {{"label.Garden" | translate}} {{ list.garden_surface }} m2
+                                        <!-- <span *ngIf="list.num_terraces">{{ list.num_terraces }}m2</span> -->
+                                    </p>
+                                </div>
+
+
+                                <div class="d-flex align-items-center"
+                                    *ngIf="list.num_terraces && list.num_terraces > 0">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>
+                                        {{ list.num_terraces }} {{"label.Terrace" | translate}}
+                                        <span *ngIf="list.num_terraces">{{ list.num_terraces }} m2</span>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center"
+                                    *ngIf="list.num_balconies && list.num_balconies > 0">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>
+                                        {{ list.num_balconies }} {{"label.balconies" | translate}}
+                                        <span *ngIf="list.balcony_surface">{{ list.balcony_surface }}m2</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="
+            list.fireplace == 'yes' ||
+            list.elevator == 'yes' ||
+            list.convertable == 'yes' ||
+            list.parking_price=='yes'||
+            list.cabletv == 'yes' ||
+            list.calm == 'yes' ||
+            list.cave == 'yes' ||
+
+            list.swimming == 'yes' ||
+            list.alarm == 'yes' ||
+            list.vis == 'yes' ||
+            list.north == 'yes' ||
+            list.south == 'yes' ||
+            list.east == 'yes' ||
+            list.west == 'yes' ||
+
+            list.dressing == 'yes' ||
+            list.kitchen_type ||
+            list.architecture_type
+          ">
+                        <h2 class="overViewH2">{{"label.OtherCriteria" | translate}}</h2>
+                        <div class="d-flex w-50 mt-3 mb-2 other-cretiria-cstm">
+                            <div class="">
+                                <div class="d-flex align-items-center" *ngIf="list.fireplace == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.Fireplace" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.elevator == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.elevator" | translate}}</p>
+                                </div>
+
+
+
+                                <div *ngIf="
+                            list.north == 'yes' || list.south == 'yes' ||
+                                 list.east == 'yes' ||
+                                  list.west == 'yes'">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+
+                                        <p style="font-weight: bold" class="mr-3">{{"label.orientation" | translate}}
+                                        </p>
+                                        <p class="">
+                                            <span *ngIf="list.north == 'yes'"> {{"label.North" | translate}}</span>
+                                            <span *ngIf="list.south == 'yes'"> {{"label.South" | translate}}</span>
+                                            <span *ngIf="list.east == 'yes'"> {{"label.East" | translate}}</span>
+                                            <span *ngIf="list.west == 'yes'">{{"label.West" | translate}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="d-flex align-items-center" *ngIf="list.parking_price=='yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.parkingPrice" | translate}}</p>
+                                </div>
+
+
+                                <div class="d-flex align-items-center" *ngIf="list.convertable == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.convertible" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.cabletv == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.TvCable" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.calm == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.Calm" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.cave == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.cave" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.swimming == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.swimmingPool" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="ml-2">
+                                <div class="d-flex align-items-center" *ngIf="list.alarm == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.Alarm" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.vis == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.Visavis" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.dressing == 'yes'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.dressing" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center"
+                                    *ngIf="list.kitchen_type && list.kitchen_type!='none'">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{ list.kitchen_type }} {{"label.kitchenType" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center" *ngIf="list.architecture_type">
+                                    <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                                    <p>{{"label.arch" | translate}} {{ list.architecture_type }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="list.heating_type || list.greenhouse || list.energy">
+                        <h2 class="overViewH2">
+                            {{"label.Characterenergy" | translate}}
+                        </h2>
+                        <div class="d-flex align-items-center" *ngIf="list.heating_type">
+                            <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                            <p>{{"label.HeatType" | translate}}:{{ list.heating_type }}</p>
+                        </div>
+                        <div class="d-flex align-items-center" *ngIf="list.greenhouse">
+                            <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                            <p>{{"label.greenhouse" | translate}}{{ list.greenhouse }}</p>
+                        </div>
+                        <div class="d-flex bg-firm-info dec-respon-firm" *ngIf="list.greenhouse">
+                            <div class="bg-firm1 position-relative" *ngIf="list.greenhouse >= 1 && list.greenhouse <= 5"
+                                [class.space-wrapper]="
+                list.greenhouse >= 1 && list.greenhouse <= 5
+              ">
+                                <p class="bg-firm1-info">5 A</p>
+                            </div>
+                            <div class="bg-firm2 position-relative"
+                                *ngIf="list.greenhouse >= 6 && list.greenhouse <= 10" [class.space-wrapper]="
+                list.greenhouse >= 6 && list.greenhouse <= 10
+              ">
+                                <p class="bg-firm1-info">6-10 B</p>
+                            </div>
+                            <div class="bg-firm3 position-relative"
+                                *ngIf="list.greenhouse >= 11 && list.greenhouse <= 20" [class.space-wrapper]="
+                list.greenhouse >= 11 && list.greenhouse <= 20
+              ">
+                                <p class="bg-firm1-info">11-20 C</p>
+                            </div>
+                            <div class="bg-firm4 position-relative"
+                                *ngIf="list.greenhouse >= 21 && list.greenhouse <= 35" [class.space-wrapper]="
+                list.greenhouse >= 21 && list.greenhouse <= 35
+              ">
+                                <p class="bg-firm1-info">21-35 D</p>
+                            </div>
+                            <div class="bg-firm5 position-relative"
+                                *ngIf="list.greenhouse >= 36 && list.greenhouse <= 55" [class.space-wrapper]="
+                list.greenhouse >= 36 && list.greenhouse <= 55
+              ">
+                                <p class="bg-firm1-info">36-55 E</p>
+                            </div>
+                            <div class="bg-firm6 position-relative"
+                                *ngIf="list.greenhouse >= 56 && list.greenhouse <= 80" [class.space-wrapper]="
+                list.greenhouse >= 56 && list.greenhouse <= 80
+              ">
+                                <p class="bg-firm1-info">56-80 F</p>
+                            </div>
+                            <div class="bg-firm7 position-relative" *ngIf="list.greenhouse >= 80"
+                                [class.space-wrapper]="list.greenhouse >= 80">
+                                <p class="bg-firm1-info">>80 G</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center" *ngIf="list.energy">
+                            <i class="fa fa-check-circle tick-icon-text" aria-hidden="true"></i>
+                            <p>{{"label.energy" | translate}}:{{ list.energy }}</p>
+                        </div>
+                        <div class="d-flex bg-wrapper-info dec-respon-firm" *ngIf="list.energy">
+                            <div class="bg-firminfo position-relative" *ngIf="list.energy >= 1 && list.energy <= 50"
+                                [class.space-wrapper]="list.energy >= 1 && list.energy <= 50">
+                                <p class="bg-firm1-info">50 A</p>
+                            </div>
+                            <div class="bg-firminfo1 position-relative" *ngIf="list.energy >= 51 && list.energy <= 90"
+                                [class.space-wrapper]="list.energy >= 51 && list.energy <= 90">
+                                <p class="bg-firm1-info">51-90 B</p>
+                            </div>
+                            <div class="bg-firminfo2 position-relative" *ngIf="list.energy >= 91 && list.energy <= 150"
+                                [class.space-wrapper]="list.energy >= 91 && list.energy <= 150">
+                                <p class="bg-firm1-info">91-150 C</p>
+                            </div>
+                            <div class="bg-firminfo3 position-relative" *ngIf="list.energy >= 151 && list.energy <= 230"
+                                [class.space-wrapper]="list.energy >= 151 && list.energy <= 230">
+                                <p class="bg-firm1-info">151-230 D</p>
+                            </div>
+                            <div class="bg-firminfo4 position-relative" *ngIf="list.energy >= 231 && list.energy <= 330"
+                                [class.space-wrapper]="list.energy >= 231 && list.energy <= 330">
+                                <p class="bg-firm1-info">231-330 E</p>
+                            </div>
+                            <div class="bg-firminfo5 position-relative" *ngIf="list.energy >= 331 && list.energy <= 450"
+                                [class.space-wrapper]="list.energy >= 331 && list.energy <= 450">
+                                <p class="bg-firm1-info">331-450 F</p>
+                            </div>
+                            <div class="bg-firminfo6 position-relative" *ngIf="list.energy >= 450"
+                                [class.space-wrapper]="list.energy >= 450">
+                                <p class="bg-firm1-info">>450 G</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="{{'label.PriceTaxe' | translate}}" (click)="tabSelected('price')">
+                <div class="priceAndTax">
+                    <div class="d-flex align-items-center" style="margin-top: 20px;" class="inner-tax-firm2">
+                        <h1 class="mr-3">
+                            {{ list.inc_fees | number }}
+                            <i class="fa fa-eur ml-2" aria-hidden="true" style="font-size: 20px"></i>
+                        </h1>
+                        <p class="mt-2">
+                            {{"label.FeesAti" | translate}}
+                            <span style="text-transform: capitalize">{{ list.end_fees_resp}}</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            {{"label.Fees" | translate}}: {{ list.fees_ati }}% {{"label.Therefore" | translate}} {{ fees
+                            | number }}
+                            <i class="fa fa-eur ml-2" aria-hidden="true" style="font-size: 17px"></i>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            {{"label.Excludingfees" | translate}}: {{ list.ex_fees | number }}
+                            <i class="fa fa-eur ml-2" aria-hidden="true" style="font-size: 17px"></i>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            {{ list.price_miter }}
+                            <i class="fa fa-eur ml-2" aria-hidden="true" style="font-size: 17px"></i>/m2
+                        </p>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <!--tabs ends here-->
+</div>
+<!-- askQuestion-wrapper starts here -->
+<div class="askQuestion-wrapper">
+    <div class="container ask-wrapper">
+        <div class="question-firm">
+            <h1 class="touch-text text-white AvenirLTStd-Regular">
+                {{ "label.questions" | translate }}?
+            </h1>
+            <button class="touch-btn AvenirLTStd-Regular text-center" [routerLink]="['/contact-us']">
+                {{ "label.button" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- askQuestion-wrapper ends here -->
+<!--footer starts here-->
+<app-new-footer></app-new-footer>
+<!--footer ends here-->

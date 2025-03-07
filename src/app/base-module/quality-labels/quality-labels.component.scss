@@ -1,0 +1,171 @@
+.main-content-wrapper {
+    background-image: url("../../../assets/images/qaulity.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 420px;
+    object-fit: scale-down;
+}
+.main-firm {
+    .container {
+        .summary-bg-firm {
+            margin-left: -84px;
+        }
+        .perform-mes-wrapper {
+            margin: 40px 15px;
+            font-size: 16px;
+            color: #969696;
+            height: 34px;
+        }
+        .tab-active {
+            margin: 40px 15px;
+            border-bottom: 2px solid #31567f;
+            color: #31567f;
+          }
+        .perform-mes-wrapper:hover {
+            border-bottom: 2px solid #31567f;
+            color: #31567f;
+        }
+        .plus-img-icon {
+            width: 21px;
+            height: 21px;
+            object-fit: contain;
+        }
+    }
+    .main-wrapper {
+        justify-content: center;
+        .neque-wrapper {
+            width: 300px;
+            margin: 6px 7px 40px 10px;
+            padding: 10px 10px 15px;
+            border-radius: 2px;
+            border: solid 1px #e2e2e2;
+            background-color: #ffffff;
+            object-fit: scale-down;
+            .ipsum-wrapper {
+                margin: 20px 25px 10px 0;
+                font-size: 18px;
+                color: #001935;
+            }
+            .humour-wrapper {
+                margin: 10px 0 15px;
+                font-size: 13px;
+                color: #001935;
+                line-height: 1.85;
+                width: 280px;
+                height: 106px;
+            }
+            .file-firm {
+                font-size: 15px;
+                color: #31567f;
+            }
+        }
+    }
+    .main-wrapper {
+        justify-content: center;
+        .Testimonials-wrapper {
+            width: 360px;
+            margin: -7px 0px 25px 32px;
+            border-radius: 2px;
+            border: solid 1px #e2e2e2;
+            background-color: #ffffff;
+            .quote-img {
+                padding-left: 117px;
+            }
+            .sit-wrapper {
+                margin-top: -77px;
+                .role-text {
+                    font-size: 20px;
+                    text-align: center;
+                    color: #000000;
+                    width: 335px;
+                    height: 48px;
+                }
+                .humour-text {
+                    font-size: 15px;
+                    text-align: center;
+                    color: #5b5b5b;
+                }
+                .michael-text {
+                    font-size: 18px;
+                    font-weight: 900;
+                    text-align: center;
+                    color: #31567f;
+                }
+                .role-firm {
+                    font-size: 15px;
+                    text-align: center;
+                    color: #001935;
+                }
+            }
+        }
+    }
+}
+//ask question styling
+.askQuestion-wrapper {
+    background-color: #31567f;
+    margin-top: 100px;
+    .ask-wrapper {
+        max-width: 1366px;
+        .question-firm {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 10px;
+            .touch-text {
+                font-size: 24px;
+                line-height: 0.92;
+                text-align: center;
+                color: #ffffff;
+                margin: 0;
+            }
+            .touch-btn {
+                width: 160px;
+                height: 40px;
+                border-radius: 2px;
+                box-shadow: 0 2px 4px 0;
+                background-color: #ffffff;
+                font-size: 16px;
+                line-height: 1.38;
+                text-align: center;
+                color: #31567f;
+                outline: none;
+                box-shadow: none;
+                border: 0;
+            }
+        }
+    }
+}
+//media starts here
+@media screen and (max-width: 1240px) {
+    .summary-bg-firm {
+        margin-left: 0 !important;
+    }
+    .main-wrapper {
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .summary-bg-firm {
+        margin-left: 0 !important;
+    }
+    .main-wrapper {
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 991px) {
+    .summary-bg-firm {
+        margin-left: 0 !important;
+    }
+    .main-wrapper {
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 768px) {
+    .summary-bg-firm {
+        margin-left: 0 !important;
+    }
+    .main-wrapper {
+        flex-wrap: wrap;
+    }
+}

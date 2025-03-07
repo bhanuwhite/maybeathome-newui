@@ -1,0 +1,28 @@
+// / Font Styles Files /
+
+@font-face {
+  font-family: "AvenirLTStd-Regular";
+  src: url("../fonts/AvenirLTStd-Roman.otf") format("otf");
+}
+
+@font-face {
+  font-family: "AvenirLTStd";
+  src: url("../fonts/AvenirLTStd-Light.otf") format("otf");
+}
+
+@font-face {
+  font-family: "AvenirLTStd-Medium";
+  src: url("../fonts/AvenirLTStd-Medium.otf") format("otf");
+}
+
+.AvenirLTStd-Regular {
+  font-family: "AvenirLTStd-Regular", sans-serif !important;
+}
+
+.AvenirLTStd-Bold {
+  font-family: "AvenirLTStd-Bold", sans-serif !important;
+}
+
+.AvenirLTStd-Medium {
+  font-family: "AvenirLTStd-Medium", sans-serif !important;
+}

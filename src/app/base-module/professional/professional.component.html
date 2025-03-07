@@ -1,0 +1,248 @@
+<!-- <div>
+    <app-general-header></app-general-header>
+</div> -->
+<div *ngIf="showSpinner" class="overlay">
+  <div class="center">
+      <mat-progress-spinner diameter="70" mode="indeterminate">
+      </mat-progress-spinner>
+  </div>
+</div>
+<div class="professional-bg-wrapper d-flex ">
+  <div class="professional-inner-wrapper d-flex align-items-center">
+      <div class="profile-sec">
+      <div class="profile-sec-main"> 
+
+         <div class="profile-sec-block">
+          <h4 *ngIf="account == 'professional'" style="font-weight: bold">
+            {{ "label.Pro" | translate }}
+        </h4>
+        <label style="font-weight: bold" class="mt-0">{{
+    "label.prof_fname" | translate
+  }}</label>
+        <h4 *ngIf="!isEdit">{{ firstName }}</h4>
+        <div *ngIf="isEdit" class="input-icons name-innerinput text-center">
+            <input class="input-field AvenirLTStd-Regular" type="text" [(ngModel)]="firstName" name="firstName" />
+        </div>
+         </div>
+  <div class="profile-sec-block">
+    <label style="font-weight: bold">{{
+      "label.prof_lname" | translate
+    }}</label>
+          <h4 *ngIf="!isEdit">{{ lastName }}</h4>
+          <div *ngIf="isEdit" class="input-icons name-innerinput text-center">
+              <input class="input-field AvenirLTStd-Regular" type="text" [(ngModel)]="lastName" name="lastName" />
+          </div>
+  </div>
+  <div class="profile-sec-block"> 
+    <label style="font-weight: bold">{{
+      "label.prof_email" | translate
+    }}</label>
+          <h4 *ngIf="!isEdit">{{ email }}</h4>
+          <div *ngIf="isEdit" class="input-icons name-innerinput text-center">
+              <input class="input-field AvenirLTStd-Regular" type="text" [(ngModel)]="email" name="email" />
+          </div>
+  </div>
+        
+  <div class="profile-sec-block"> 
+    <label style="font-weight: bold">{{
+      "label.prof_pnumber" | translate
+    }}</label>
+          <h4 *ngIf="!isEdit">{{ phone | mask: "0000000000" }}</h4>
+          <div *ngIf="isEdit" class="input-icons name-innerinput text-center">
+              <input class="input-field AvenirLTStd-Regular" mask="000-000-0000" appNumberDirective type="text" [(ngModel)]="phone" name="phone" />
+              <div class="notValidated">
+                  <div *ngIf="
+            (phone == undefined || (phone && phone.toString().length < 1)) &&
+            notValidated == true
+          ">
+                      {{ "error._name" | translate }}
+                  </div>
+                  <div *ngIf="validateMobile(phone) && notValidated == true && phone">
+                      {{ "error.mobile" | translate }}
+                  </div>
+              </div>
+          </div>
+  </div>
+
+     
+  <div class="profile-sec-block pass-profile-sec-block "> 
+    <label style="font-weight: bold">{{
+      "label.prof_password" | translate
+    }}</label>
+          <div class="last-modify">
+              <span class="change-firm">{{ "label.change" | translate }}:</span>
+              <span class="change-inner-firm"> {{ lastUpdatedPassword | date:'longDate' }}</span>
+          </div>
+  </div>
+
+       
+          <div *ngIf="isEdit" class="align-items-center icons-input-wrapper ">
+              <div class="input-icons name-innerinput text-center">
+                  <span *ngIf="showCurrentPassword" class="material-icons outline-icon position-absolute eye-visibility" (click)="showHideCurrentPassword()">visibility</span
+        >
+        <span
+          *ngIf="!showCurrentPassword"
+          class="material-icons outline-icon position-absolute eye-visibility"
+          (click)="showHideCurrentPassword()"
+          >visibility_off</span
+        >
+        <input
+          class="input-field AvenirLTStd-Regular"
+          placeholder="{{ 'label.cupasswordp' | translate }}"
+          required
+          [type]="showCurrentPassword ? 'text' : 'password'"
+          #password="ngModel"
+          [(ngModel)]="currentPassword"
+          name="password"
+        />
+        <div class="notValidated">
+          <div
+            class="mr-4"
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+          >
+            <div *ngIf="password.errors.required">
+              {{ "error.prof_cupassword" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="isEdit"
+        class="input-icons name-innerinput text-center mt-3"
+      >
+        <span
+          *ngIf="showNewPassword"
+          class="material-icons outline-icon position-absolute eye-visibility"
+          (click)="showHideNewPassword()"
+          >visibility</span
+        >
+        <span
+          *ngIf="!showNewPassword"
+          class="material-icons outline-icon position-absolute eye-visibility"
+          (click)="showHideNewPassword()"
+          >visibility_off</span
+        >
+        <input
+          class="input-field AvenirLTStd-Regular"
+          [type]="showNewPassword ? 'text' : 'password'"
+          minlength="6"
+          type="password"
+          placeholder="{{ 'label.npasswordp' | translate }}"
+          #newpassword="ngModel"
+          [(ngModel)]="newPassword"
+          name="password"
+        />
+        <div class="notValidated">
+          <div
+            *ngIf="
+              newpassword.invalid &&
+              (newpassword.dirty || newpassword.touched)
+            "
+          >
+            <div class="mr-2" *ngIf="newpassword.errors.required">
+              {{ "error.prof_npassword" | translate }}
+            </div>
+            <div
+              style="width: 274px"
+              class="ml-4"
+              *ngIf="newpassword.errors.minlength"
+            >
+              {{ "error.prof_npasswordl" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="isEdit"
+        class="input-icons name-innerinput text-center mt-3"
+      >
+        <span
+          *ngIf="showConfirmPassword"
+          class="material-icons outline-icon position-absolute eye-visibility"
+          (click)="showHideConfirmPassword()"
+          >visibility</span
+        >
+        <span
+          *ngIf="!showConfirmPassword"
+          class="material-icons outline-icon position-absolute eye-visibility"
+          (click)="showHideConfirmPassword()"
+          >visibility_off</span
+        >
+        <input
+          class="input-field AvenirLTStd-Regular"
+          minlength="6"
+          required
+          type="password"
+          placeholder="{{ 'label.cpasswordp' | translate }}"
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          #confirmpassword="ngModel"
+          [(ngModel)]="confirmPassword"
+          name="password"
+        />
+        <div class="notValidated">
+          <div
+            *ngIf="
+              (confirmpassword.dirty || confirmpassword.touched) &&
+              confirmPassword !== newPassword
+            "
+          >
+            {{ "error.prof_cpasswordm" | translate }}
+          </div>
+          <div
+            class="mr-4"
+            *ngIf="
+              confirmpassword.invalid &&
+              (confirmpassword.dirty || confirmpassword.touched)
+            "
+          >
+            <div *ngIf="confirmpassword.errors.required">
+              {{ "error.prof_cpassword" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="action-button-cstm d-flex mt-2 ">
+    <button
+      type="button"
+      class="edit-button-profile AvenirLTStd-Regular"
+      (click)="edit()"
+    >
+      {{ "label.Edit" | translate }}
+    </button>
+    <button
+      *ngIf="isEdit"
+      type="button"
+      [disabled]="saveLoader"
+      class="save-button-profile AvenirLTStd-Regular position-relative"
+      (click)="save()"
+    >
+      {{ "label.prof_save" | translate }}
+      <mat-spinner *ngIf="saveLoader" [diameter]="25"></mat-spinner>
+    </button>
+  </div>
+  </div>
+  <div class="img-profile-firm">
+    <div class="profile-img-wrapper position-relative">
+      <div class="edit-profilicon">
+        <div class="image-upload">
+          <label for="file-input">
+            <ngx-dropzone (change)="onSelectFile($event)">
+              <span class="material-icons"> edit </span>
+                  </ngx-dropzone>
+                  </label>
+              </div>
+          </div>
+          <p class="profile-inner-wrapper AvenirLTStd-Regular" *ngIf="imghide == false">
+              {{ "label.img" | translate }}
+          </p>
+            <img *ngIf="existingphoto" src="{{ existingphoto }}" height="100%" width="100%" class="img-profile-firm-image-container" />
+          <div *ngIf="!existingphoto" class="h-100">
+              <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of photosOfuser" [file]="f">
+              </ngx-dropzone-image-preview>
+          </div>
+      </div>
+  </div>
+</div>
+</div>

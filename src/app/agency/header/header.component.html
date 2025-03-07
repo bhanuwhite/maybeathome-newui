@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-xl">
+    <a class="navbar-brand">
+        <img src="assets/images/searchListingsGrid/SLGLogo.png" class="d-inline-block align-top slImg" alt="" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-icons">menu </span>
+    </button>
+    <div class="collapse navbar-collapse collapse-menu" id="navbarSupportedContent">
+        <ul class="nav-ul mt-3 AvenirLTStd-Regular">
+            <li class="nav-item">
+                <a class="nav-link current" routerLink='/agency/'>{{"label.Profile" | translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="current nav-link" routerLink='/agency/agents'>{{"label.Agents" | translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link current" routerLink='/agency/listings'>{{"label.Listings" | translate}}</a>
+            </li>
+            <li class="nav-item tooltip1">
+                <a class=" nav-link current">{{"label.Performances" | translate}}</a>
+                <span class="tooltiptext">{{"Hover.Comingsoon" | translate}}</span>
+
+            </li>
+            <li class="nav-item current">
+                <a class="nav-link" routerLink='/agency/contacts'>{{"label.Contact" | translate}}</a>
+            </li>
+           
+        </ul>
+    </div>
+    <div class="create-btns mt-3 AvenirLTStd-Regular d-flex align-items-center">
+        <button (click)="navigateToCreateListing()" class="nav-CreatListning-btn d-flex mr-3">
+            <span class="material-icons nav-material-icons mr-2">add_circle_outline</span>
+            <span>{{"label.create" | translate}}</span>
+        </button>
+        <ul class="nav-ul mb-1 AvenirLTStd-Regular">
+            <li class="nav-item dropdown">
+                <button class="nav-link dropdown-toggle logout-btn-firm" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>{{ loggedUser }}</span>
+                </button>
+                <div class="dropdown-menu out-menubar" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" (click)="logout()">{{"label.logOut" | translate}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

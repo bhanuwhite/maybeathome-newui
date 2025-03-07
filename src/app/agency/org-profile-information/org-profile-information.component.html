@@ -1,0 +1,140 @@
+<!-- <div>
+    <app-header></app-header>
+</div> -->
+<div *ngIf="showSpinner" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter=70 mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<!-- organization-bg starts here-->
+<div class="organization-bg">
+    <div class="d-flex align-items-center summary-bg-firm">
+        <p class="perform-mes-wrapper tab-active">Information</p>
+       
+    </div>
+    <div class="handle-wrapper" *ngIf="!edit">
+        <div class="org-info-firm">
+            <div class="d-flex align-items-center org-inner-info">
+                <p class="org-name-firm">{{"label.Org_Name" | translate}}</p>
+                <p class="org-name-text"> {{companyName}}</p>
+            </div>
+            <div class="d-flex align-items-center org-inner-info">
+                <p class="org-name-firm">{{"label.Code_orga" | translate}}</p>
+                <p class="org-name-text"> {{orgCode}}</p>
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0">{{"label.Org_Adress" | translate}}</p>
+                <p class="street-text-firm ml-3">{{address}}</p>
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0">{{"label.Org_Phone" | translate}}</p>
+                <p class="street-text-firm num-text ml-3">{{telephone | mask: '0000000000'}}</p>
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0">{{"label.Org_Mail" | translate}}</p>
+                <p class="street-text-firm mail-firm ml-3">{{email}}</p>
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0">{{"label.Org_Website" | translate}}</p>
+                <p class="street-text-firm url-firm ml-3">{{websiteUrl}}</p>
+            </div>
+            <p class="change-firm" (click)="editInfo()"><i>{{"label.Org_Change_info_button" | translate}}</i></p>
+            <div class="position-relative">
+                <div class="edit-bg">
+                    <p class="profile-text">profile img</p>
+                </div>
+               
+                <img [src]="profileImg" class="img-fluid position-absolute edit-icon-img" alt="edit">
+            </div>
+            <div class="position-relative">
+                <div class="banner-bg">
+                    <p class="profile-text">Banner img</p>
+                </div>
+                
+                <img [src]="bannerImg" class="img-fluid position-absolute banner-icon-img" alt="edit">
+            </div>
+        </div>
+        <div class="description-firm">
+            <p class="description-text">{{"label.Org_Description" | translate}}</p>
+            <p class="post-firm">{{description}}
+            </p>
+
+        </div>
+    </div>
+    <!-- organization-bg ends here-->
+
+    <!--another section starts here-->
+    <div class="handle-wrapper" *ngIf="edit">
+        <div class="org-info-firm">
+            <div class="d-flex align-items-center org-inner-info">
+                <p class="org-name-firm">{{"label.Org_Name" | translate}}</p>
+                <input type="text" placeholder="{{'label.Org_Name' | translate}}" class="input-inner-wrapper" [(ngModel)]="companyName" name="companyName">
+            </div>
+            <div class="d-flex align-items-center org-inner-info">
+                <p class="org-name-firm">{{"label.Code_orga" | translate}}</p>
+                <input type="number" placeholder="{{'label.Code_orga' | translate}}" class="input-inner-wrapper" [(ngModel)]="orgCode" name="orgCode">
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0 address-firm2">{{'label.Org_Adress' | translate}}</p>
+                <input type="text" placeholder="{{'label.Org_Adress' | translate}}" class="input-inner-wrapper" [(ngModel)]="address" name="address">
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0 number-firm2">{{'label.Org_Phone' | translate}}</p>
+                <input type="number" placeholder="{{'label.Org_Phone' | translate}}" class="input-inner-wrapper" [(ngModel)]="telephone" name="telephone">
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0 email-firm2">{{'label.Org_Mail' | translate}}</p>
+                <input type="email" placeholder="{{'label.Org_Mail' | translate}}" class="input-inner-wrapper" [(ngModel)]="email" name="email">
+            </div>
+            <div class="d-flex align-items-center main-address-firm">
+                <p class="street-text mb-0 url-firm2">{{'label.Org_Website' | translate}}</p>
+                <input type="url" placeholder="{{'label.Org_Website' | translate}}" class="input-inner-wrapper" [(ngModel)]="websiteUrl" name="websiteUrl">
+            </div>
+            <!-- <p class="change-firm"><i>Change your information</i></p> -->
+            <div class="position-relative">
+                <div class="edit-bg">
+                    <p class="profile-text">profile img</p>
+                </div>
+                <div class="edit-profileicon">
+                    <div class="image-upload">
+                        <label for="file-input">
+                            <ngx-dropzone (change)="onSelectFileForProfileImg($event)">
+                                <span class="material-icons ">
+                                    edit
+                                </span>
+                            </ngx-dropzone>
+                        </label>
+                    </div>
+                </div>
+                <img [src]="profileImg" class="img-fluid position-absolute edit-icon-img" alt="edit">
+            </div>
+            <div class="position-relative">
+                <div class="banner-bg">
+                    <p class="profile-text">Banner img</p>
+                </div>
+                <div class="edit-bannericon">
+                    <div class="image-upload">
+                        <label for="file-input">
+                            <ngx-dropzone (change)="onSelectFileForBannerImg($event)">
+                                <span class="material-icons ">
+                                    edit
+                                </span>
+                            </ngx-dropzone>
+                        </label>
+                    </div>
+                </div>
+                <img [src]="bannerImg" class="img-fluid position-absolute banner-icon-img" alt="edit">
+            </div>
+        </div>
+        <div class="description-firm">
+            <p class="description-text">{{"label.Org_Description" | translate}}</p>
+            <div class="area-wrapper">
+                <textarea id="w3review" name="w3review" rows="5" cols="70" class="area-inner-wrapper" [(ngModel)]="description" name="description">
+                </textarea>
+            </div>
+        </div>
+        <button (click)="updateProfile()" class="saveChanges">{{'label.Save' | translate}}</button>
+    </div>
+    <!--another section ends here-->
+</div>

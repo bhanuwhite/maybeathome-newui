@@ -1,0 +1,757 @@
+<div class="main-warpper-content-header" >
+    <app-general-header [unseen]="unseen"></app-general-header>
+</div>
+<div *ngIf="showSpinner" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter="70" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<!--discussion-bg-wrapper sections starts here-->
+<div class="discussion-bg-wrapper position-relative mt-1 main-warpper-content">
+    <div class="d-flex position-absolute">
+        <span *ngIf="discussionUnseeenMsgLength > 0" style="
+        position: absolute;
+        left: 120px;
+        top: 57px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        text-align: center;
+        color: white;
+      ">
+      <span>{{ discussionUnseeenMsgLength }}</span>
+        </span>
+        <span *ngIf="requestUnseeenMsgLength > 0" style="
+        position: absolute;
+        left: 208px;
+        top: 57px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        text-align: center;
+        color: white;
+      ">
+      <span>{{ requestUnseeenMsgLength }}</span>
+        </span>
+    </div>
+    <mat-tab-group class="group-label-wrapper position-relative" animationDuration="0ms" selectedIndex="{{ tabIndex }}">
+        <!--discussion-label starts here-->
+        <mat-tab label="{{ 'label.Discussions' | translate }}">
+            <div class="discussion-inner-wrapper d-flex">
+                <div class="discussion-firm">
+                    <div class="position-relative required-input">
+                        <input type="text" placeholder="{{ 'label.Search' | translate }}" class="required-form-input ml-2" [(ngModel)]="searchForContact" name="searchForContact" (keyup.enter)="searchContact(searchForContact)" /><span class="material-icons required-arrow">search</span>
+                    </div>
+                    <div *ngIf="discussionLength == 0" class="noListingsMSG">
+                        {{ "label.found" | translate }}
+                    </div>
+                    <div *ngIf="discussionLength != 0">
+                        <div class="d-flex discussion-cascade cascade-innerborder" [class.chat-active]="activeChat == i" *ngFor="let list of discussions; index as i" (click)="discussion(list); activeChat = i">
+                            <div class="inner-for-image">
+                                <img src="{{ getDescussionPhotos(list.photos) }}" (error)="onImgError($event)" class="img-fluid inner-forimg1" alt="1st-img" />
+                            </div>
+                            <div class="text-cascade-wrapper">
+                                <p class="person-text">
+                                    {{ list.first_name + " " + (list.last_name ? list.last_name : "") }}
+                                </p>
+                                <p class="person-inner-text">{{ list.listing_title }}</p>
+                                <p class="person-num-text">{{ list.inc_fees | number }}€</p>
+                                <p class="person-inner-numtext">
+                                    <span *ngIf="
+                      !list.message.includes('jpeg') &&
+                      !list.message.includes('pdf') &&
+                      !list.message.includes('msword') &&
+                      !list.message.includes('excel') &&
+                      !list.message.includes(
+                        'vnd.openxmlformats-officedocument.presentationml.presentation'
+                      )
+                    ">
+                    {{ list.message | slice: 0:10 }}...</span
+                  >
+                  <span *ngIf="list.message.includes('jpeg')">
+                    <span>
+                      <img
+                        src="assets/images/picture.png"
+                        class="img-fluid mr-1 picture-img"
+                        alt="photo"
+                      />
+                    </span> photo
+                                    </span>
+                                    <span *ngIf="
+                      list.message.includes('pdf') ||
+                      list.message.includes('msword') ||
+                      list.message.includes('excel') ||
+                      list.message.includes(
+                        'vnd.openxmlformats-officedocument.presentationml.presentation'
+                      )
+                    ">
+                    <span>
+                      <i
+                        class="icon-file fa fa-file-o fa-flip-horizontal picture-img mr-1"
+                      ></i>
+                    </span> file
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="newMSG" *ngIf="list.unseen > 0">
+                                <p>{{ list.unseen }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-box-wrapper position-relative" *ngFor="let list of discussionDetails">
+                    <div class="d-flex chat-firm">
+                        <div class="chat-firm-inner mt-1">
+                            <p class="chat-text mb-1">{{ "label.discussion" | translate }}</p>
+                            <span class="chat-text-inner mb-1">{{
+                list.first_name + " " + (list.last_name ? list.last_name : "")
+              }}</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="residance-chatinner-firm mt-1">
+                                <p class="residance-chat-text mb-1">{{ list.listing_title }}</p>
+                                <span class="residance-chat-text not-slecte-firm mb-1">{{ list.inc_fees | number }}€</span
+                >
+              </div>
+              <div class="">
+                <img
+                  src="{{ getDescussionDEtailsPhotos(list.photos) }}"
+                  (error)="onImgError($event)"
+                  class="img-fluid fluid-houseimg"
+                  alt="1st-img"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="residance-chat-firm" #chatform>
+            <div *ngFor="let message of messageHistory">
+              <div style="text-align: -webkit-right">
+                <div
+                  class="suffered-firm position-relative"
+                  *ngIf="message.user_id == userID"
+                >
+                  <p
+                    class="messege-left position-relative mb-auto"
+                    style="max-width: 600px"
+                    [ngStyle]="{
+                      padding: message.message_type == 'file' ? '0px' : '10px'
+                    }"
+                  >
+                    <span
+                      *ngIf="
+                        !message.message.includes('http') &&
+                        message.message_type == 'text'
+                      "
+                      >{{ message.message }}</span
+                    >
+                    <a
+                      style="color: white"
+                      target="_blank"
+                      href="{{ message.message }}"
+                      *ngIf="
+                        message.message.includes('http') &&
+                        message.message_type == 'text'
+                      "
+                      >{{ message.message }}</a
+                    >
+                    <span
+                      *ngIf="
+                        message.message_type == 'file' &&
+                        message.message.includes('jpeg')
+                      "
+                      class="position-relative"
+                    >
+                      <button
+                        (click)="downloadImg(message.message)"
+                        class="position-absolute downloadImg-btn"
+                      >
+                        <span class="material-icons"> file_download </span>
+                                </button>
+                                <a target="_blank" href="{{ message.message }}">
+                                    <img src="{{ message.message }}" style="width: 200px; height: 200px" />
+                                </a>
+                                </span>
+                                <span *ngIf="
+                        !message.message.includes('jpeg') &&
+                        message.message_type == 'file'
+                      ">
+                      <div class="dummy-wrapper">
+                        <!-- <h2 class="dummy-text">PDF</h2> -->
+                        <!-- <p class="simple-text">13 kB Upload Complete</p> -->
+                        <div class="d-flex align-items-center file-firm mt-4">
+                          <i
+                            class="icon-file fa fa-file-o fa-flip-horizontal"
+                          ></i>
+                          <p class="file-text">File</p>
+                        </div>
+                        <div class="border-firm"></div>
+                        <button
+                          type="button"
+                          (click)="downloadImg(message.message)"
+                          class="dummy-btn"
+                        >
+                          Download
+                        </button>
+                      </div>
+                    </span>
+                                </p>
+                                <div class="d-flex" style="justify-content: flex-end; margin-right: 19px">
+                                    <p class="userMSGtime">
+                                        {{ covertLocale(message.created_at) }}
+                                    </p>
+                                    <div>
+                                        <span class="material-icons" style="color: green; font-size: 17px" *ngIf="message.seen == 1">
+                        check_circle
+                      </span>
+                                        <span class="material-icons" style="color: gainsboro; font-size: 17px" *ngIf="message.seen == 0">
+                        check_circle
+                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="messageHistory" *ngIf="message.user_id != userID">
+                            <p class="suffered-firm-text mb-auto" [ngStyle]="{
+                    padding: message.message_type == 'file' ? '0px' : '10px'
+                  }">
+                                <span *ngIf="
+                      !message.message.includes('http') &&
+                      message.message_type == 'text'
+                    ">{{ message.message }}</span
+                  >
+                  <a
+                    target="_blank"
+                    href="{{ message.message }}"
+                    *ngIf="
+                      message.message.includes('http') &&
+                      message.message_type == 'text'
+                    "
+                    >{{ message.message }}</a
+                  >
+                  <span
+                    *ngIf="
+                      message.message_type == 'file' &&
+                      message.message.includes('jpeg')
+                    "
+                    class="position-relative"
+                  >
+                    <button
+                      (click)="downloadImg(message.message)"
+                      class="position-absolute downloadImg-btn"
+                    >
+                      <span class="material-icons"> file_download </span>
+                                </button>
+                                <a target="_blank" href="{{ message.message }}">
+                                    <img src="{{ message.message }}" style="width: 200px; height: 200px" />
+                                </a>
+                                </span>
+                                <span *ngIf="
+                      !message.message.includes('jpeg') &&
+                      message.message_type == 'file'
+                    ">
+                    <div class="dummy-wrapper">
+                      <div class="d-flex align-items-center file-firm mt-4">
+                        <i
+                          class="icon-file fa fa-file-o fa-flip-horizontal"
+                        ></i>
+                        <p class="file-text">File</p>
+                      </div>
+                      <div class="border-firm"></div>
+                      <button
+                        type="button"
+                        (click)="downloadImg(message.message)"
+                        class="dummy-btn"
+                      >
+                        Download
+                      </button>
+                    </div>
+                  </span>
+                            </p>
+                            <p class="clientMSGtime">
+                                {{ covertLocale(message.created_at) }}
+                            </p>
+                        </div>
+                    </div>
+                    <div *ngIf="uploadFileFlag">
+                        <div class="attach-wrapper-image">
+                            <div *ngFor="let url of images; let i = index" class="img-wrap">
+                                <span class="close" (click)="removeImage(i, 'uploadFileFlag')">&times;</span
+                  >
+                  <img
+                    [src]="url"
+                    alt="HTML5 Icon"
+                    class="addImage"
+                    style="
+                      width: 128px;
+                      height: 128px;
+                      border-radius: 6%;
+                      padding: 2px 2px 2px 2px;
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+            <div *ngIf="uploadDocFileFlag">
+              <div class="attach-wrapper-doc">
+                <span class="doc-wrap"
+                  >{{ docFileName }}
+                  <span
+                    class="doc-wrap-close"
+                    (click)="removeDoc('uploadFileFlag')"
+                    >&times;</span
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="">
+              <div class="attach-wrapper">
+                <span
+                  class="material-icons file-attach-firm"
+                  (click)="uploadFile.click()"
+                >
+                  attach_file
+                </span>
+                                <input #uploadFile accept="image/x-png,image/gif,image/jpeg,application/pdf,.csv,.odt,.odp,.odx,.doc,.docx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" (change)="upload($event, 'uploadFileFlag')" type="file"
+                                    style="display: none" />
+                            </div>
+
+                            <textarea [rows]="2" [cols]="30" (keyup.enter)="sendMessage()" pInputTextarea autoResize="autoResize" class="type-text-firm" placeholder="{{ 'label.typeText' | translate }}..." [(ngModel)]="
+                  imagesLength > 0 || convertedDocLength > 0 ? null : sendingMsg
+                " name="sendingMsg" [disabled]="
+                  imagesLength > 0 ||
+                  convertedDocLength > 0 ||
+                  desableSendingMsg
+                "></textarea>
+
+                            <div class="send-back-firm">
+                                <img src="assets/images/send-black-18dp.png" class="img-fluid" alt="back" (click)="sendMessage()" />
+                            </div>
+                            <div class="send-path-firm" *ngIf="list.owner_id === userID">
+                                <img src="assets/images/path1.png" class="img-fluid" alt="back" (click)="navigateToRentCalander(list, desableSendingMsg)" />
+                            </div>
+                            <div class="send-path-firm" *ngIf="list.owner_id !== userID">
+                                <img src="assets/images/icon.png" class="img-fluid" alt="back" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <!--discussion-label ends here-->
+        <!--request-label starts here-->
+        <mat-tab label="{{ 'label.Request' | translate }}">
+            <div class="discussion-inner-wrapper d-flex">
+                <div class="discussion-firm">
+                    <div class="position-relative required-input">
+                        <input type="text" placeholder="{{ 'label.Search' | translate }}" class="required-form-input ml-2" /><span class="material-icons required-arrow">search</span>
+                    </div>
+                    <div *ngIf="requestsLength == 0" class="noListingsMSG">
+                        {{ "label.found" | translate }}
+                    </div>
+                    <div *ngIf="requestsLength != 0">
+                        <div class="d-flex discussion-cascade cascade-innerborder" [class.chat-active]="activeChatrequest == i" *ngFor="let list of requests; index as i" (click)="selectedListingFromReq(list); activeChatrequest = i">
+                            <div class="inner-for-image">
+                                <img src="{{ getRequestPhotos(list.photos) }}" (error)="onImgError($event)" class="img-fluid inner-forimg1" alt="1st-img" />
+                            </div>
+                            <div class="text-cascade-wrapper">
+                                <p class="person-text">
+                                    {{ list.first_name + " " + (list.last_name ? list.last_name : "") }}
+                                </p>
+                                <p class="person-inner-text">{{ list.listing_title }}</p>
+                                <p class="person-num-text">{{ list.inc_fees | number }}€</p>
+                                <p class="person-inner-numtext">
+                                    <span *ngIf="!list.message.includes('jpeg')">
+                    {{ list.message | slice: 0:10 }}...</span
+                  >
+                  <span *ngIf="list.message.includes('jpeg')">photo</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="requestsLength != 0" class="request-inner-firm2">
+                    <div class="chat-box-wrapper position-relative" *ngFor="let list of requestDetails">
+                        <div class="d-flex chat-firm">
+                            <div class="chat-firm-inner mt-1">
+                                <p class="chat-text mb-1">
+                                    {{ "label.discussion" | translate }}
+                                </p>
+                                <span class="chat-text-inner mb-1">{{
+                  list.first_name + " " + (list.last_name ? list.last_name : "")
+                }}</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="residance-chatinner-firm mt-1">
+                                        <p class="residance-chat-text mb-1">
+                                            {{ list.listing_title }}
+                                        </p>
+                                        <span class="residance-chat-text not-slecte-firm mb-1">{{ list.inc_fees | number }}€</span
+                    >
+                  </div>
+                  <div class="">
+                    <img
+                      src="{{ getrequestDetailPhotos(list.photos) }}"
+                      class="img-fluid fluid-houseimg"
+                      alt="1st-img"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="residance-chat-firm">
+              <div class="box-chart-firm">
+                <p class="date-textbox">{{ covertLocale(list.created_at) }}</p>
+                <div class="hidden-bg">
+                  <div class="hidden-firm hidden-passages">
+                    <p class="hidden-firm-text hidden-passages-firm">
+                      {{ list.message }}
+                    </p>
+                  </div>
+                </div>
+                <div class="accept-wrapper">
+                  <button
+                    type="button"
+                    class="accept-btn-firm"
+                    (click)="accept()"
+                  >
+                    {{ "label.accept" | translate }}
+                  </button>
+                  <button
+                    type="button"
+                    class="decline-btn-firm"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter1"
+                  >
+                    {{ "label.decline" | translate }}
+                  </button>
+                </div>
+              </div>
+              <div class="">
+                <div class="attach-wrapper">
+                  <span class="material-icons file-attach-firm">
+                    {{ "label.attach" | translate }}
+                  </span>
+                                    </div>
+                                    <input type="text" class="type-text-firm" placeholder="{{ 'label.typeText' | translate }}..." style="left: 62px; bottom: 20px" />
+                                    <div class="send-back-firm">
+                                        <img src="assets/images/send-black-18dp.png" class="img-fluid" alt="back" />
+                                    </div>
+                                    <div class="send-path-firm">
+                                        <img src="assets/images/path1.png" class="img-fluid" alt="back" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </mat-tab>
+        <!--request-label ends here-->
+        <!--property-label starts here-->
+        <mat-tab label="{{ 'label.Property' | translate }}">
+            <div class="discussion-inner-wrapper d-flex">
+                <div class="discussion-firm">
+                    <div class="position-relative required-input">
+                        <input type="text" placeholder="{{ 'label.Search' | translate }}" class="required-form-input ml-2" />
+                        <span class="material-icons required-arrow">search</span>
+                    </div>
+                    <div *ngIf="listingsLength == 0" class="noListingsMSG">
+                        {{ "label.found" | translate }}
+                    </div>
+                    <div *ngIf="listingsLength != 0">
+                        <div class="d-flex discussion-cascade cascade-innerborder" [class.chat-active]="activeChatProperty == i" *ngFor="let list of listings; index as i" (click)="
+                selectedListingfromProperty(list); activeChatProperty = i
+              ">
+                            <div class="inner-for-image">
+                                <img src="{{ getPropertyPhotos(list.photos) }}" (error)="onImgError($event)" class="img-fluid inner-forimg1" alt="1st-img" />
+                            </div>
+                            <div class="text-cascade-wrapper">
+                                <p class="person-text">
+                                    {{ list.first_name + " " + (list.last_name ? list.last_name : "") }}
+                                </p>
+                                <p class="person-inner-text">{{ list.listing_title }}</p>
+                                <p class="person-num-text">{{ list.inc_fees | number }}€</p>
+                                <p class="person-inner-numtext">
+                                    <span *ngIf="
+                      list.message &&
+                      !list.message.includes('jpeg') &&
+                      !list.message.includes('pdf') &&
+                      !list.message.includes('msword') &&
+                      !list.message.includes('excel') &&
+                      !list.message.includes(
+                        'vnd.openxmlformats-officedocument.presentationml.presentation'
+                      )
+                    ">
+                    {{ list.message | slice: 0:10 }}...</span
+                  >
+                  <span *ngIf="list.message && list.message.includes('jpeg')">
+                    <span>
+                      <img
+                        src="assets/images/picture.png"
+                        class="img-fluid mr-1 picture-img"
+                        alt="photo"
+                      />
+
+                      <!-- <i class="icon-file fa fa-file-o fa-flip-horizontal picture-img mr-1"></i> -->
+                    </span> photo
+                                    </span>
+                                    <span *ngIf="
+                      list.message &&
+                      (list.message.includes('pdf') ||
+                        list.message.includes('msword') ||
+                        list.message.includes('excel') ||
+                        list.message.includes(
+                          'vnd.openxmlformats-officedocument.presentationml.presentation'
+                        ))
+                    ">
+                    <span>
+                      <i
+                        class="icon-file fa fa-file-o fa-flip-horizontal picture-img mr-1"
+                      ></i>
+                    </span> file
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="displayPropertyDetails == true" class="groupRequest">
+                    <h1 style="width: max-content">
+                        {{ "label.Group_message_popup" | translate }}
+                    </h1>
+                    <button class="groupRequest-btn" (click)="createGroup()">
+            {{ "label.Group_message_button" | translate }}
+          </button>
+                </div>
+                <div *ngIf="displayPropertyDetails == false" class="chat-box-wrapper position-relative">
+                    <div *ngFor="let list of propertyDetails; index as proprtyindex">
+                        <div class="d-flex chat-firm">
+                            <div class="chat-firm-inner mt-1 groupdetailDisplay">
+                                <div>
+                                    <p class="chat-text mb-1">
+                                        {{ "label.discussion" | translate }}
+                                    </p>
+                                    <div class="d-flex align-items-center everyone-firm">
+                                        <div class="dropdown" style="margin-left: -13px">
+                                            <button class="btn dropdown-toggle toggle-drop-firm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ "label.selectContact" | translate }}
+                      </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item">{{ "label.everyone" | translate }}
+                          <span
+                            ><input
+                              type="checkbox" style="cursor: pointer;"
+                              [(ngModel)]="list.allMembers"
+                              name="everyone"
+                              (change)="selectEveryOne(list, proprtyindex)"
+                          /></span>
+                        </a>
+                                                <a class="dropdown-item" *ngFor="let member of list.members">{{
+                            member.first_name +
+                              " " +
+                              (member.last_name ? member.last_name : "")
+                          }}
+                          <span
+                            ><input
+                              type="checkbox" style="cursor: pointer;"
+                              [(ngModel)]="member.value"
+                              name="member.member"
+                              (change)="selectedMembers(list)"
+                          /></span>
+                        </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="residance-chatinner-firm mt-1">
+                                        <p class="residance-chat-text mb-1">
+                                            {{ list.listing_title }}
+                                        </p>
+                                        <span class="residance-chat-text not-slecte-firm mb-1">{{ list.inc_fees | number }}€</span
+                    >
+                  </div>
+                  <div class="">
+                    <img
+                      src="{{ getPropertyDetailPhotos(list.photos) }}"
+                      class="img-fluid fluid-houseimg"
+                      alt="1st-img"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="residance-chat-firm property-chat" #propertyChat>
+              <div
+                class="box-chart-firm"
+                style="text-align: -webkit-right"
+                *ngFor="let message of list.chatHistory"
+              >
+                <div
+                  class="suffered-firm pr-2"
+                  *ngIf="message.user_id == userID"
+                >
+                  <p
+                    class="messege-left mb-auto"
+                    [ngStyle]="{
+                      padding: message.message_type == 'file' ? '0px' : '10px'
+                    }"
+                  >
+                    <span
+                      *ngIf="
+                        !message.message.includes('http') &&
+                        message.message_type == 'text'
+                      "
+                      >{{ message.message }}</span
+                    >
+                    <a
+                      style="color: white"
+                      target="_blank"
+                      href="{{ message.message }}"
+                      *ngIf="
+                        message.message.includes('http') &&
+                        message.message_type == 'text'
+                      "
+                    >
+                      {{ message.message }}
+                    </a>
+                    <span
+                      *ngIf="
+                        message.message_type == 'file' &&
+                        message.message.includes('jpeg')
+                      "
+                      class="position-relative"
+                    >
+                      <button
+                        (click)="downloadImg(message.message)"
+                        class="position-absolute downloadImg-btn"
+                      >
+                        <span class="material-icons"> file_download </span>
+                                        </button>
+                                        <a target="_blank" href="{{ message.message }}">
+                                            <img src="{{ message.message }}" style="width: 200px; height: 200px" />
+                                        </a>
+                                        </span>
+                                        <span *ngIf="
+                        !message.message.includes('jpeg') &&
+                        message.message_type == 'file'
+                      ">
+                      <div class="dummy-wrapper">
+                        <div class="d-flex align-items-center file-firm mt-4">
+                          <i
+                            class="icon-file fa fa-file-o fa-flip-horizontal"
+                          ></i>
+                          <p class="file-text">File</p>
+                        </div>
+                        <div class="border-firm"></div>
+                        <button
+                          type="button"
+                          (click)="downloadImg(message.message)"
+                          class="dummy-btn"
+                        >
+                          Download
+                        </button>
+                      </div>
+                    </span>
+                                        </p>
+                                        <div class="d-flex mr-2 justify-content-end">
+                                            <p class="userMSGtime">
+                                                {{ covertLocale(message.created_at) }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="uploadFilePropertyFlagGrp">
+                                    <div class="attach-wrapper-image">
+                                        <div *ngFor="let url of grpImages; let i = index" class="img-wrap">
+                                            <span class="close" (click)="groupRemoveImage(i, 'uploadFilePropertyFlag')">&times;</span
+                    >
+                    <img
+                      [src]="url"
+                      alt="HTML5 Icon"
+                      class="addImage"
+                      style="
+                        width: 128px;
+                        height: 128px;
+                        border-radius: 6%;
+                        padding: 2px 2px 2px 2px;
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="uploadPropertyDocFileFlag">
+                <div class="attach-wrapper-doc">
+                  <span class="doc-wrap"
+                    >{{ propertyDocFileName }}
+                    <span
+                      class="doc-wrap-close"
+                      (click)="groupRemoveDoc('uploadFilePropertyFlag')"
+                      >&times;</span
+                    ></span
+                  >
+                </div>
+              </div>
+              <div class="">
+                <div class="attach-wrapper">
+                  <span
+                    class="material-icons file-attach-firm"
+                    (click)="uploadFileProperty.click()"
+                  >
+                    attach_file
+                  </span>
+                                            <input #uploadFileProperty accept="image/x-png,image/gif,image/jpeg,application/pdf,.csv,.odt,.odp,.odx,.doc,.docx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" (change)="groupUpload($event, 'uploadFilePropertyFlag')"
+                                                type="file" style="display: none" />
+                                        </div>
+
+                                        <textarea [rows]="2" [cols]="30" (keyup.enter)="sendGroupMSG(list)" style="height: 56px" pInputTextarea autoResize="autoResize" class="type-text-firm" placeholder="{{ 'label.typeText' | translate }}..." [(ngModel)]="
+                    grpImagesLength > 0 || convertedPropertyDocLength > 0
+                      ? null
+                      : groupMsg
+                  " name="groupMsg" [disabled]="
+                    grpImagesLength > 0 || convertedPropertyDocLength > 0
+                  "></textarea>
+                                        <div class="send-back-firm" (click)="sendGroupMSG(list)">
+                                            <img src="assets/images/send-black-18dp.png" class="img-fluid" alt="back" />
+                                        </div>
+                                        <div class="send-path-firm">
+                                            <img src="assets/images/path1.png" class="img-fluid" alt="back" (click)="navigateToRentCalander(list)" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </mat-tab>
+        <!--property-label ends here-->
+    </mat-tab-group>
+    <!--discussion-bg-wrapper sections ends here-->
+
+    <!-- model for decline reason -->
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" #modalclose>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <p class="ml-3">Type here why:</p>
+                    <button type="button" class="close cross-btn-wrapper" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="pr-3 pl-3">
+                        <textarea class="w-100" id="reason" name="reason" rows="4" cols="50" [(ngModel)]="declineReason" name="declineReason"></textarea>
+                        <div class="d-flex justify-content-between mt-2">
+                            <button class="accept-btn-firm">Cancel</button>
+                            <button class="decline-btn-firm" (click)="decline()">
+                Decline
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

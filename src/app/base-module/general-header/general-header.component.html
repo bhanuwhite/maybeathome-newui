@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-xl">
+    <a class="navbar-brand" href="#">
+        <img src="assets/images/searchListingsGrid/SLGLogo.png" class="d-inline-block align-top slImg" alt="" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-icons">menu</span>
+    </button>
+    <div class="collapse navbar-collapse collapse-menu" id="navbarSupportedContent">
+        <ul class="nav-ul mt-3 AvenirLTStd-Regular">
+            <li class="nav-item" (click)="navigateToHomePage()">
+                <a class="nav-link">{{"label.home"|translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/partners']">{{"label.partners"|translate}}</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/quality']">{{"label.quality"|translate}}</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/about-us']">{{"label.aboutUs"|translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/contact-us']">{{"label.help"|translate}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="create-btns mt-3 AvenirLTStd-Regular d-flex align-items-center">
+        <button class="nav-CreatListning-btn d-flex mr-2" (click)="navigateToCreateListings()" [disabled]="createListingLoader">
+            <span *ngIf="!createListingLoader" class="material-icons nav-material-icons mr-1">add_circle_outline</span>
+            <span *ngIf="!createListingLoader" class="icon-layout">{{"label.create"|translate}}</span>
+            <mat-spinner *ngIf="createListingLoader" [diameter]="25"></mat-spinner>
+        </button>
+        <div *ngIf="!isAuthenticated" class="hover ">
+            <button (mouseover)="hover=true" (mouseleave)="hover=false" class="nav-logins nav-login d-flex" (click)="login()" *ngIf="!isAuthenticated"><span
+                class="material-icons nav-material-icons" [ngStyle]="hover ? {'color': black}:{'color': white}">login</span><span
+                class="icon-layout" [ngStyle]="hover ? {'color': black}:{'color': white}">{{"label.submit"|translate}}</span>
+            </button>
+        </div>
+        <div *ngIf="!isAuthenticated" class="hover ">
+            <button  (mouseover)="hover2=true" (mouseleave)="hover2=false" class="nav-logins nav-login d-flex" (click)="register()" *ngIf="!isAuthenticated"><span
+                class="material-icons nav-material-icons " [ngStyle]="hover2 ? {'color': black}:{'color': white}">person_outline</span><span
+                class="icon-layout" [ngStyle]="hover2 ? {'color': black}:{'color': white}">{{"label.submit_value"|translate}}</span>
+            </button>
+        </div>
+        <div *ngIf="isAuthenticated" class="position-relative message-image-wrapper">
+            <img src="assets/images/message-icon.png" alt="message" (click)="onMessageClick()" class="img-fluid message-firm">
+            <span class="position-absolute num-firm-text" *ngIf="unseen > 0">{{unseen}}</span>
+        </div>
+        <button class="nav-link dropdown-toggle logout-btn-firm" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="isAuthenticated">
+            <span class="textfield-drop">{{thumbnailUser}}</span>
+        </button>
+        <div class="position-relative" style="right: 148px;top: 34px;z-index: 100000">
+            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" [routerLink]="['/professional']">{{"label.dropdown-myAccount" | translate}}</a>
+                <a class="dropdown-item" [routerLink]="['/listingManagement']">{{"label.dropdown-mylisting" | translate}}</a>
+                <a class="dropdown-item" [routerLink]="['/event-test']">{{"label.headerMYCalendar" | translate}}</a>
+                <a class="dropdown-item logoutLoader position-relative" (click)="logout()">
+                    <span *ngIf="!logoutLoader">{{"label.logOut"|translate}}</span>
+                    <mat-spinner class="logoutLoader" style="left: 34px;" *ngIf="logoutLoader" [diameter]="25"></mat-spinner>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

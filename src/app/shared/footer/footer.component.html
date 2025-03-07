@@ -1,0 +1,92 @@
+<div class="footer  AvenirLTStd-Regular">
+    <div class="container footer-inner-wrapper">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="footer-info">
+                    <img src="assets/images/searchListingsGrid/logo_white@3x.png" class="footer-logo" alt="logo" />
+                    <div class="">
+                        <ul class="footer-address">
+                            <li class="footer-address-li d-flex">
+                                <span class="material-icons footer-address-icons">arrow_right</span>
+                                <span>{{"label.address"|translate}}</span>
+                            </li>
+                            <li class="d-flex">
+                                <span class="material-icons footer-address-icons">local_post_office</span>
+                                <span class="footer-li-top">{{"label.info"|translate}}</span>
+                            </li>
+                            <li class="d-flex">
+                                <span class="material-icons footer-address-icons">call</span>
+                                <span class="footer-li-top">{{"label.contactusphone" | translate}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <h1>{{"label.explore"|translate}}</h1>
+                <ul>
+                    <li class="d-flex">
+                        <span class="material-icons">arrow_right</span>
+                        <a class="footer_achor" (click)="routerNavigation('home')">{{"label.home"|translate}}</a>
+                    </li>
+                    <li class="d-flex">
+                        <span class="material-icons">arrow_right</span>
+                        <a class="footer_achor" (click)="routerNavigation('partners')">{{"label.partners"|translate}}</a>
+                    </li>
+
+
+                    <li class="d-flex">
+                        <span class="material-icons">arrow_right</span>
+                        <a class="footer_achor" (click)="routerNavigation('about')">{{"label.aboutUs"|translate}}</a>
+                    </li>
+                    <li class="d-flex">
+                        <span class="material-icons">arrow_right</span>
+                        <a class="footer_achor" (click)="routerNavigation('passionate')">{{"label.passionate"|translate}}</a>
+                    </li>
+                    <li class="d-flex">
+                        <span class="material-icons">arrow_right</span>
+                        <a class="footer_achor" (click)="routerNavigation('help')">{{"label.help"|translate}}</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="footer-policies">
+                    <h1>{{"label.policies"|translate}}</h1>
+                    <ul>
+                        <li class="d-flex">
+                            <span class="material-icons">arrow_right</span>
+                            <span (click)="navigateToPolicy()" style="cursor: pointer;">{{"label.policy"|translate}}</span>
+                        </li>
+                        <li class="d-flex">
+                            <span class="material-icons">arrow_right</span>
+                            <span [routerLink]="['/terms-conditions']">{{"label.conditions"|translate}}</span>
+                        </li>
+                    </ul>
+                    <h1>{{"label.connect"|translate}}</h1>
+                    <div class="footer-social-media">
+                        <div>
+                            <i class="fa fa-linkedin " aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <i class="fa fa-facebook ml-4" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <i class="fa fa-twitter ml-4" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-instagram ml-4" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="copyRights-div">
+        <p class="rights text-center AvenirLTStd-Regular">
+            {{"label._para1"|translate}}
+        </p>
+    </div>
+</div>

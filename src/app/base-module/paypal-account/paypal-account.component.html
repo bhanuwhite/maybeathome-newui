@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-xl">
+    <a class="navbar-brand" href="#">
+        <img src="assets/images/searchListingsGrid/SLGLogo.png" class="d-inline-block align-top slImg" alt="" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-icons"> {{"label.menu"|translate}} </span>
+    </button>
+    <div class="collapse navbar-collapse collapse-menu" id="navbarSupportedContent">
+        <ul class="nav-ul mt-1 AvenirLTStd-Regular">
+            <li class="nav-item">
+                <a class="nav-link">{{"label.home"|translate}}</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link">{{"label.partners"|translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">{{"label.quality"|translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">{{"label.aboutUs"|translate}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">{{"label.help"|translate}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="create-btns mt-3 AvenirLTStd-Regular d-flex align-items-center">
+        <button class="nav-CreatListning-btn d-flex mr-3">
+            <span class="material-icons nav-material-icons mr-2">add_circle_outline</span><span>{{"label.create"|translate}}</span>
+        </button>
+        <div class="position-relative">
+            <img src="assets/images/message-icon.png" alt="message" (click)="onMessageClick()" class="img-fluid message-firm">
+            <span class="position-absolute num-firm-text">2</span>
+        </div>
+        <ul class="nav-ul mb-1 AvenirLTStd-Regular">
+            <li class="nav-item dropdown">
+                <button class="nav-link dropdown-toggle logout-btn-firm" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu out-menubar position-absolute" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/professional']">{{"label.dropdown-myAccount" | translate}}</a>
+                    <a class="dropdown-item" [routerLink]="['/listingManagement']">{{"label.dropdown-mylisting" | translate}}</a>
+                    <a class="dropdown-item" [routerLink]="['/event-test']">My Calendar</a>
+                    <a class="dropdown-item" [routerLink]="['/register']">{{"label.logOut"|translate}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="card-bg-wrapper">
+    <div class="payment-mode-wrapper d-flex align-items-center">
+        <div class="payment-wrapper">
+            <p class="country-text-firm">{{"label.paymentMode"|translate}}</p>
+            <select class="card-text-select custom-select-firm info-input1-firm">
+                <option value="Credit Card">{{"label.paypal"|translate}}</option>
+                <option value="Credit Card">{{"label.paypal"|translate}}</option>
+            </select>
+            <p class="website-wrapper-text mt-5">
+                {{"label.transaction "|translate}}.<br> </p>
+
+            <p class="website-wrapper mt-5">
+                {{"label.authorized"|translate}}
+                <br>{{"label.the"|translate}}.
+            </p>
+            <p class="website-wrapper-text mb-1">
+                {{"label.order"|translate}}.
+            </p>
+            <div class="paypal-img-firm">
+                <img src="assets/images/paypal.png" alt="paypal" class="img-fluid">
+            </div>
+        </div>
+        <div class="mode-wrapper">
+            <div class="mode-img-firm">
+                <img src="assets/images/house4th-img.png" alt="house" class="img-fuild mode-inner-firm">
+            </div>
+            <p class="text-mode-cascade">{{"label.cascade"|translate}}</p>
+            <p class="num-mode-cascade">21/12/2020 To 30/12/2020</p>
+            <p class="num-mode-cascade">$ 750 per day</p>
+            <div class="d-flex align-items-center justify-content-between num-mode-wrapper">
+                <p class="num-mode-cascade">$ 750 X 4 days</p>
+                <p class="num-mode-cascade">$ 3000</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-between AvenirLTStd-Regular">
+                <p class="mode-total-wrapper">{{"label.total"|translate}}:</p>
+                <p class="mode-total-wrapper">$ 3000</p>
+            </div>
+
+            <label class="container">{{"label.read"|translate}}<span class="terms-text">{{"label.conditions"|translate}}.*</span>
+                <input type="checkbox" checked="checked" class="mb-1">
+                <span class="checkmark"></span>
+            </label>
+            <button type="button" class="paymant-btn ml-5">{{"label.proceed"|translate}}</button>
+        </div>
+    </div>
+</div>

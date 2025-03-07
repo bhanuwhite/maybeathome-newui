@@ -1,0 +1,91 @@
+<!-- <div>
+    <app-general-header></app-general-header>
+</div> -->
+<!--card-bg-wrapper starts here-->
+<div class="card-bg-wrapper">
+    <div class="payment-mode-wrapper d-flex align-items-center">
+        <div class="payment-wrapper">
+           
+            <div>
+                <p class="country-text-firm">{{"label.card"|translate}}</p>
+                <div class="d-flex country-card-wrapper mt-1">
+                    <input type="text" placeholder="{{ 'label.contactfirstname' | translate }}" class="card-name-input" [(ngModel)]="firstName" name="firstName">
+                    <div class="notValidated">
+                        <div *ngIf="(firstName === '' || firstName == null) && notValidated == true">
+                            {{"error._name"|translate}}</div>
+                    </div>
+                    <input type="text" placeholder="{{ 'label.contactlastname' | translate }}" class="card-name-input" [(ngModel)]="lastName" name="lastName">
+                    <div class="notValidated">
+                        <div *ngIf="(lastName === '' || lastName == null) && notValidated == true">
+                            {{"error._name"|translate}}
+                        </div>
+                    </div>
+
+                </div>
+                <p class="country-text-firm">{{"label.country"|translate}}</p>
+                <select class="card-text-select-firm custom-select  info-input1-firm mt-1" [(ngModel)]="country" name="country">
+                    <div class="notValidated">
+                        <div *ngIf="(country === '' || country == null) && notValidated == true">
+                            {{"error._name"|translate}}</div>
+                    </div>
+                    <option value="" selected disabled hidden>{{"label.SelectCountry" | translate}}</option>
+                    <option value="{{list.code}}" *ngFor="let list of countries">{{list.name}}</option>
+                </select>
+                
+            </div>
+            <div *ngIf="paymentMode == 'bankaccount'">
+                <p class="country-text-firm">{{"label.bic"|translate}}</p>
+                <input type="text" placeholder="BIC - SWIFT" class="card-name-input mt-0" [(ngModel)]="bankBIC" name="bankBIC">
+                <p class="country-text-firm">{{"label.iban"|translate}}</p>
+                <input type="text" placeholder="IBAN" class="card-name-input mt-0" [(ngModel)]="bankIBAN" name="bankIBAN">
+                <p class="country-text-firm">{{"label.owner"|translate}}</p>
+                <input type="text" placeholder="Name & Surname" class="card-name-input mt-0" [(ngModel)]="bankUserName" name="bankUserName">
+                <p class="bank-text">
+                    {{"label.providing"|translate}}: <br> 1.{{"label.instructions"|translate}}.
+                    <br> 2.{{"label.accordance"|translate}}.
+                    <br> {{"label.right"|translate}}
+                </p>
+            </div>
+        </div>
+        <div class="mode-wrapper">
+            <div class="mode-img-firm">
+                <img src="{{getPhoto(paymentInfo.photo)}}" alt="house" class="img-fuild mode-inner-firm">
+            </div>
+            <p class="text-mode-cascade">{{paymentInfo.listing_title|translate}}</p>
+            <p class="num-mode-cascade">{{paymentInfo.start | date :'M/d/yy'}} - {{paymentInfo.end | date :'M/d/yy'}}
+            </p>
+            <p class="num-mode-cascade">€{{paymentInfo.pricePerDay | number}} {{"label.PerDay" | translate}}</p>
+            <div class="d-flex align-items-center justify-content-between num-mode-wrapper">
+                <p class="num-mode-cascade">€{{paymentInfo.pricePerDay | number}} X {{paymentInfo.daysDiff}} {{"label.Days" | translate}}</p>
+                <p class="num-mode-cascade">€{{paymentInfo.totalPayment | number}}</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-between AvenirLTStd-Regular">
+                <p class="mode-total-wrapper">{{"label.total"|translate}}:</p>
+                <p class="mode-total-wrapper">€{{paymentInfo.totalPayment | number}}</p>
+            </div>
+
+            <label class="container">{{"label.read"|translate}}
+                <span (click)=goToTerms() class="terms-text">{{"label.conditions"|translate}}.*</span>
+                <input type="checkbox" [(ngModel)]="paymentcheck" class="mb-1">
+                <span class="checkmark"></span>
+                <div class="notValidated">
+                    <div *ngIf="(paymentcheck == false) && notValidated == true">
+                        {{"error._name"|translate}}</div>
+                </div>
+            </label>
+
+            <div style="border: none;" class="">
+
+                <div style="display: grid;place-items: center;position: relative;">
+                    <span *ngIf="!clickedPayment" class="paymant-btn " (click)="checkout(totalprice)">{{"label.proceed"|translate}}</span>
+                   
+                    <span *ngIf="clickedPayment" class="paymant-btn"></span>
+                    <mat-spinner style="position: absolute;" *ngIf="clickedPayment" [diameter]="25"></mat-spinner>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!--card-bg-wrapper ends here-->
