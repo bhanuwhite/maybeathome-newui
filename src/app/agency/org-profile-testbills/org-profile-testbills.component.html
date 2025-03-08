@@ -1,0 +1,70 @@
+<!-- <div>
+    <app-header></app-header>
+</div> -->
+<!-- organization-bg starts here-->
+<div class="organization-bg">
+    <div class="d-flex align-items-center summary-bg-firm">
+        <p class="perform-mes-wrapper">Information</p>
+        <p class="perform-mes-wrapper">Offers</p>
+        <p class="perform-mes-wrapper">Billing</p>
+    </div>
+    <div class="handle-wrapper">
+        <div class="d-flex align-items-center change-wrapper">
+            <div class="dropdown">
+                <button class="btn commision-select select" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Test Bills
+                </button>
+                <div class="dropdown-menu sales-dropdown" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item sales-firm" href="#"> Sales Commission</a>
+                    <a class="dropdown-item sales-firm" href="#">Subscription</a>
+                    <a class="dropdown-item sales-firm-text" href="#">Test Bills</a>
+                </div>
+            </div>
+            <div class="position-relative required-input">
+                <input type="text" placeholder="{{'label.Search' | translate}}" class="required-form-input ml-2"><span class="material-icons required-arrow">search</span>
+            </div>
+        </div>
+        <!--table-code starts here-->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="reference">
+                    <th mat-header-cell *matHeaderCellDef> Reference </th>
+                    <td mat-cell *matCellDef="let row"> {{row.reference}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateOfIssue">
+                    <th mat-header-cell *matHeaderCellDef> Date of issue </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dateOfIssue | date:'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef> Amount </th>
+                    <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="client">
+                    <th mat-header-cell *matHeaderCellDef> Client </th>
+                    <td mat-cell *matCellDef="let row"> {{row.client}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="listingReference">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.reference" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.listingReference}} </td>
+                </ng-container>
+                <ng-container matColumnDef="download">
+                    <th mat-header-cell *matHeaderCellDef>Download</th>
+                    <td mat-cell *matCellDef="let row">
+                        <img src="assets/images/download-blue.png" alt="download" class="img-fluid">
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20, 30, 40, 50, 100]"></mat-paginator>
+        </div>
+        <!--table-code ends here-->
+    </div>
+</div>
+<!-- organization-bg ends here-->

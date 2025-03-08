@@ -1,0 +1,316 @@
+<!-- <div>
+    <app-header></app-header>
+</div> -->
+<div *ngIf="showSpinner" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter=70 mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<!--listing-bg starts here-->
+<div class="d-flex align-items-center listing-bg">
+    <div class="handle-wrapper">
+        <div class="d-flex align-items-center change-wrapper">
+
+            <div class="d-flex align-items-center title-texting-firm mb-3">
+                <div class="position-relative info-text AvenirLTStd-Regular height ml-5 mr-3">
+                    <label for="agent">{{"label.ChangeMember" | translate}}</label><br>
+                    <select name="pets" id="member" class="form-control info-input custom-select ml-2" [(ngModel)]="member" name="member" style="    width: 187px;">
+                        <option *ngFor="let agent of agents" value="{{agent.user_id}}">
+                            {{agent.first_name}}{{agent.last_name}}</option>
+                    </select>
+                   
+                </div>
+                <button class="changeBTN" (click)="updateMember()" [disabled]="selectedMember.length == 0 || !member">{{"label.change" |translate}}</button>
+
+            </div>
+
+
+            <button class="d-flex align-items-center deleteBtn" style="margin-right: 42px;" (click)="deleteOrganizationListing()">
+                <div class="">
+                    <img src="assets/images/delete-black-18dp.png" alt="delete-icon" class="img-fluid">
+                </div>
+                <p class="select-firm">{{"label.DeletSelected" | translate}}</p>
+            </button>
+        </div>
+        <!--tabular section starts here-->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="checkbox">
+                    <th mat-header-cell *matHeaderCellDef>
+                        
+                        <mat-checkbox (change)="$event ? masterToggle() : null;onChange(selection)" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        
+
+                        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null;onChange(selection)" [checked]="selection.isSelected(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="reference">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.Reference" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.listing_reference}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="creationDate">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.CreationDate" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.availability_date |date:'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.Type" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.home_type}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.Price" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.inc_fees}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="surface">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.Surface" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.surface}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="agent">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.Agent" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> {{"label.City" | translate}} </th>
+                    <td mat-cell *matCellDef="let row"> {{row.commune}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="diffusion">
+                    <th mat-header-cell *matHeaderCellDef>{{"label.Diffusion" | translate}}</th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-slide-toggle *ngIf="row.add_publish == 1" [checked]=true (change)="updateOrganizationListing(row.listing_id,row.add_publish)"></mat-slide-toggle>
+                        <mat-slide-toggle *ngIf="row.add_publish == 0" [checked]=false (change)="updateOrganizationListing(row.listing_id,row.add_publish)"></mat-slide-toggle>
+
+                       
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="modify">
+                    <th mat-header-cell *matHeaderCellDef>{{"label.Modify" | translate}}</th>
+                    <td mat-cell *matCellDef="let row, let i=index">
+                        <img src="assets/images/setting.png" [matMenuTriggerFor]="menu" alt="setting" class="img-fluid">
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="deleteListing(row.listing_id)">{{"label.Modify_delete" | translate}}</button>
+                            <button (click)="updateCreateListing(row)" mat-menu-item>{{"label.Modify_edit" | translate}}</button>
+                            <div>
+                                <div (click)="openCalendar(row,i,$event)" data-toggle="modal" data-target="#myModal" mat-menu-item>
+                                    {{"label.Modify_event" | translate}}
+                                </div>
+                            </div>
+                            <button (click)="openDocument(row)" data-toggle="modal" data-target="#exampleModalCenter1" mat-menu-item>{{"label.Modify_document" | translate}}</button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+
+
+
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[10, 20, 30, 40, 50, 100]"></mat-paginator> -->
+            <div *ngIf="isData" class="d-flex align-items-center justify-content-end items-page-wrapper">
+                <p class="items-firm pl-3">Items per page</p>
+                <div class="d-flex align-items-center dropdown-firm ml-3">
+                    <p class="items-firm">{{perPage}}</p>
+                </div>
+                <p class="items-firm pl-3">{{from}} - {{to}} of {{total}}</p>
+                <div class="d-flex align-items-center mb-3">
+                    <button class="btn-light prevBtn" (click)="prevPage()"><img src="assets/images/left-side.png"
+                            class="img-fluid ml-2" alt="page"></button>
+                    <button class="btn-light nextBtn" (click)="nextPage()"><img src="assets/images/right-side.png"
+                            class="img-fluid ml-2" alt="page"></button>
+                </div>
+            </div>
+        </div>
+        <!-- calendar -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content model-content-residence">
+                    <div class="modal-body residence-modal-body position-relative" style="height: auto">
+                        <div *ngIf="calendarSpinner" class="overlay position-absolute" style="height: 100%;">
+                            <div class="center">
+                                <mat-progress-spinner diameter=70 mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                        </div>
+                        <div class="modal-img-residance d-flex align-items-center ml-5" *ngFor="let list of listingDetails">
+                            <div class="modal-image-firm">
+                                <img *ngIf="list?.houseImg" src="{{list?.houseImg[0]}}" alt="house2" class="img-fluid modal-mainimg-firm" />
+                            </div>
+                            <div class="text-residence AvenirLTStd-Regular" style="margin-top: -62px;">
+                                <h4 class="head-firm AvenirLTStd-Regular align-items-left ml-3" style="text-align: left;">
+                                    {{list.listing_title}}
+                                </h4>
+                                <p class="inner-haed-firm AvenirLTStd-Regular">
+                                    {{list.inc_fees}}€
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center week-firm">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" class="monthButton">
+                                        <i class="fa fa-angle-left modal-arrow mt-1" aria-hidden="true"></i>
+                                    </button>
+                                    <h4 class="nov-firm">
+                                        {{ viewDate | calendarDate: view + "ViewTitle":lang }}
+                                    </h4>
+                                    <button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" class="monthButton">
+                                        <i class="fa fa-angle-right modal-arrow mt-1" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="dropdown dropdown-modal position-relative" style="margin-left: 40px">
+                                    <select class="selectMonth" [(ngModel)]="type" name="type" (change)="setViewType(CalendarView.Month)">
+                                        <option value="Month">{{"label.month_dropdwon" | translate}}</option>
+                                        <option value="Week">{{"label.week_dropdown" | translate}}</option>
+                                    </select>
+                                    <i class="fa fa-caret-down downIcon" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-auto">
+                            <div [ngSwitch]="view">
+                                <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [cellTemplate]="customCellTemplate" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (dayClicked)="dayClicked($event.day)" (eventTimesChanged)="eventTimesChanged($event)">
+                                </mwl-calendar-month-view>
+                                <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventTimesChanged)="eventTimesChanged($event)" [dayStartHour]="8" [dayEndHour]="20" [hourSegments]="1" [hourSegmentHeight]="45" [cellTemplate]="customCellTemplate"
+                                    [hourSegmentTemplate]="weekView" [eventTemplate]="eventTemplate">
+                                </mwl-calendar-week-view>
+                                <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventTimesChanged)="eventTimesChanged($event)">
+                                </mwl-calendar-day-view>
+                            </div>
+                            
+
+                        </div>
+                        <div class="ml-5">
+                            <h4 class="viewersDetails">{{"label.viewer_details" | translate}}</h4>
+                            <div class="d-flex">
+                                <div class="referenceColor-avilable"></div>
+                                <h4>{{"label.Available" | translate}}</h4>
+                                <div class="referenceColor-rented ml-3"></div>
+                                <h4>{{"label.Rented" | translate}}</h4>
+                                <div class="referenceColor-visit ml-3"></div>
+                                <h4>{{"label.Visited" | translate}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- calendar end -->
+
+
+        <!-- Modal upload a file-->
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content position-relative">
+                    <div *ngIf="uploadSpinner" class="overlay position-absolute" style="height: 100%;">
+                        <div class="center">
+                            <mat-progress-spinner diameter=70 mode="indeterminate">
+                            </mat-progress-spinner>
+                        </div>
+                    </div>
+                    <div class="modal-header border-0">
+                        <button type="button" class="close cross-btn-wrapper" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="residence-modal-firm" *ngFor="let list of listingDetailsForDoc">
+                            <div class="modal-img-residance d-flex align-items-center">
+                                <div class="modal-image-firm">
+                                    <img *ngIf="list?.houseImg" src="{{list?.houseImg[0]}}" alt="house2" class="img-fluid modal-mainimg-firm" />
+                                </div>
+                                <div class="text-residence AvenirLTStd-Regular">
+                                    <h4 class="head-firm AvenirLTStd-Regular ml-4">
+                                        <!-- Cascade Residence -->
+                                        {{list.listing_title}}
+                                    </h4>
+                                    <p class="files-firm AvenirLTStd-Regular ml-4">
+                                        {{uploadedFilesList.length}}/12 {{"label.LM_document_files" | translate}}
+                                    </p>
+                                    <!-- <p class="public-firm ml-4"><u>Download the publication certification</u></p> -->
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center downloaded-wrapper mr-3">
+                                <div class="d-flex align-items-center ml-2 mt-2">
+                                    <img src="assets/images/cloud.png" alt="cloud-img" class="img-fluid mb-2" />
+                                    <div class="image-upload">
+                                        <label for="file-input">
+                                            <span class="upload-firm1 mb-auto">
+                                                {{"label.LM_document_upload" | translate}}
+                                            </span>
+                                        </label>
+                                        <input id="file-input" type="file" accept="*" (change)="uploadFile($event,list)" />
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ml-2" (click)="downloadUploadedFile()">
+                                    <img src="assets/images/uploaded.png" alt="upload-img" class="img-fluid" />
+                                    <p class="upload-firm1">{{"label.LM_document_download" | translate}}</p>
+                                </div>
+                                <div class="d-flex align-items-center ml-2" (click)="deleteSelectedFile(file,list)">
+                                    <img src="assets/images/delete-black-18dp.png" alt="delete-img" class="img-fluid" />
+                                    <p class="upload-firm1">{{"label.DeletSelected" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table print-table mt-3">
+                                    <thead class="print-table-head">
+                                        <tr>
+                                          
+                                            <th scope="col">
+                                                <img src="assets/images/checkbox-img.png" alt="checkbox" class="img-fluid check-img ml-4">
+                                            </th>
+                                            <th scope="col">{{"label.LM_document_fullName" | translate}}</th>
+                                            <th scope="col">{{"label.LM_document_print" | translate}}</th>
+                                            <th scope="col">{{"label.LM_document_delete" | translate}}</th>
+                                            <th scope="col">{{"label.LM_document_size" | translate}}</th>
+                                            <th scope="col">{{"label.LM_document_extension" | translate}}</th>
+                                            <th scope="col">{{"label.LM_document_date" | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let file of uploadedFilesList; index as i">
+                                            <th>
+                                                <label class="container one-modal-label mb-3 ml-1">
+                                                    <input type="checkbox" [(ngModel)]="file.selectedFile"
+                                                        name="selectedFile" ><span
+                                                        class="checkmark"></span>
+                                                </label>
+                                            </th>
+                                            <td class="file-firm">{{file.file_name}}</td>
+                                            <td>
+                                                <img src="assets/images/print-black.png" alt="print" class="img-fluid" />
+                                            </td>
+                                            <td>
+                                                <img src="assets/images/delete-colorb.png" alt="delete" class="img-fluid" (click)="deleteFile(file,list)" />
+                                            </td>
+                                            <td class="file-firm">{{file.file_size}}</td>
+                                            <td class="file-firm">{{file.file_ext}}</td>
+                                            <td class="file-firm">{{file.created_at}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,471 @@
+<div class="agency-main-wrapper">
+    <div class="agency-logo" [routerLink]="'/'">
+    </div>
+    <div class="agency-inner-wrapper">
+        <mat-horizontal-stepper labelPosition="bottom" #stepper>
+            <mat-step label="{{'label.AgReg_stepper_agencyInfo'|translate}}">
+                <div>
+                    <h4 class="agency-text-wrapper">{{"label.agency"|translate}}</h4>
+                    <div class="row agency-inputs-wrapper" id="agency-inputs-block-wrapper">
+                        <div class="col-md-6 col-12">
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_agencyInfo_companyName'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="companyName" name="companyName">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(companyName == '' || companyName == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_agencyInfo_address'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="companyAddress" name="companyAddress">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(companyAddress == '' || companyAddress == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_agencyInfo_siret'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="companySiret" name="companySiret">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(companySiret == '' || companySiret == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="email" placeholder="{{'label.AgReg_stepper_agencyInfo_email'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="companyEmail" name="companyEmail">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(companyEmail == '' || companyEmail == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                    <div *ngIf="validateEmail(companyEmail) && notValidated == true && companyEmail">
+                                        {{"error.email"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="position: relative;">
+                                    <input type="{{displayRegPassword ? 'type' : 'password'}}"
+                                        placeholder="{{'label.AgReg_stepper_agencyInfo_password'|translate}}"
+                                        class="input-agency-firm" (keyup)="checkValidPassword()"
+                                        [(ngModel)]="agentPassword" name="agentPassword">
+                                    <button class="show-password" (click)="displayRegPassword = !displayRegPassword">
+                                        <span class="material-icons showPassword-svg"
+                                            *ngIf="displayRegPassword">visibility</span>
+                                        <img *ngIf="!displayRegPassword"
+                                            src="assets/images/register/visibility_off-black-18dp.svg">
+                                    </button>
+                                </div>
+                                <div class="notValidated" [ngStyle]="applyStyle">
+                                    <div
+                                        *ngIf="validatePassword(agentPassword) && notValidated == true && agentPassword">
+                                        {{"label.Password8char"|translate}}
+                                    </div>
+                                    <div
+                                        *ngIf="(agentPassword == '' || agentPassword == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_agencyInfo_city'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="companyCity" name="companyCity">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(companyCity == '' || companyCity == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_agencyInfo_tradeName'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="TradeName" name="compTradeNameanyName">
+                                <div class="notValidated">
+                                    <div *ngIf="(TradeName == '' || TradeName == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <select class="form-control agency-select" [(ngModel)]="PhoneCountyCode"
+                                    name="PhoneCountyCode">
+                                    <option value="91">91</option>
+                                    <option value="+33">+33</option>
+                                </select>
+                                <div>
+                                    <input type="text" appNumberDirective
+                                        placeholder="{{'label.AgReg_stepper_agencyInfo_telephone'|translate}}"
+                                        class="input-telephone-ageney" [(ngModel)]="companyTelephone"
+                                        name="companyTelephone">
+                                    <div class="notValidated">
+                                        <div
+                                            *ngIf="(companyTelephone == '' || companyTelephone == undefined) && notValidated == true">
+                                            {{"error._name"|translate}}
+                                        </div>
+                                        <div *ngIf="validateMobile(companyTelephone) && notValidated == true && companyTelephone"
+                                            style="width: 260px;margin-left: -65px;">
+                                            {{"error.mobile"|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_agencyInfo_contactName'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="contactName" name="contactName">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(contactName == '' || contactName == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="number"
+                                    placeholder="{{'label.AgReg_stepper_agencyInfo_postalCode'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="postalCode" name="postalCode">
+                                <div class="notValidated">
+                                    <div *ngIf="(postalCode == '' || postalCode == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_agencyInfo_websiteURL'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="websiteURL" name="websiteURL">
+
+                            </div>
+                            <div class="position-relative">
+                                <div class="custom-dropzone custom-dropzone_style position-absolute mt-4"
+                                    id="custom-ndip" ngx-dropzone [multiple]="false" (change)="JoinKBIS($event)">
+                                    <ngx-dropzone-label>
+                                        <h3 class="mb-auto selectfilelabel man-selecct-block ">
+                                            <span *ngIf="!addedKbisAttachment">{{"label.join_kbis"|translate}}</span>
+                                            <span *ngIf="addedKbisAttachment">
+                                                <span *ngFor="let f of addedKbisAttachment"
+                                                    style="text-align: left;">{{f.name}}</span>
+                                            </span>
+                                        </h3>
+                                    </ngx-dropzone-label>
+                                </div>
+                                <div class="notValidated position-absolute" style="top: 8px">
+                                    <div *ngIf="(addedKbisAttachmentLength == 0) && notValidated == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="agency-files position-relative">
+                                <div class="custom-dropzone position-absolute" style="width: 150px;" id="custom-ndip"
+                                    ngx-dropzone [multiple]="false" (change)="onSelectPhoto($event)">
+                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" class="ngx-dip"
+                                        *ngFor="let f of noDuplicatePhotos" [file]="f" [removable]="true"
+                                        (removed)="onRemovePhoto(f)">
+                                    </ngx-dropzone-image-preview>
+                                    <ngx-dropzone-label>
+                                        <h3 class="mb-auto">{{"label.logo"|translate}}</h3>
+                                    </ngx-dropzone-label>
+                                </div>
+                            </div>
+                            <div class="notValidated ml-5" style="margin-top: 91px;">
+                                <div
+                                    *ngIf="(noDuplicatePhotosLength == 0 || noDuplicatePhotos == undefined) && notValidated == true">
+                                    {{"error._name"|translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="agency-btn"
+                        (click)="navigateToSelectOffers(stepper)">{{"label.next"|translate}}</button>
+                </div>
+
+            </mat-step>
+
+            <mat-step label="{{'label.AgReg_stepper_selectOff'|translate}}">
+                <div>
+
+                    <div class="d-flex align-items-center select-offer-wrapper">
+                        <h4 class="offer-text">{{"label.offer"|translate}}</h4>
+                    </div>
+                    <div class="d-flex main-inner-offer-firm">
+                        <ng-container *ngIf="!paymentType">
+                            <div class="main-offer-wrapper later-offer-firm">
+                                <button class="offer-btn">{{"label.offer1"|translate}}</button>
+                                <div class="offer-card">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="offer-num-text">{{"label.ads"|translate}}</p>
+                                    </div>
+                                    <p class="offer-month text-center">/ Tarifs</p>
+                                    <div class="select-btn-container">
+                                        <button type="button" class="select-btn"
+                                            [class.activeOffer]="paymentType === 'ads'"
+                                            (click)="selectSubscription('ads')">{{"label.select"|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative later-offer-firm">
+                                <button class="offer-btn">{{"label.offer2"|translate}}</button>
+                                <div class="offer-card">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="offer-num-text">{{"label.subscription"|translate}}</p>
+                                    </div>
+                                    <p class="offer-month text-center">/ Tarifs</p>
+                                    <div class="select-btn-container">
+                                        <button type="button" class="select-btn"
+                                            [class.activeOffer]="paymentType === 'subscription'"
+                                            (click)="selectSubscription('subscription')">{{"label.select"|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="paymentType">
+                            <div *ngIf="offerValue != 1" class="main-offer-wrapper later-offer-firm">
+                                <button class="offer-btn">{{"label.offer1Name"|translate}}</button>
+                                <div class="offer-card">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="offer-num-text">{{pricing?.offer1}}</p>
+                                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                                    </div>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'subscription'">{{"label.month"|translate}}</p>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'ads'">{{"label.excludingTaxes"|translate}}</p>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'subscription'">
+                                        <p class="commitment-text">{{"label.commitment"|translate}}</p>
+                                        <p class="offer-free-firm">{{"label.free"|translate}}</p>
+                                    </div>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'ads'">
+                                        <p class="commitment-text">{{"label.adsyear"|translate}}</p>
+                                    </div>
+                                    <div class="select-btn-container">
+                                        <button type="button" class="select-btn"
+                                            [class.activeOffer]="selectedOfferPrice == '1'"
+                                            (click)="selectedOffer(1)">{{"label.select"|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="offerValue != 2" class="position-relative later-offer-firm">
+                                <button class="offer-btn">{{"label.offer2Name"|translate}}</button>
+                                <div class="offer-card">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="offer-num-text">{{pricing?.offer2}}</p>
+                                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                                    </div>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'subscription'">{{"label.month"|translate}}</p>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'ads'">{{"label.excludingTaxes"|translate}}</p>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'subscription'">
+                                        <p class="commitment-text">{{"label.months"|translate}}</p>
+                                        <p class="offer-free-firm">{{"label.free"|translate}}</p>
+                                    </div>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'ads'">
+                                        <p class="commitment-text">{{"label.adsmonths"|translate}}</p>
+                                    </div>
+                                    <div class="select-btn-container">
+                                        <button type="button" class="select-btn"
+                                            [class.activeOffer]="selectedOfferPrice == '2'"
+                                            (click)="selectedOffer(2)">{{"label.select"|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="offerValue != 3" class="position-relative later-offer-firm">
+                                <button class="offer-btn">{{"label.offer3Name"|translate}}</button>
+                                <div class="offer-card">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="offer-num-text">{{pricing?.offer3}}</p>
+                                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                                    </div>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'subscription'">{{"label.month"|translate}}</p>
+                                    <p class="offer-month text-center" *ngIf="paymentType === 'ads'">{{"label.excludingTaxes"|translate}}</p>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'subscription'">
+                                        <p class="commitment-text">{{"label.year"|translate}}</p>
+                                        <p class="offer-free-firm">{{"label.free"|translate}}</p>
+                                    </div>
+                                    <div class="commitment-wrapper" *ngIf="paymentType === 'ads'">
+                                        <p class="commitment-text">{{"label.adscommitment"|translate}}</p>
+                                    </div>
+                                    <div class="select-btn-container">
+                                        <button type="button" class="select-btn"
+                                            [class.activeOffer]="selectedOfferPrice == '3'"
+                                            (click)="selectedOffer(3)">{{"label.select"|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="notValidated">
+                        <div
+                            *ngIf="(selectedOfferPrice == '' || selectedOfferPrice == undefined) && notValidatedOffer == true">
+                            {{"error._name"|translate}}
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center offer-btn-group">
+                        <button type="button" class="offer-previous-btn"
+                            (click)="back(stepper)">{{"label.previous"|translate}}</button>
+                        <button type="button" class="offer-next-btn"
+                            (click)="navigateToBilling(stepper)">{{"label.next"|translate}}</button>
+                    </div>
+                </div>
+
+            </mat-step>
+
+            <mat-step label="{{'label.AgReg_stepper_enterBilling'|translate}}">
+                <div>
+                    <div class="d-flex billing-main-wrapper">
+                        <div class="billing-firm col-md-4 col-12">
+                            <p class="inform-billing-text">{{"label.AgReg_stepper_enterBilling_Facturation"|translate}}
+                            </p>
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_enterBilling_BIC'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="bicBI" name="contactName">
+                                <div class="notValidated">
+                                    <div *ngIf="(bicBI == '' || bicBI == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_enterBilling_IBAN'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="ibanBI" name="ibanBI">
+                                <div class="notValidated">
+                                    <div *ngIf="(ibanBI == '' || ibanBI == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_enterBilling_fullName'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="fullNameBI" name="fullNameBI">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(fullNameBI == '' || fullNameBI == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="billing-firm col-md-4 col-12">
+                            <p class="billing-details">
+                                <u>
+                                    <div class="custom-dropzone custom-dropzone_style position-absolute"
+                                        id="custom-ndip" ngx-dropzone [multiple]="false"
+                                        (change)="bankAttachment($event)">
+                                        <ngx-dropzone-label>
+                                            <h3 class="mb-auto selectfilelabel">
+                                                <span *ngIf="!addedBankAttachment">{{"label.details"|translate}}</span>
+                                                <span *ngIf="addedBankAttachment">
+                                                    <span *ngFor="let f of addedBankAttachment"
+                                                        style="text-align: left;">{{f.name}}</span>
+                                                </span>
+                                            </h3>
+                                        </ngx-dropzone-label>
+                                    </div>
+                                </u>
+                            </p>
+                            <div class="notValidated" style="margin-top: 40px;">
+                                <div *ngIf="(addedBankAttachmentLength == 0) && notValidatedBank == true">
+                                    {{"error._name"|translate}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="billing-firm col-md-4 col-12">
+                            <p class="inform-billing-text">
+                                {{"label.AgReg_stepper_enterBilling_BIC_facturationAdress"|translate}}</p>
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_enterBilling_fullName'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="fullNameBA" name="fullNameBA">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(fullNameBA == '' || fullNameBA == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="text" placeholder="{{'label.AgReg_stepper_enterBilling_city'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="cityBA" name="cityBA">
+                                <div class="notValidated">
+                                    <div *ngIf="(cityBA == '' || cityBA == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="text"
+                                    placeholder="{{'label.AgReg_stepper_enterBilling_address'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="addressBA" name="addressBA">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(addressBA == '' || addressBA == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="number"
+                                    placeholder="{{'label.AgReg_stepper_enterBilling_postalCode'|translate}}"
+                                    class="input-agency-firm" [(ngModel)]="postalCodeBA" name="postalCodeBA">
+                                <div class="notValidated">
+                                    <div
+                                        *ngIf="(postalCodeBA == '' || postalCodeBA == undefined) && notValidatedBank == true">
+                                        {{"error._name"|translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="billing-inner-text">
+                        {{"label.AgReg_stepper_enterBilling_info1"|translate}}: <br>
+                        1.{{"label.AgReg_stepper_enterBilling_info2"|translate}}.
+                        <br> 2.{{"label.AgReg_stepper_enterBilling_info3"|translate}}.
+                        <br> {{"label.AgReg_stepper_enterBilling_info4"|translate}}
+                    </p>
+                    <div class="d-flex align-items-center billing-btns-group">
+                        <button type="button" class="previous-billing-btn"
+                            (click)="back(stepper)">{{"label.previous"|translate}}</button>
+                        <button type="button" class="finish-billing-btn" [disabled]="regLoader"
+                            (click)="navigateToRegSucess(stepper)">
+                            {{"label.finish"|translate}}
+                            <mat-spinner *ngIf="regLoader" [diameter]="25"></mat-spinner>
+                        </button>
+                    </div>
+                </div>
+
+            </mat-step>
+
+            <mat-step label="{{'label.AgReg_stepper_regSuccess'|translate}}">
+                <div class="registration-main-wrapper">
+                    <div class="register-card">
+                        <p class="register-inner-text">{{"label.thank"|translate}}!</p>
+                        <p class="welcome-inner-text">{{"label.welcome"|translate}}</p>
+                        <p class="customize-wrapper">{{"label.response"|translate}}.</p>
+                        <p class="customize-inner-wrapper">{{"label.customize"|translate}}</p>
+                        <button type="button" class="success-btn-wrapper"
+                            (click)="login()">{{"label.AgReg_stepper_regSuccess_login"|translate}}</button>
+                    </div>
+                </div>
+
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+
+</div>

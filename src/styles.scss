@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~handsontable/dist/handsontable.full.css';
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "./assets/scss/style.scss";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+
+// ::-webkit-scrollbar {
+//     display: none;
+// }
+
+.ag-theme-alpine {
+    @include ag-theme-alpine((
+        odd-row-background-color: #CFD8DC
+    ));
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: "AvenirLTStd-Regular"; }
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

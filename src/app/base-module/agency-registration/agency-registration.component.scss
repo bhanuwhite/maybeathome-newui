@@ -1,0 +1,856 @@
+.timeline-section {
+  margin: 30px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+
+  .li {
+    position: relative;
+    width: Calc(100% / 4);
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      border: 1px solid #969696;
+      top: 20px;
+      left: 87px;
+    }
+
+    &:last-child {
+      padding-right: 0px;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .number-wrapper {
+    position: relative;
+    border-radius: 30px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: #969696;
+    width: 40px;
+    height: 40px;
+    margin: 25px 0 10px;
+    padding: 8px 16px 9px;
+    border: solid 1px #e2e2e2;
+    background-color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.timestamp {
+  margin-bottom: 8px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 100;
+}
+
+.status {
+  padding: 0px 40px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transition: all 200ms ease-in;
+
+  h4 {
+    font-weight: 600;
+  }
+}
+
+.website-border {
+  border: 1px solid #c8ced3;
+  z-index: 1000;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 25px;
+  width: 80px;
+  height: 30px;
+}
+
+.shift-wrapper {
+  height: 20px;
+  font-size: 16px;
+  color: #969696;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.timeline {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-wrapper {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  background-color: #ffffff;
+
+  .li {
+    position: relative;
+    padding-right: 20%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #c8ced3;
+      top: 13px;
+      left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0px;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .numbers-wrapper {
+    border: 1px solid #c8ced3;
+    background-color: #ffffff;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border-radius: 30px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .check-icon {
+    font-size: 10px;
+  }
+
+  .step-wrapper {
+    z-index: 1000;
+    background-color: #ffffff;
+    margin-left: 1px;
+  }
+}
+
+.li {
+  transition: all 200ms ease-in;
+}
+
+ul {
+  width: 100%;
+}
+
+.agency-main-wrapper {
+  background-image: url("../../../assets/images/Group281.png");
+  width: 100%;
+  overflow-y: auto;
+  height: 100%;
+  background-size: cover;
+
+  .agency-logo {
+    background-image: url("../../../assets/images/register/Redesign\ Logo\ white.svg");
+    width: 219px;
+    height: 56.7px;
+    object-fit: contain;
+    margin: 0 auto;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+
+  .agency-logo:focus {
+    outline: none;
+  }
+
+  .agency-inner-wrapper {
+    width: 900px;
+    // height: 636px;
+    margin-top: 30.3px !important;
+    padding: 25px 47px 30px 48px;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px 0 var(--black-16);
+    background-color: #ffffff;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 45px !important;
+
+    .agency-text {
+      margin: 0 14px 25px 13px;
+      font-size: 24px;
+      text-align: center;
+      color: #31567f;
+    }
+
+    .agency-text-wrapper {
+      margin: 40px 116px 20px 0;
+      font-size: 16px;
+      color: #001935;
+    }
+
+    .agency-inputs-wrapper {
+      .input-agency-firm {
+        width: 255px;
+        height: 45px;
+        margin-top: 7px;
+        padding: 13px 14px 13px 20px;
+        border-radius: 23px;
+        border: solid 1px #e2e2e2;
+        background-color: #ffffff;
+        outline: 0;
+        color: #969696;
+
+        &::placeholder {
+          color: #969696 !important;
+        }
+      }
+
+      .input-telephone-ageney {
+        width: 190px;
+        height: 45px;
+        margin-top: 7px;
+        padding: 13px 14px 13px 20px;
+        border-radius: 23px;
+        border: solid 1px #e2e2e2;
+        background-color: #ffffff;
+        outline: 0;
+
+        &::placeholder {
+          color: #969696 !important;
+        }
+      }
+
+      .agency-select {
+        width: 60px;
+        height: 45px;
+        margin-top: -9px;
+        margin-right: 5px;
+        padding: 10px 2px;
+        border-radius: 23px;
+        border: solid 1px #e2e2e2;
+        background-color: #ffffff;
+        // appearance: none;
+        outline: 0;
+        color: #969696;
+        box-shadow: none;
+      }
+
+      .agency-files {
+        width: 255px;
+        height: 110px;
+        margin: 20px 0 20px 14px;
+        padding: 13px 92px 46px 20px;
+        // border-radius: 5px;
+        // border: solid 2px #e2e2e2;
+        // background-color: #ffffff;
+        // border-style: dotted;
+      }
+
+      .agency-file-text {
+        font-size: 15px;
+        color: #969696;
+      }
+
+      .agency-browse-file {
+        margin: 14px -30px 0px 63px;
+        font-size: 14px;
+        text-align: center;
+        color: #31567f;
+      }
+
+      select:hover {
+        font-size: 16px;
+        line-height: 1.19;
+        text-align: center;
+        color: #31567f;
+        border: 1px solid #31567f;
+      }
+
+      input:hover {
+        color: #31567f;
+        border: 1px solid #31567f;
+      }
+    }
+
+    .agency-btn {
+      width: 28px;
+      height: 19px;
+      font-size: 15px;
+      text-align: center;
+      color: #ffffff;
+      width: 240px;
+      height: 45px;
+      margin: 25px 0 0 29px;
+      padding: 13px 106px;
+      border-radius: 23px;
+      box-shadow: 0 2px 4px 0 var(--black-16);
+      // background-color: #0600ff;
+      background-color: #31567f;
+      outline: 0;
+      border: 0;
+      margin-left: 67%;
+    }
+
+    .select-offer-wrapper {
+      .offer-text {
+        margin: 40px 15px 20px 21px;
+        font-size: 16px;
+        color: #001935;
+      }
+
+      .guide-text {
+        margin: 42px 126px 20px 15px;
+        font-size: 14px;
+        color: #0059bc;
+      }
+    }
+
+    .offer-card {
+      width: 220px;
+      height: 280px;
+      margin: -20px 0 0;
+      margin-right: 5px;
+      padding: 0px 10px 15px 10px;
+      border-radius: 2px;
+      border: solid 1px #e2e2e2;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .offer-num-text {
+        margin: 0 5px 0 0;
+        font-family: SourceSansPro;
+        font-size: 36px;
+        font-weight: 600;
+        color: #001935;
+      }
+
+      .offer-month {
+        font-size: 15px;
+        color: #969696;
+        margin-top: 25px;
+      }
+
+      .commitment-wrapper {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+
+        .commitment-text {
+          font-size: 13px;
+          color: #969696;
+        }
+
+        .offer-free-firm {
+          font-size: 13px;
+          color: #31567f;
+          white-space: nowrap;
+        }
+      }
+
+      .select-btn {
+        width: 120px;
+        height: 40px;
+        margin-top: 8px;
+        margin-bottom: 15px;
+        border-radius: 20px;
+        border: solid 1px #31567f;
+        background-color: #ffffff;
+        font-size: 15px;
+        color: #31567f;
+        outline: 0;
+
+        &:hover {
+          background-color: #31567f;
+          color: #ffff;
+        }
+      }
+
+      .select-another-firm {
+        margin-top: 20px;
+      }
+    }
+
+    .offer-btn {
+      width: 120px;
+      height: 50px;
+      border-radius: 25px;
+      border: solid 1px #e2e2e2;
+      background-color: #ffffff;
+      outline: 0;
+      box-shadow: 0;
+      z-index: 99;
+      font-size: 24px;
+      font-weight: 600;
+      color: #31567f;
+      margin-left: 43px;
+    }
+
+    .offer-btn-group {
+      justify-content: flex-end;
+      margin-top: 25px;
+
+      .offer-previous-btn {
+        width: 120px;
+        height: 45px;
+        padding: 13px 27px;
+        border-radius: 23px;
+        background-color: #e6e8ec;
+        font-size: 15px;
+        color: #31567f;
+        outline: 0;
+        border: 0;
+      }
+
+      .offer-next-btn {
+        width: 120px;
+        height: 45px;
+        padding: 13px 33px;
+        border-radius: 23px;
+        box-shadow: 0 2px 4px 0 var(--black-16);
+        // background-color: #0600ff;
+        background-color: #31567f;
+        font-size: 15px;
+        color: #ffffff;
+        outline: 0;
+        border: 0;
+        margin-left: 20px;
+      }
+    }
+
+    .choice-offer-text {
+      margin: 0 0 0px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #001935;
+      line-height: 1.29;
+      text-align: center;
+    }
+
+    .billing-main-wrapper {
+      margin-top: 40px;
+
+      .billing-firm {
+        .inform-billing-text {
+          font-size: 16px;
+          color: #001935;
+          white-space: nowrap;
+        }
+
+        .billing-details {
+          font-size: 15px;
+          color: #005fcc;
+          margin-top: 129px;
+        }
+
+        .input-agency-firm {
+          width: 255px;
+          height: 45px;
+          margin-top: 8px;
+          padding: 13px 14px 13px 20px;
+          border-radius: 23px;
+          border: solid 1px #e2e2e2;
+          background-color: #ffffff;
+          outline: 0;
+          color: #969696;
+
+          &::placeholder {
+            color: #969696 !important;
+          }
+        }
+
+        input:hover {
+          color: #31567f;
+          border: 1px solid #31567f;
+        }
+      }
+    }
+
+    .billing-inner-text {
+      font-size: 14px;
+      color: #969696;
+      line-height: 1.79;
+    }
+
+    .billing-btns-group {
+      justify-content: flex-end;
+
+      .previous-billing-btn {
+        width: 180px;
+        height: 45px;
+        margin: 0 10px 0 0;
+        padding: 13px 0px;
+        border-radius: 23px;
+        background-color: #e6e8ec;
+        font-size: 15px;
+        text-align: center;
+        color: #31567f;
+        outline: 0;
+        border: 0;
+      }
+
+      .finish-billing-btn {
+        position: relative;
+        width: 240px;
+        height: 45px;
+        margin: 0 0 0 10px;
+        border-radius: 23px;
+        box-shadow: 0 2px 4px 0 var(--black-16);
+        // background-color: #0600ff;
+        background-color: #31567f;
+        font-size: 15px;
+        text-align: center;
+        color: #ffffff;
+        outline: 0;
+        border: 0;
+      }
+    }
+
+    .registration-main-wrapper {
+      display: flex;
+      justify-content: center;
+
+      .register-card {
+        width: 400px;
+        margin: 90px 47px 0 49px;
+        padding: 20px 15px 26px;
+        border-radius: 2px;
+        border: solid 1px #e2e2e2;
+        background-color: #ffffff;
+      }
+
+      .register-inner-text {
+        font-size: 18px;
+        text-align: center;
+        color: #31567f;
+        margin-top: 20px;
+      }
+
+      .welcome-inner-text {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        color: #001935;
+      }
+
+      .customize-wrapper {
+        font-size: 15px;
+        line-height: 1.67;
+        text-align: center;
+        color: #969696;
+        margin-top: 15px;
+      }
+
+      .customize-inner-wrapper {
+        font-size: 15px;
+        line-height: 1.67;
+        text-align: center;
+        color: #969696;
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+
+      .success-btn-wrapper {
+        width: 150px;
+        height: 45px;
+        margin: 0px 110px 0px;        
+        border-radius: 23px;
+        background-color: #31567f;
+        font-size: 15px;
+        text-align: center;
+        color: #ffffff;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.custom-select-blue {
+  background: transparent url(../../../assets/images/dropdown-blue.png) no-repeat right 0.75rem center;
+}
+
+.later-offer-firm:hover {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  // transform: scale(1.02);
+  .offer-btn {
+    border: solid 1px #31567f !important;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .offer-card {
+    border: solid 1px #31567f !important;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.agency-shift-firm {
+  white-space: nowrap;
+}
+
+.main-inner-offer-firm {
+  justify-content: center;
+}
+
+@media screen and (max-width: 991px) {
+  .agency-inner-wrapper {
+    width: 95% !important;
+
+    .agency-shift-firm {
+      white-space: normal !important;
+    }
+
+    .billing-main-wrapper {
+      flex-wrap: wrap;
+
+      .billing-details {
+        margin-top: 10px !important;
+      }
+    }
+
+    .offer-choice-firm {
+      flex-wrap: wrap;
+    }
+
+    .later-offer-firm {
+      margin-top: 10px;
+    }
+
+    .agency-btn {
+      margin-left: 0px !important;
+    }
+  }
+
+  .main-inner-offer-firm {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .li {
+    &::after {
+      left: 69px !important;
+    }
+  }
+
+  .billing-main-wrapper {
+    flex-wrap: wrap;
+
+    .billing-details {
+      margin-top: 20px !important;
+    }
+  }
+
+  .offer-choice-firm {
+    flex-wrap: wrap;
+  }
+
+  .later-offer-firm {
+    margin-top: 10px;
+  }
+
+  .agency-btn {
+    margin-left: 0px !important;
+  }
+
+  .main-inner-offer-firm {
+    flex-wrap: wrap;
+  }
+
+  .agency-main-wrapper .agency-inner-wrapper {
+    padding: 0px !important;
+  }
+
+  .man-selecct-block {
+    margin-right: 45px !important;
+  }
+
+  .agency-main-wrapper .agency-inner-wrapper .registration-main-wrapper .register-card {
+    padding: 10px 30px !important;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .li {
+    &::after {
+      left: 26px !important;
+    }
+  }
+
+  .main-inner-offer-firm {
+    flex-wrap: wrap;
+  }
+}
+
+.later-offer-firm {
+  position: relative;
+}
+
+.select-btn {
+  position: absolute;
+  bottom: 0;
+}
+
+.Tough-wrapper {
+  position: absolute;
+  bottom: 89px;
+  left: 48px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.main-offer-wrapper {
+  position: relative;
+}
+
+.activeOffer {
+  background-color: #31567f !important;
+  color: #ffff !important;
+}
+
+::ng-deep {
+  .custom-dropzone_style {
+    height: 48px !important;
+    width: 94%;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  .selectfilelabel {
+    color: blue;
+    text-decoration-line: underline;
+    text-align: left !important;
+  }
+}
+
+.custom-card {
+  border: 2px solid #e8e8e8;
+  border-radius: 5px;
+  padding: 5px;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+}
+
+.deselect-header {
+  color: #050A30;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.notValidated {
+  height: 20px;
+  color: red;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.reg-inputs {
+  width: 255px;
+  height: 45px;
+  border-radius: 23px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+  margin-top: 7px;
+  font-size: 15px;
+  color: #969696;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.reg-inputs:focus {
+  outline: none;
+}
+
+.show-password {
+  position: absolute;
+  top: 19px;
+  left: 206px;
+  background: none;
+  border: none;
+}
+
+.showPassword-svg {
+  width: 20px;
+  height: 17.2px;
+  font-size: 22px;
+  color: #969696;
+}
+
+button:focus {
+  outline: none;
+}
+
+.mat-spinner {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 206px;
+  top: 10px;
+}
+
+.deselect-button {
+  width: 120px;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  border: solid 1px #31567f;
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #31567f;
+  outline: 0;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #fafafa;
+}
+
+@media screen and (max-width: 768px) and (max-width: 1024px) {
+  #agency-inputs-block-wrapper {
+    flex-direction: column;
+  }
+
+  .billing-main-wrapper {
+    flex-direction: column;
+
+  }
+
+  .man-selecct-block {
+    margin-right: 20px;
+  }
+
+}
+
+.select-btn-container {
+  display: flex;
+  justify-content: center;
+}

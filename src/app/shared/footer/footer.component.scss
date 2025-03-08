@@ -1,0 +1,130 @@
+.footer {
+    padding: 35px 7px 20px;
+    // background-image: url("../../../assets/images/bk-footer@3x.png");
+    background-color: #0F2E33;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    object-fit: scale-down;
+}
+
+.footer-inner-wrapper {
+    margin-bottom: 47px;
+    max-width: 1366px;
+    ul {
+        li:hover {
+            padding-left: 10px;
+            transition: 0.3s ease-in-out;
+            color: #fff;
+        }
+    }
+}
+
+.footer-info {
+    display: flex;
+    color: #fff;
+}
+
+.footer h1 {
+    font-size: 16px;
+    color: #fff;
+}
+
+.footer-info ul {
+    list-style-type: none;
+    color: #7c7e83;
+}
+
+.footer li {
+    margin-left: -47px;
+    margin-bottom: 11px;
+    color: #7c7e83;
+}
+
+.footer-li-top {
+    margin-top: -12px;
+}
+
+.footer-info>div {
+    margin-top: 44px;
+}
+
+.footer-logo {
+    width: 134px;
+    height: 39px;
+    object-fit: contain;
+    position: absolute;
+    left: 33px;
+}
+
+.footer-address {
+    margin-top: 26px;
+    line-height: 3;
+    font-size: 16px;
+}
+
+.footer-address-li {
+    line-height: normal;
+    margin-bottom: 11px;
+}
+
+.footer-address-icons {
+    font-size: 20px;
+    margin-right: 13px;
+}
+
+.footer-p {
+    line-height: 2;
+    text-align: justify;
+    font-size: 13px;
+    margin-bottom: 21px;
+    color: #7c7e83;
+}
+
+.footer-input-btn {
+    background: #31567f;
+    width: 40px;
+    padding: 7px;
+    font-size: 17px;
+}
+
+.footer-policies {
+    margin-right: 18px;
+}
+
+.footer-social-media {
+    display: flex;
+    color: #7c7e83;
+    font-size: 18px;
+}
+
+.rights {
+    font-size: 15px;
+    line-height: 1.47;
+    color: #7c7e83;
+    margin: auto;
+    margin-top: 16px;
+}
+
+i.fa.fa-paper-plane {
+    color: #fff;
+}
+
+.copyRights-div {
+    border-top: 1px solid #7c7e83;
+}
+
+.email-text-firm {
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    border: 0;
+    font-size: 14px;
+}
+
+.footer_achor {
+    color: #fff;
+    &:hover {
+        cursor: pointer;
+    }
+}

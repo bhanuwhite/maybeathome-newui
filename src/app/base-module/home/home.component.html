@@ -1,0 +1,575 @@
+<!-- <app-header></app-header> -->
+<!--main-content-wrapper starts here-->
+<div class="main-content-wrapper">
+    <div>
+        <video class="w-100 video-wrapper" autoplay [muted]='true' loop playsInline oncanplay="play()" onloadedmetadata="muted = true" #homevideo>
+            <source src="{{backgroundVideo}}" type="video/mp4" />
+            <source src="{{backgroundVideoWebm}}" type="video/webm" />
+            <source src="{{backgroundVideoMov}}" type="video/mov" />
+        </video>
+    </div>
+    <div class="container-main-wrapper">
+        <div class="text-center">
+            <img src="assets/images/logo-w.png" class="img-fluid logo-content" alt="logo1" />
+
+        </div>
+        <div>
+            <h3 class="neque-wrapper AvenirLTStd-Regular">
+                <!-- {{"label._heading"|translate}}<br /> {{"label.heading1"|translate}} -->
+                {{"label._heading"|translate}}
+            </h3>
+            <button class="d-block try-before-buy" [routerLink]="['/try-before-you-buy']">
+                    {{"label._trybutton"|translate}}
+                </button>
+        </div>
+
+
+        <div class="main-bg-firm">
+            <p class="lorium-wrapper AvenirLTStd-Regular">
+                {{"label.para"|translate}}
+            </p>
+            <div class="input-wrapper AvenirLTStd-Regular wrapper-home">
+                <div class="input-group ml-2">
+                    <auto-complete placeholder="{{'label.location' | translate}}*" [required]="true" class="hm-lc overflow-text" (setAddress)="getAddress($event)" #location="ngModel" [(ngModel)]="place" style="margin-top: -3px;"></auto-complete>
+                    <span class="material-icons place-icon">place</span>
+                    <div class="notValidated" *ngIf="((place == '' || place == undefined) &&  notValidated == true) || (location.touched && location.errors?.required)">
+                        This field is required
+                    </div>
+                </div>
+                <div class="input-group test-wrapper ">
+                    <div class="model-width-align" (mouseleave)="showDropDown = false">
+                        <button class="select-propertyType custom-select model-text-align" (click)="showDropDown=!showDropDown">
+                                <span *ngIf="showSelect">{{"label.propertyType"|translate}}</span>
+                                <span *ngIf="showValue">{{checkedList.length}} {{"label.Selected" | translate}}</span>
+                            </button>
+                        <div class="drop-show" *ngIf="showDropDown">
+                            <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
+                                <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
+                                <span>{{ list.list }}</span>
+                                <span class="select-checkmark"></span>
+                            </lable>
+                        </div>
+
+                    </div>
+                    <span class="material-icons  place-icon">
+                            domain
+                        </span>
+
+                </div>
+                <div class="input-group test-wrapper text-center">
+                    <div class="model-width-align" (mouseleave)="showPriceDropDown = false">
+                        <button class="select-propertyType  custom-select model-text-align" (click)="showPriceDropDown=!showPriceDropDown">
+                                <span class="material-icons place-icon text-dark"> euro_symbol</span>
+                                <span>{{"label.price" | translate}}</span>
+                            </button>
+                        <div class="drop-show drop-show-width" *ngIf="showPriceDropDown">
+                            <input type="text" appNumberDirective placeholder="{{'label.BudgetMin' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="minPrice" name="minPrice" />
+                            <input type="text" appNumberDirective placeholder="{{'label.BudgetMax' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="maxPrice" name="maxPrice" />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center advance-cstm">
+                    <button class="advance-btn bg-transparent d-flex" data-toggle="modal" data-target="#myModal" #advancedsearch>
+                            <span class="advance-span-text"> {{"label.advancedSearch"|translate}} </span>
+                            <span class="material-icons more-vert-icon">more_vert</span>
+                        </button>
+                </div>
+                <div class="input-group button-search mr-2">
+                    <button type="submit" class="search-btn test-wrapper" (click)="generalSearch()">
+                            {{"label.search"|translate}}
+                        </button>
+                </div>
+            </div>
+            <div class="text-center">
+                <img (click)="gotovideo(target)" class="down-arrow" src="assets/images/down_arrow.svg" alt="">
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Serach bar Mobile-->
+<div class="main-bg-firm main-bg-firm-mobile">
+    <div class="input-wrapper AvenirLTStd-Regular wrapper-home">
+        <div class="input-group">
+            <auto-complete placeholder="{{'label.location' | translate}}*" [required]="true" class="hm-lc" (setAddress)="getAddress($event)" #location="ngModel" [(ngModel)]="place" style="margin-top: -3px;"></auto-complete>
+            <span class="material-icons place-icon">place</span>
+            <div class="notValidated" *ngIf="((place == '' || place == undefined) &&  notValidated == true) || (location.touched && location.errors?.required)">
+                This field is required
+            </div>
+        </div>
+        <div class="input-group test-wrapper ">
+            <div class="model-width-align" (mouseleave)="showDropDown = false">
+                <button class="select-propertyType custom-select model-text-align" (click)="showDropDown=!showDropDown">
+                    <span *ngIf="showSelect">{{"label.propertyType"|translate}}</span>
+                    <span *ngIf="showValue">{{checkedList.length}} {{"label.Selected" | translate}}</span>
+                </button>
+                <div class="drop-show" *ngIf="showDropDown">
+                    <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
+                        <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
+                        <span>{{ list.list }}</span>
+                        <span class="select-checkmark"></span>
+                    </lable>
+                </div>
+            </div>
+            <span class="material-icons  place-icon">
+                domain
+            </span>
+
+        </div>
+        <div class="input-group test-wrapper text-center">
+            <div class="model-width-align" (mouseleave)="showPriceDropDown = false">
+                <button class="select-propertyType  custom-select model-text-align" (click)="showPriceDropDown=!showPriceDropDown">
+                    <span class="material-icons place-icon text-dark"> euro_symbol</span>
+                    <span>{{"label.price" | translate}}</span>
+                </button>
+                <div class="drop-show drop-show-width" *ngIf="showPriceDropDown">
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMin' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="minPrice" name="minPrice" />
+                    <input type="text" appNumberDirective placeholder="{{'label.BudgetMax' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="maxPrice" name="maxPrice" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center advance-cstm">
+            <button class="advance-btn bg-transparent d-flex" data-toggle="modal" data-target="#myModal" #advancedsearch>
+                <span class="advance-span-text"> {{"label.advancedSearch"|translate}} </span>
+                <span class="material-icons more-vert-icon">more_vert</span>
+            </button>
+        </div>
+        <div class="input-group button-search">
+            <button type="submit" class="search-btn test-wrapper" (click)="generalSearch()">
+                {{"label.search"|translate}}
+            </button>
+        </div>
+    </div>
+</div>
+<!--work-section starts here-->
+<section class="work-section">
+    <div class="container work-main-wrapper">
+        <div class="row text-center">
+            <div class="col-12 work-wrapper">
+
+                <h3 class="work-text-firm AvenirLTStd-Regular">{{"label._head"|translate}}</h3>
+                <p class="passage-text-firm text-center AvenirLTStd-Regular">
+                    {{"label.heading5_text"|translate}}
+                </p>
+            </div>
+        </div>
+        <div class="row find-firm-text">
+            <div class="col-lg-3 col-md-6">
+                <div class="screw-img">
+                    <div class="screw-inner-img">
+                        <img src="assets/images/TROUVER.png" class="logo-screw-img img-fluid" alt="screw-img" />
+                    </div>
+
+                </div>
+                <h4 class="find-wrapper AvenirLTStd-Regular">{{"label.heading_"|translate}}</h4>
+                <p class="paragraph-text text-center AvenirLTStd-Regular">
+                    {{"label.heading_text"|translate}}
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="screw-img">
+                    <div class="screw-inner-img">
+                        <img src="assets/images/VISITER.png" class="img-fluid" alt="person-img" />
+                    </div>
+
+                </div>
+                <h4 class="find-wrapper AvenirLTStd-Regular">{{"label.heading3"|translate}}</h4>
+                <p class="paragraph-text text-center AvenirLTStd-Regular">
+                    {{"label.heading3text"|translate}}
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="screw-img">
+                    <div class="screw-inner-img">
+                        <img src="assets/images/ESSAYER.png" class="img-fluid" alt="try-img" />
+                    </div>
+
+                </div>
+                <h4 class="find-wrapper AvenirLTStd-Regular">{{"label.heading2"|translate}}</h4>
+                <p class="paragraph-text text-center AvenirLTStd-Regular">
+                    {{"label.heading2text"|translate}}
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="screw-img">
+                    <div class="screw-inner-img">
+                        <img src="assets/images/CONVAINCU.png" class="img-fluid" alt="send-img" />
+                    </div>
+                </div>
+                <h4 class="find-wrapper AvenirLTStd-Regular">{{"label.heading4"|translate}}</h4>
+                <p class="paragraph-text text-center AvenirLTStd-Regular">
+                    <span style="color: #a91f23;">{{"label.heading4text_red"|translate}}</span>
+                    <span>{{"label.heading4text_grey"|translate}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--work-section ends here-->
+
+<!--maybe-section starts here-->
+<section class="maybe-section">
+    <div class="container maybe-wrapper">
+        <div class="row maybe-text-wrapper">
+            <div #target class="col-12 work-wrapper">
+                <h3 class="work-text-firm AvenirLTStd-Regular">{{"label.heading5"|translate}}</h3>
+            </div>
+        </div>
+        <div class="video text-center">
+            <iframe class="video-cstm" width="560" height="315" src="https://www.youtube.com/embed/TTuHxrKQApg" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+<!--maybe-section ends here-->
+
+<div class="askQuestion-wrapper">
+    <div class="container ask-wrapper">
+        <div class="question-firm">
+            <h1 class="touch-text text-white AvenirLTStd-Regular">{{"label.questions"|translate}}</h1>
+            <button class="touch-btn AvenirLTStd-Regular text-center" [routerLink]="['/contact-us']">{{"label.button"|translate}}</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!--main-content-wrapper ends here-->
+
+<app-new-footer></app-new-footer>
+<div id="destination"></div>
+
+
+<div class="modal fade advance-model" id="myModal" data-backdrop='true' [ngClass]="{'show': isopened}" [ngStyle]="{'display': styleExp}" style="z-index: 9999;">
+
+    <div class="modal-dialog modal-dialog-centered  position-relative">
+        <div class="modal-content">
+            <h4 class="header-modal-wrapper text-center AvenirLTStd-Regular">{{"label.advancedsearch"|translate}}</h4>
+            <!-- Modal body -->
+            <button type="button" class="close modal-cross-icon" (click)="closeModal()" data-dismiss="modal" #modalclose>&times;</button>
+            <div class="modal-body">
+                <div class="d-flex main-modal-firm AvenirLTStd-Regular" [ngStyle]="{'margin-bottom':advPriceDropDown == true  ? '120px' : '20px' }">
+                    <div class="position-relative advance-cstm-inside">
+                        <div (mouseleave)="showDropDown1 = false">
+                            <button class="form-control modal-select-firm mr-3 model-text-align custom-select advance-btn-100" (click)="showDropDown1=!showDropDown1">
+                                <span *ngIf="showSelect">{{"label.propertyType"|translate}}</span>
+                                <span *ngIf="showValue">{{checkedList.length}} {{"label.Selected" | translate}}</span>
+                            </button>
+                            <div class="drop-show" *ngIf="showDropDown1">
+                                <lable class="custom-select-checkbox" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
+                                    <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
+                                    <span>{{ list.list }}</span>
+                                    <span class="select-checkmark"></span>
+                                </lable>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-modal-firm position-relative advance-cstm-inside">
+                        <auto-complete placeholder="{{'label.location' | translate}}*" [required]="true" #advlocation="ngModel" [(ngModel)]="advancePlace" class="ml-2 form-control modal-input-firm advance-btn-100 advance-firm-cstm" style="outline: 0;" (setAddress)="getAddress($event)"></auto-complete>
+                        <span class="material-icons position-absolute Location-modal-icon">place</span>
+                        <div class="notAdvValidated" *ngIf="((advancePlace == '' || advancePlace == undefined) && notAdvValidated == true) || (advlocation.touched && advlocation.errors?.required)">
+                            This field is required
+                        </div>
+                    </div>
+
+                    <div class="body-modal-firm position-relative  advance-cstm-inside">
+                        <div class="model-width-align" (mouseleave)="advPriceDropDown = false">
+                            <button class="custom-select ml-4 modal-input-firm mr-3 advance-firm-cstm advance-btn-100" style="color: #969696; text-align: inherit;" (click)="advPriceDropDown=!advPriceDropDown">
+                                <div class="d-flex align-items-center" style="margin-left: -8px;">
+                                    <span class="material-icons mr-2 place-icon"> euro_symbol</span>
+                                    <span class="">{{"label.price" | translate}}</span>
+                                </div>
+                            </button>
+                            <div class="drop-show drop-show-width" *ngIf="advPriceDropDown" style="z-index: 105;">
+                                <input type="text" appNumberDirective placeholder="{{'label.BudgetMin' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="advMinPrice" name="advMinPrice" />
+                                <input type="text" appNumberDirective placeholder="{{'label.BudgetMax' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="advMaxPrice" name="advMaxPrice" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative advance-cstm-inside">
+                        <span class="custom-select clps-firm advance-btn-100" data-toggle="collapse" href="#clps-room-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+                            {{"label.room"|translate}}
+                        </span>
+                        <div class="mt-2 collapse" id="clps-room-btn" [ngClass]="{'show': roomShow === true}">
+                            <div class="d-flex buttons-modal" [ngStyle]="{'height':advPriceDropDown == true  ? '0px' : 'initial' }">
+
+                                <div class="squaredOne" *ngFor="let roomNumber of roomNumbers">
+                                    <input type="checkbox" name="arrayModel" id={{roomNumber.value}} name="check" (change)="checkCheckBoxvalue()" [(ngModel)]="roomNumber.checked" />
+                                    <label for={{roomNumber.value}}> {{roomNumber.id}}
+                                        <span class="add-symbol" *ngIf="roomNumber.id == 5">+</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex main-modal-firm AvenirLTStd-Regular">
+                    <div class="position-relative beds-firm">
+                        <span class="custom-select clps-firm advance-btn-100" data-toggle="collapse" href="#clps-bed-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+                            {{"label.beds"|translate}}
+                        </span>
+                        <div class="mt-2 collapse" id="clps-bed-btn" [ngClass]="{'show': bedShow === true}">
+                            <div class="d-flex buttons-modal">
+                                <div class="squaredOne" *ngFor="let bedNumber of bedNumbers">
+                                    <input type="checkbox" name="arrayModel" id={{bedNumber.value}} name="check" (change)="checkCheckBoxvalue()" [(ngModel)]="bedNumber.checked" />
+                                    <label for={{bedNumber.value}}> {{bedNumber.id}}
+                                        <span class="add-symbol" *ngIf="bedNumber.id == 5">+</span> </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative  beds-firm">
+                        <span class="custom-select clps-firm advance-btn-100" data-toggle="collapse" href="#clps-bath-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
+                            {{"label.baths"|translate}}
+                        </span>
+                        <div class="mt-2 collapse" id="clps-bath-btn" [ngClass]="{'show': bathShow === true}">
+                            <div class="d-flex buttons-modal">
+                                <div class="squaredOne" *ngFor="let bathNumber of bathNumbers">
+                                    <input type="checkbox" name="arrayModel" id={{bathNumber.value}} name="check" (change)="checkCheckBoxvalue()" [(ngModel)]="bathNumber.checked" />
+                                    <label for={{bathNumber.value}}>
+                                        {{bathNumber.id}}
+                                        <span class="add-symbol" *ngIf="bathNumber.id == 5">+</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-modal-firm position-relative">
+                        <div class="model-width-align" (mouseleave)="advsizeDropDown = false">
+                            <button class="custom-select ml-2 modal-input-firm mr-3 advance-btn-100" style="color: #969696; text-align: inherit;" (click)="advsizeDropDown=!advsizeDropDown">
+                                <div class="d-flex align-items-center" style="margin-left: -8px;">
+                                    <span class="">{{"label.Size" | translate}}</span>
+                                </div>
+                            </button>
+                            <div class="drop-show drop-show-width" *ngIf="advsizeDropDown">
+                                <input type="text" appNumberDirective placeholder="{{'label.MinSize' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="advMinSize" name="advMinSize" />
+                                <input type="text" appNumberDirective placeholder="{{'label.MaxSize' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="advMaxSize" name="advMaxSize" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-modal-firm position-relative">
+                        <div class="model-width-align" (mouseleave)="advLotsizeDropDown = false">
+                            <button class="custom-select modal-input-firm mr-3 advance-btn-100" style="color: #969696; text-align: inherit;" (click)="advLotsizeDropDown=!advLotsizeDropDown">
+                                <div class="d-flex align-items-center" style="margin-left: -8px;">
+                                    <span class="">{{"label.Lot_Size" | translate}} </span>
+                                </div>
+                            </button>
+                            <div class="drop-show drop-show-width" *ngIf="advLotsizeDropDown" style="margin-left:10px">
+                                <input type="text" appNumberDirective placeholder="{{'label.MinLotSize' | translate}}" class="form-control ml-2 mt-2" [(ngModel)]="advMinLotSize" name="advMinLotSize" />
+                                <input type="text" appNumberDirective placeholder="{{'label.MaxLotSize' | translate}}" class="form-control ml-2 mb-2" [(ngModel)]="advMaxLotSize" name="advMaxLotSize" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex modal-search-firm">
+                    <button type="button" class="search-modal-btn AvenirLTStd-Regular" (click)="advanceSearch()">{{"label.Search" | translate}}</button>
+                    <button type="button" class="options-modal-btn AvenirLTStd-Regular" (click)="collapse = !collapse">{{"label.moreOptions" | translate}}
+                        <i class="fa fa-angle-up" aria-hidden="true" *ngIf="collapse"></i>
+                        <i class="fa fa-angle-down" aria-hidden="true" *ngIf="!collapse"></i>
+                    </button>
+                </div>
+                <div class="label-model-wrapper AvenirLTStd-Regular" *ngIf="collapse">
+
+                    <div class="d-flex align-items-center justify-content-around label-model-inside">
+                        <div class="search-logos-firm">
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="wheelchaire" name="wheelchaire">
+                                        <span class="checkmark chair-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="text-center yard-logo-text">{{"label.Wheelchair" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="visAvis" name="visAvis">
+                                        <span class="checkmark vis-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Visavis" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="livingRoom" name="livingRoom">
+                                        <span class="checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.LivingRoom" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="garden" name="garden">
+                                        <span class="checkmark garden-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Garden" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="calm" name="calm">
+                                        <span class="checkmark calm-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Calm" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-logos-firm">
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="new" name="new">
+                                        <span class="checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.New" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="swimmingPool" name="swimmingPool">
+                                        <span class="checkmark pool-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.SwimmingPool" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="recent" name="recent">
+                                        <span class="checkmark recent-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Recent" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="diningRoom" name="diningRoom">
+                                        <span class="checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.DiningRoom" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="cableTV" name="cableTV">
+                                        <span class="checkmark cabel-checkmark inner-tvfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.cableTV" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-logos-firm">
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="elevator" name="elevator">
+                                        <span class="checkmark deck-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Elevator" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="fireplace" name="fireplace">
+                                        <span class="checkmark deck-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Fireplace" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="terrace" name="terrace">
+                                        <span class="checkmark deck-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Terrace" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="balcony" name="balcony">
+                                        <span class="checkmark deck-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Balcony" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="garage" name="garage">
+                                        <span class="checkmark garage-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Garage" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-logos-firm">
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="north" name="north"
+                                            (change)="selectedOrientation('north',north)">
+                                        <span class="checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.North" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="south" name="south"
+                                            (change)="selectedOrientation('south',south)">
+                                        <span class="checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.South" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="west" name="west"
+                                            (change)="selectedOrientation('west',west)">
+                                        <span class="checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.West" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="east" name="east"
+                                            (change)="selectedOrientation('east',east)">
+                                        <span class="checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.East" | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="logo-wrapper position-relative mb-3">
+                                <div class="d-flex align-items-center">
+                                    <label class="one-modal-label">
+                                        <input type="checkbox" [(ngModel)]="alarm" name="alarm">
+                                        <span class="checkmark alarm-checkmark inner-alarmfirm"></span>
+                                    </label>
+                                    <p class="yard-logo-text">{{"label.Alarm" | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--logos section starts here-->
+
+        </div>
+    </div>
+
+</div>

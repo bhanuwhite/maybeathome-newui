@@ -1,0 +1,309 @@
+<!-- <div>
+    <app-general-header></app-general-header>
+</div> -->
+<div *ngIf="showSpinner" class="overlay">
+    <div class="center">
+        <mat-progress-spinner diameter=70 mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</div>
+<div class="performance-bg">
+    <div class="d-flex align-items-center summary-bg-firm">
+        <p class="perform-mes-wrapper" [routerLink]="['/listingManagement']" routerLinkActive="active">
+            {{"label.annonces"|translate}}</p>
+        <p class="perform-mes-wrapper" [routerLink]="['/listing-performance']" routerLinkActive="active">
+            {{"label.performances"|translate}}</p>
+        <p class="perform-mes-wrapper" [routerLink]="['/event-test']" routerLinkActive="active">
+            {{"label.events"|translate}}</p>
+    </div>
+    <div class="event-wrapper">
+        <div class="d-flex align-items-center event-inner-firm">
+            <div class="d-flex align-items-center view-state-cstm">
+                <p class="display-wrapper">{{"label.view"|translate}}:</p>
+                <div class="dropdown" *ngIf="testview">
+                    <button class="btn view-performance custom-select-blue" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{"label.test_"|translate}}
+                    </button>
+                    <div class="dropdown-menu inner-view-performance" aria-labelledby="dropdownMenuButton">
+
+                        <a class="dropdown-item" (click)="summaryView()">{{"label.summary"|translate}}</a>
+                        <a class="dropdown-item" (click)="visitView()">{{"label.visit"|translate}}</a>
+                    </div>
+                </div>
+                <div class="dropdown" *ngIf="calendarview">
+                    <button class="btn view-performance custom-select-blue" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{"label.calendar"|translate}}
+                    </button>
+                    <div class="dropdown-menu inner-view-performance" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="testView()">{{"label.test_"|translate}}</a>
+                        <a class="dropdown-item" (click)="summaryView()">{{"label.summary"|translate}}</a>
+                        <a class="dropdown-item" (click)="visitView()">{{"label.visit"|translate}}</a>
+                    </div>
+                </div>
+                <div class="dropdown" *ngIf="summaryview">
+                    <button class="btn view-performance custom-select-blue" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{"label.summary"|translate}}
+                    </button>
+                    <div class="dropdown-menu inner-view-performance" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="testView()">{{"label.test_"|translate}}</a>
+
+                        <a class="dropdown-item" (click)="visitView()">{{"label.visit"|translate}}</a>
+                    </div>
+                </div>
+                <div class="dropdown" *ngIf="visitview">
+                    <button class="btn view-performance custom-select-blue" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{"label.visit"|translate}}
+                    </button>
+                    <div class="dropdown-menu inner-view-performance" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="testView()">{{"label.test_"|translate}}</a>
+                        <a class="dropdown-item" (click)="summaryView()">{{"label.summary"|translate}}</a>
+
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="visitDeleteLoader" *ngIf="visitview" class="d-flex align-items-center select-icon-wrapper btn-light deleteBtn" (click)="deleteEventInVisit()">
+                <mat-spinner *ngIf="visitDeleteLoader" [diameter]="25"></mat-spinner>
+                <img src="assets/images/delete-black-18dp.png" alt="delete" class="img-fluid">
+                <p class="selected-wrapper">{{"label.deleteSelected"|translate}}</p>
+            </button>
+            <button *ngIf="calendarview" class="d-flex align-items-center select-icon-wrapper btn-light deleteBtn">
+                <img src="assets/images/delete-black-18dp.png" alt="delete" class="img-fluid">
+                <p class="selected-wrapper">{{"label.deleteSelected"|translate}}</p>
+            </button>
+            <button *ngIf="summaryview" class="d-flex align-items-center select-icon-wrapper btn-light deleteBtn">
+                <img src="assets/images/delete-black-18dp.png" alt="delete" class="img-fluid">
+                <p class="selected-wrapper">{{"label.deleteSelected"|translate}}</p>
+            </button>
+            <button [disabled]="testDeleteLoader" *ngIf="testview" class="d-flex align-items-center select-icon-wrapper btn-light deleteBtn" (click)="deleteEventInTest()">
+                <mat-spinner *ngIf="testDeleteLoader" [diameter]="25"></mat-spinner>
+                <img src="assets/images/delete-black-18dp.png" alt="delete" class="img-fluid">
+                <p class="selected-wrapper">{{"label.deleteSelected"|translate}}</p>
+            </button>
+        </div>
+        <div *ngIf="testview" class="table-responsive">
+            <table class="table print-table mt-3">
+                <thead class="print-table-head">
+                    <tr>
+                        <th>
+                            <img src="assets/images/checkbox-img.png" alt="checkbox" class="img-fluid check-img">
+                        </th>
+                        <th scope="col" class="tester-wrapper">{{"label.start"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.end"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.propertyName"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.propertyAddress"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.tester"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.email"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.phone"|translate}}</th>
+                        <th scope="col" class="tester-wrapper"></th>
+                        <th scope="col" class="tester-wrapper"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let elm of testData">
+                        <td>
+
+                            <label class="container one-modal-label mb-3 position-relative">
+                                <input type="checkbox" [(ngModel)]="elm.selectedFile" name="selectedFile"
+                                    (change)="selectFilesToDelete()"><span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td class="file-firm">{{elm.start | date:'dd/MM/yyyy'}}</td>
+                        <td class="file-firm">{{elm.end | date:'dd/MM/yyyy'}}</td>
+                        <td class="file-firm">{{elm.listing_title|translate}}</td>
+                        <td class="file-firm">{{elm.address|translate}}</td>
+                        <td class="file-firm">{{elm.buyer_first_name|translate}} {{elm.buyer_last_name|translate}}</td>
+                        <td class="file-firm">{{elm.email}}</td>
+                        <td class="file-firm">{{elm.telephone}}</td>
+                        <td>
+                            <div class="update-residence">
+                                <img src="assets/images/update-black.png" alt="update-black" class="img-fluid">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="update-residence" (click)="deleteSingleFile(elm)">
+                                <img src="assets/images/clear-black.png" alt="clear-black" class="img-fluid">
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr *ngIf="!testData || testData.length === 0">
+                        <td class="no-result text-center" style="color: #800000;" colspan="10">No Result Found</td>
+                    </tr>
+                </tbody>
+                <!-- <tr>
+                    <td class="no-result" colspan="10" *ngIf="!testData || testData.length === 0">No Result Found</td>
+                </tr> -->
+            </table>
+        </div>
+
+        <div *ngIf="summaryview">
+            <!-- visits -->
+            <div class="d-flex align-items-center upcoming-wrapper">
+                <p class="summary-upfirm">{{"label.upcoming"|translate}}</p>
+                <p class="summary-visit-firm">{{summaryVisits}} {{'label.upcoming_Visit' | translate}}</p>
+            </div>
+            <div class="d-flex align-items-center summary-main-card">
+                <div *ngFor="let elm of summaryVisitsDataShown" class="summary-card">
+                    <div class="d-flex align-items-center month-summary-wrapper">
+                        <p class="number-card">{{elm.start | date:'d'}}</p>
+                        <div class="inner-number-card">
+                            <p class="summary-day-text">{{elm.day}} </p>
+                            <p class="summary-month-text">{{elm.month}} {{elm.start | date:'yyyy'}}</p>
+                        </div>
+                    </div>
+                    <p class="summary-visitor">
+                        "{{elm.name}}"<br> "{{elm.address|translate}}" <br> "{{elm.buyer_first_name}} {{elm.buyer_last_name}}"
+                    </p>
+                    <p class="summary-property">{{'label.visits' | translate}}: {{elm.start | date:'dd/MM/yyyy'}} {{'label.Appointement_at' | translate}} {{elm.slot_start}}
+                    </p>
+                </div>
+                <div class="summary-arrow-firm">
+                    <button class="right-arrow-wrapper btn-light next" (click)="nextSummaryVisitsData()">
+                    </button>
+                </div>
+            </div>
+            <!-- tests -->
+            <div class="d-flex align-items-center upcoming-wrapper">
+                <p class="summary-upfirm">{{"label.upcoming"|translate}}</p>
+                <p class="summary-visit-firm">{{summaryTests}} {{'label.upcoming_Test' | translate}}</p>
+            </div>
+            <div class="d-flex align-items-center summary-main-card">
+                <div *ngFor="let elm of summaryTestsDataShown" class="summary-card">
+                    <div class="d-flex align-items-center month-summary-wrapper">
+                        <p class="number-card">{{elm.start | date:'d'}}</p>
+                        <div class="inner-number-card">
+                            <p class="summary-day-text">{{elm.day}}</p>
+                            <p class="summary-month-text">{{elm.month}} {{elm.start | date:'yyyy'}}</p>
+                        </div>
+                    </div>
+                    <p class="summary-visitor">
+                        "{{elm.name|translate}}"<br> "{{elm.address|translate}}" <br> "{{elm.buyer_first_name|translate}}"
+                        <br> {{'label.Period' | translate}} {{elm.period}} {{'label.Days' | translate}}
+                    </p>
+                    <p class="summary-property-text">{{elm.start | date:'dd/MM/yyyy'}} {{'label.Appointement_Test_To' | translate}} {{elm.end | date:'dd/MM/yyy'}}
+                    </p>
+                </div>
+                <div class="summary-arrow-firm">
+                    <button class="right-arrow-wrapper btn-light next" (click)="nextSummaryTestsData()">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="visitview" class="table-responsive">
+            <table class="table print-table mt-3">
+                <thead class="print-table-head">
+                    <tr>
+                        <th>
+                            <img src="assets/images/checkbox-img.png" alt="checkbox" class="img-fluid check-img">
+                        </th>
+                        <th scope="col" class="tester-wrapper">{{"label.apt"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.hour"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.propertyName"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.propertyAddress"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.visitor_"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.email"|translate}}</th>
+                        <th scope="col" class="tester-wrapper">{{"label.phone"|translate}}</th>
+                        <th scope="col" class="tester-wrapper"></th>
+                        <th scope="col" class="tester-wrapper"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let elm of visitData">
+                        <td>
+                            <label class="container one-modal-label mb-3 position-relative">
+                                <input type="checkbox" [(ngModel)]="elm.selectedFile" checked="checked"
+                                    name="advanceSchool" (change)="selectFilesToDeleteInVisit()">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td class="file-firm">{{elm.start | date:'dd/MM/yyyy'}}</td>
+                        <td class="file-firm">{{elm.slot_start }}</td>
+                        <td class="file-firm">{{elm.listing_title|translate}}</td>
+                        <td class="file-firm">{{elm.address|translate}}</td>
+                        <td class="file-firm">{{elm.buyer_first_name|translate}} {{elm.buyer_last_name|translate}}</td>
+                        <td class="file-firm">{{elm.email}}</td>
+                        <td class="file-firm">{{elm.telephone}}</td>
+                        <td>
+                            <div class="update-residence">
+                                <img src="assets/images/update-black.png" alt="update-black" class="img-fluid">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="update-residence" (click)="deleteSingleFileInVisit(elm)">
+                                <img src="assets/images/delete-black-18dp.png" alt="delete" class="img-fluid">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="calendarview">
+            <div class="period-wrapper">
+                <div class="d-flex changeDates align-items-center justify-content-center">
+                    <button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" class="monthButton">
+                        <i class="fa fa-angle-left modal-arrow mt-1" aria-hidden="true"></i>
+                    </button>
+                    <h4 class="nov-firm">
+                        {{ viewDate | calendarDate: view + "ViewTitle":"en" }}
+                    </h4>
+                    <button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" class="monthButton">
+                        <i class="fa fa-angle-right modal-arrow mt-1" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div *ngIf="events$ ; else loading; let events">
+                    <div [ngSwitch]="view">
+                        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [cellTemplate]="customCellTemplate" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" [activeDayIsOpen]="activeDayIsOpen"
+                            (eventTimesChanged)="eventTimesChanged($event)">
+                        </mwl-calendar-month-view>
+
+                    </div>
+                    <p-dialog header="Edit Event" [(visible)]="showPopup" [style]="{width: '80vw'}">
+                        <div class="container">
+                            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                                <div class="d-flex justify-content-center">
+                                    <div style="width: 36%;">
+                                        <div class="position-relative required-date-firm">
+                                            <input type="text" [max]="endDate" [(ngModel)]="startDate" name="startDate" placeholder="{{'label.StartDate' | translate}}" [matDatepicker]="picker1" class="payment-Inputs" style="border: none; outline: 0;" />
+                                            <mat-datepicker-toggle matSuffix [for]="picker1" class="position-absolute icon-date-firm date-img">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </div>
+                                        <div class="position-relative required-firm">
+                                            <select class="required-date-firm" [(ngModel)]="startDateTime" name="startDateTime" style="appearance: none;">
+                                                <option selected="selected" value="" hidden>Start Time</option>
+                                                <option value="{{list}}" *ngFor="let list of timeDropdown">{{list}}
+                                                </option>
+                                            </select>
+                                            <span><img src="assets/images/time.png" alt="event-black"
+                                                    class="img-fluid time-img">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div style="width: 36%;">
+                                        <div class="position-relative end-main-firm required-date-firm">
+                                            <input type="text" [min]='startDate' placeholder="{{'label.EndDate' | translate}}" [(ngModel)]="endDate" name="endDate" [matDatepicker]="picker2" class="payment-Inputs" style="border: none; outline: 0;" />
+                                            <mat-datepicker-toggle matSuffix [for]="picker2" class="position-absolute icon-date-firm date-img">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </div>
+                                        <div class="position-relative end-main-firm">
+                                            <select class="required-date-firm" [(ngModel)]="endDateTime" name="endDateTime" style="appearance: none;">
+                                                <option selected="selected" value="" hidden>End Time</option>
+                                                <option value="{{list}}" *ngFor="let list of timeDropdown">{{list}}
+                                                </option>
+                                            </select>
+                                            <span><img src="assets/images/time.png" alt="event-black"
+                                                    class="img-fluid time-img">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="submitBtn">Save Changes</button>
+                            </form>
+                        </div>
+                    </p-dialog>
+                </div>
+            </div>
+        </div>
+    </div>

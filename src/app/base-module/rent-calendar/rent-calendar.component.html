@@ -1,0 +1,194 @@
+<!-- <div>
+  <app-general-header></app-general-header>
+</div> -->
+<div class="card-bg-wrapper">
+  <div
+    class="d-flex align-items-center justify-content-center text-period-wrapper"
+  >
+    <div class="period-wrapper">
+      <p class="selected-text-firm">{{ "label.test" | translate }}</p>
+      <div class="d-flex align-items-center mb-0 today-wrapper">
+        <div class="d-flex align-items-center mb-4">
+          <button
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+            class="monthButton"
+          >
+            <i class="fa fa-angle-left modal-arrow mt-1" aria-hidden="true"></i>
+          </button>
+          <h4 class="nov-firm">
+            {{ viewDate | calendarDate: view + "ViewTitle":lang }}
+          </h4>
+          <button
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+            class="monthButton"
+          >
+            <i
+              class="fa fa-angle-right modal-arrow mt-1"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </div>
+      </div>
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view
+          [locale]="lang"
+          *ngSwitchCase="CalendarView.Month"
+          [cellTemplate]="customCellTemplate"
+          [viewDate]="viewDate"
+          [events]="events"
+          [refresh]="refresh"
+          (beforeViewRender)="beforeMonthViewRender($event)"
+          (dayClicked)="dayClicked($event.day)"
+          (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventTimesChanged)="eventTimesChanged($event)"
+        >
+        </mwl-calendar-month-view>
+      </div>
+    </div>
+    <div class="period-text-firm">
+      <div *ngIf="!slotsAvailability" class="no-slots">
+        <p>{{ "label.No_slot_test" | translate }}</p>
+      </div>
+      <div *ngIf="slotsAvailability">
+        <div class="position-relative required-firm">
+          <select
+            class="required-date-firm"
+            [(ngModel)]="startDate"
+            (ngModelChange)="checkStartdate()"
+            name="startDate"
+          >
+            <option selected="selected" value="" hidden>
+              {{ "label.StartDate" | translate }}
+            </option>
+            <option
+              value="{{ list }}"
+              [disabled]="validateSlots('start', list)"
+              *ngFor="let list of storeSlotsDates"
+            >
+              {{ list }}
+            </option>
+          </select>
+        </div>
+        <div class="notValidated">
+          <div
+            *ngIf="
+              (startDate == null ||
+                startDate == '' ||
+                startDate == undefined) &&
+              notvalidated == true
+            "
+          >
+            Start date Required
+          </div>
+        </div>
+      </div>
+      <div *ngIf="slotsAvailability">
+        <div class="position-relative end-main-firm">
+          <select
+            class="required-date-firm"
+            [(ngModel)]="endDate"
+            name="endDate"
+          >
+            <option selected="selected" value="" hidden>
+              {{ "label.EndDate" | translate }}
+            </option>
+            <option
+              value="{{ list }}"
+              [disabled]="validateSlots('end', list)"
+              *ngFor="let list of storeSlotEndDates"
+            >
+              {{ list }}
+            </option>
+          </select>
+        </div>
+        <div class="notValidated">
+          <div
+            *ngIf="
+              (endDate == null || endDate == '' || endDate == undefined) &&
+              notvalidated == true
+            "
+          >
+            {{ "label.EndDate" | translate }} Required
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="d-flex justify-content-between align-items-center total-price-firm"
+      >
+        <p class="perday-text-firm">{{ "label.PropertypPice" | translate }}:</p>
+        <p class="perday-text-firm">{{ includingFee }}€</p>
+      </div>
+      <div
+        class="d-flex justify-content-between align-items-center total-price-firm"
+      >
+        <p class="perday-text-firm">{{ "label.testprice" | translate }}:</p>
+        <p class="perday-text-firm">{{ perdayPrice | number }}€</p>
+      </div>
+
+      <div
+        class="d-flex justify-content-between align-items-center total-price-firm"
+      >
+        <p class="perday-text-firm">{{ "label.SelectedDay" | translate }}:</p>
+        <p class="perday-text-firm">{{ datesChanged() }}</p>
+      </div>
+      <div
+        class="d-flex justify-content-between align-items-center total-price-firm"
+      >
+        <p class="perday-text-firm">{{ "label.TotalHold" | translate }}</p>
+        <p class="perday-text-firm">
+          {{ perdayPrice | number }}€ X {{ datesChanged() }}
+        </p>
+      </div>
+      <div
+        class="d-flex justify-content-between align-items-center total-price-firm"
+      >
+        <p class="perday-text-firm">{{ "label.TotalPrice" | translate }}:</p>
+        <p class="perday-text-firm">
+          {{ totalprice ? totalprice : (0 | number) }}€
+        </p>
+      </div>
+
+      <button type="button" class="paybtn-wrapper" (click)="goToPayment()">
+        {{ "label.payment" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <span class="cal-day-number">{{
+      day.date | calendarDate: "monthViewDayNumber":locale
+    }}</span>
+  </div>
+  <small style="margin: 5px">
+    <div *ngFor="let item of day.events" class="d-flex">
+      <p class="colorDot" *ngIf="item.type == 'available'"></p>
+      <p
+        class="colorDot"
+        *ngIf="item.type == 'visit'"
+        style="background-color: #1f8ed8"
+      ></p>
+      <p
+        class="colorDot"
+        *ngIf="item.type == 'rented'"
+        style="background-color: #844ed6"
+      ></p>
+      <p
+        class="colorDot"
+        *ngIf="item.type == 'test'"
+        style="background-color: #f1e42d"
+      ></p>
+      <p class="dateInfo">
+        {{ item.startingTime }} to {{ item.endingTime }} : {{ item.type }}
+      </p>
+    </div>
+  </small>
+</ng-template>

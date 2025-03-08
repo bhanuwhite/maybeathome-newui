@@ -1,0 +1,227 @@
+<div class="d-flex reg-bg-img">
+    <div class="reg-form">
+        <div class="reg-logo" (click)="navigateToHomePage()"></div>
+        <div class="login-form_div">
+            <mat-tab-group (selectedTabChange)="onTabChanged($event);" dynamicHeight selectedIndex="{{tabIndex}}" class="group-label">
+                <mat-tab label="{{ 'label.register' | translate }}" class="group-label-inner">
+                    <div class="example-large-box mat-elevation-z4">
+                        <div class="form">
+                            <div>
+                                <div class="d-flex">
+                                    <mat-radio-group aria-label="Select an option" [(ngModel)]="userType" name="userType" required>
+                                        <mat-radio-button value="individual" class="AvenirLTStd-Regular" (change)="userTypeSelected($event)">
+                                            <span>{{"label.individual"|translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button value="professional" class="ml-5 AvenirLTStd-Regular" (change)="userTypeSelected($event)">{{"label.professional"|translate}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    <!-- <p class="agency" [routerLink]="['/Agency-registration']">Agency</p> -->
+                                </div>
+
+                                <div class="notValidated">
+                                    <div *ngIf="(userType == '' || userType == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <div class="agency-firm" *ngIf="showAgency">
+                                <p class="qu-frim">{{"label.areYouOrg" | translate}}</p>
+                                <p class="agency" [routerLink]="['/agency-registration']">{{"label.AgencyLink" | translate}}
+                                </p>
+                            </div>
+                            <div *ngIf="userType == 'professional'">
+                                <select class="form-control reg-inputs " [(ngModel)]="userProfession" name="userProfession" required>
+                                    <option selected="selected" value="agent"> {{"label.agent"|translate}}
+                                    </option>
+                                    <option selected="selected" value="developer">
+                                        {{"label.developer"|translate}}
+                                    </option>
+                                </select>
+                                <i class="fa fa-angle-down right-icon" aria-hidden="true"></i>
+                                <div class="notValidated">
+                                    <div *ngIf="(userProfession == '' || userProfession == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <!-- <div class="container"> -->
+                            <div class="custom_row">
+                                <input autocomplete=off type="type" placeholder="{{ 'label.name' | translate }}" class="form-control custom_reg-inputs custom_col" [(ngModel)]="userName" name="userName" required>
+                                <div class="custom_notValidated">
+                                    <div class="notValidated_sub" *ngIf="(userName == '' || userName == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                                <input autocomplete=off type="type" placeholder="{{ 'label.lastname' | translate }}" class="form-control custom_reg-inputs custom_col" [(ngModel)]="lastName" name="lastName" required>
+                                <div class="custom_notValidated">
+                                    <div class="notValidated_sub" *ngIf="(lastName == '' || lastName == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                            <div>
+                                <input type="text" appNumberDirective placeholder="{{ 'label.telephone' | translate }}" class="form-control reg-inputs" [(ngModel)]="userNumber" name="userNumber" mask="000-000-0000" required>
+                                <div class="notValidated">
+                                    <div *ngIf="(userNumber == undefined || (userNumber && userNumber.toString().length < 1)) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                    <div *ngIf="validateMobile(userNumber) && notValidated == true && userNumber">
+                                        {{"error.mobile"|translate}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="email" placeholder="{{ 'label.email' | translate }}" class="form-control reg-inputs" [(ngModel)]="userEmail" name="userEmail" required>
+                                <div class="notValidated">
+                                    <div *ngIf="(userEmail == '' || userEmail == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                    <div *ngIf="validateEmail(userEmail) && notValidated == true && userEmail">
+                                        {{"error.email"|translate}}</div>
+                                </div>
+                            </div>
+                            <div *ngIf="userType == 'professional'">
+                                <input type="text" placeholder="{{'label.agentCodeRegister' | translate}}" class="form-control reg-inputs" [(ngModel)]="userAgentCode" name="userAgentCode" required *ngIf="hide">
+                                <div class="notValidated">
+                                    <!-- <div
+                                        *ngIf="(userAgentCode <= 0 || userAgentCode == undefined) && notValidated == true">
+                                        This field is required</div> -->
+                                </div>
+                            </div>
+                            <div>
+                                <div style="position: relative;">
+                                    <input type="{{displayRegPassword ? 'type' : 'password'}}" placeholder="{{ 'label.password' | translate }}" class="form-control reg-inputs" (keyup)="checkValidPassword()" [(ngModel)]="userPassword" name="userPassword">
+                                    <button class="show-password" (click)="displayRegPassword = !displayRegPassword">
+                                        <span class="material-icons showPassword-svg"
+                                            *ngIf="displayRegPassword">visibility</span>
+                                        <img *ngIf="!displayRegPassword"
+                                            src="assets/images/register/visibility_off-black-18dp.svg">
+                                    </button>
+                                </div>
+                                <div class="notValidated" [ngStyle]="applyStyle">
+                                    <div *ngIf="validatePassword(userPassword) && notValidated == true && userPassword">
+                                        {{"label.Password8char"|translate}}
+                                    </div>
+                                    <div *ngIf="(userPassword == '' || userPassword == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="position: relative;">
+                                    <input type="{{displayRegConfirmPassword ? 'type' :'password'}}" placeholder="{{ 'label.confirm_password' | translate }}" class="form-control reg-inputs reg-confPassword " [(ngModel)]="userConfirmPassword" name="userConfirmPassword" required>
+                                    <button class="show-password" (click)="displayRegConfirmPassword = !displayRegConfirmPassword">
+                                        <span class="material-icons showPassword-svg"
+                                            *ngIf="displayRegConfirmPassword">visibility</span>
+                                        <img *ngIf="!displayRegConfirmPassword"
+                                            src="assets/images/register/visibility_off-black-18dp.svg">
+                                    </button>
+                                </div>
+                                <div class="notValidated">
+                                    <div *ngIf="(userConfirmPassword == '' || userConfirmPassword == undefined) && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                    <div *ngIf="(this.userPassword != this.userConfirmPassword) && invalidPassword">
+                                        {{"error.password"|translate}}</div>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox reg-checkbox">
+                                <label class="container">{{"label.agree"|translate}} &#160;
+                                    <ins (click)="goToTerms()">{{"label.conditions"|translate}}</ins>
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                        [(ngModel)]="userAgreeTAC" name="userAgreeTAC" required>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div class="notValidated notValidated-agree">
+                                    <div *ngIf="(userAgreeTAC == false || userAgreeTAC == undefined)  && notValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-default  reg-inputs reg-btn position-relative" [disabled]="registerLoader" (click)="userRegister()">
+                                {{"label.submit_value"|translate}}
+                                <mat-spinner *ngIf="registerLoader" [diameter]="25"></mat-spinner>
+                            </button>
+                            <!-- <div *ngIf="socialNetworkLogin">
+                                <div class="reg-social_logins">
+                                    <p class="Login-with-Social-Networks AvenirLTStd-Regular">
+                                        {{"label.social"|translate}}
+                                    </p>
+                                    <div class="socialLogins reg-socialLogins">
+                                        <div class="slw">
+                                            <button class="facebook-icon" (click)="signInWithFB()"><i
+                                                    class="fa fa-facebook" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="slw">
+                                            <button class="google-icon" (click)="signInWithGoogle()"><i
+                                                    class="fa fa-google" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="twitter-icon" (click)="signInWithTwitter()"><i
+                                                    class="fa fa-twitter" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ 'label.login' | translate }}">
+                    <div class="example-small-box mat-elevation-z4">
+                        <div class="login-form">
+                            <div>
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="loginType" name="loginType" required>
+                                    <mat-radio-button value="user" class="AvenirLTStd-Regular">
+                                        <span>{{"label.User" |translate}}</span>
+                                    </mat-radio-button>
+                                    <mat-radio-button value="organization" class="ml-5 AvenirLTStd-Regular">{{"label.Organization" |translate}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div socialL class="form-group">
+                                <input type="email" placeholder="{{ 'label.email' | translate }}" class="form-control login-email" [(ngModel)]="userLoginEmail" name="userLoginEmail" required>
+                                <div class="notValidated">
+                                    <div *ngIf="(userLoginEmail == '' || userLoginEmail == undefined) && loginNotValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                    <div *ngIf="validateEmail(userLoginEmail) && loginNotValidated == true && userLoginEmail">
+                                        {{"error.email"|translate}} </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="position: relative;">
+                                <input type="{{displayPassword ? 'text': 'password'}}" placeholder="{{ 'label.password' | translate }}" class="form-control login-password" id="pwd" (keyup.enter)="isEnterPressed(userLoginPassword)" [(ngModel)]="userLoginPassword" name="userLoginPassword">
+                                <p class="Lost-Your-Password" (click)="findPassword()">{{"error.lost"|translate}}</p>
+                                <button class="show-password" (click)="displayPassword = !displayPassword">
+                                    <span class="material-icons showPassword-svg"
+                                        *ngIf="displayPassword">visibility</span>
+                                    <img *ngIf="!displayPassword"
+                                        src="assets/images/register/visibility_off-black-18dp.svg">
+                                </button>
+                                <div class="notValidated">
+                                    <div *ngIf="(userLoginPassword == '' || userLoginPassword == undefined) && loginNotValidated == true">
+                                        {{"error._name"|translate}}</div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-default login-btn position-relative" [disabled]="loginLoader" (click)="userLogin()">
+                                {{"label.Loginbutton"|translate}}
+                                <mat-spinner *ngIf="loginLoader" [diameter]="25"></mat-spinner>
+                            </button>
+                            <!-- <div *ngIf="socialNetworkLogin">
+                                <div class="login-social_logins">
+                                    <p class="Login-with-Social-Networks AvenirLTStd-Regular">
+                                        {{"label.social"|translate}}
+                                    </p>
+                                    <div class="socialLogins">
+                                        <div class="slw">
+                                            <button class="facebook-icon" (click)="loginWithFB()"><i
+                                                    class="fa fa-facebook" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="slw">
+                                            <button class="google-icon" (click)="loginWithGoogle()"><i
+                                                    class="fa fa-google" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div>
+                                            <button class="twitter-icon" (click)="signInWithTwitter()"><i
+                                                    class="fa fa-twitter" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

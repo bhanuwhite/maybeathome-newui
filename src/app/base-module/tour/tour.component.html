@@ -1,0 +1,144 @@
+<div class="tour-wrapper">
+    <div class="tour-banner">
+        <div class="tour-banner-text">
+            <h1>{{ "label.tour_banner_title" | translate }}</h1>
+            <h1>{{ "label.tour_banner_subtitle" | translate }} </h1>
+        </div>
+
+    </div>
+    <div class="options-wrapper">
+        <div class="row no-gutters">
+            <div class="col-lg-4 col-4">
+                <div class="options-wrapper-block">
+                    <h4>{{ "label.tour_option_title" | translate }}<br>{{ "label.tour_option_subtitle" | translate }}</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" style="accent-color: #a91f23;" (click)="carouselItem = 0" [checked]="carouselItem === 0">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4  col-4">
+                <div class="options-wrapper-block">
+                    <h4>{{ "label.tour_option_title" | translate }}<br>{{ "label.tour_option_subtitle2" | translate }}</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" style="accent-color: #a91f23;" (click)="carouselItem = 1" [checked]="carouselItem === 1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4  col-4">
+                <div class="options-wrapper-block">
+                    <h4>{{ "label.tour_option_title" | translate }}<br>{{ "label.tour_option_subtitle3" | translate }}</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" style="accent-color: #a91f23;" type="radio" (click)="carouselItem = 2" [checked]="carouselItem === 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buyer-info-wrapper">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <div class="carousel-item" [class.active]="carouselItem === 0">
+                    <div class="buyer-info">
+                        <h2>{{ "label.tour_card_title" | translate }}</h2>
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <div class="buyer-block-content">
+                                    <ul>
+                                        <li>{{ "label.tour_option_buyer_list" | translate }}</li>
+                                        <li>{{ "label.tour_option_buyer_list1" | translate }}</li>
+                                        <li>{{ "label.tour_option_buyer_list2" | translate }}</li>
+                                    </ul>
+                                    <h4>{{ "label.tour_rating_text" | translate }}</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="buyer-block-image">
+                                    <img src="assets/images/buyer-image.jpg">
+                                    <button class="btn" [routerLink]="['/register']">{{ "label.tour_register" | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="carousel-item" [class.active]="carouselItem === 1">
+                    <div class="buyer-info">
+                        <h2>{{ "label.tour_card_title1" | translate }}</h2>
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <div class="buyer-block-content">
+                                    <ul>
+                                        <li>{{ "label.tour_option_seller_list" | translate }}</li>
+                                        <li>{{ "label.tour_option_seller_list1" | translate }}</li>
+                                        <li>{{ "label.tour_option_seller_list2" | translate }}</li>
+                                    </ul>
+                                    <h4>{{ "label.tour_rating_text" | translate }}</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="buyer-block-image">
+                                    <img src="/assets/images/seller.jpg">
+                                    <button class="btn" [routerLink]="['/register']">{{ "label.tour_register" | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" [class.active]="carouselItem === 2">
+                    <div class="buyer-info">
+                        <h2>{{ "label.tour_card_title2" | translate }}</h2>
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <div class="buyer-block-content">
+                                    <ul>
+                                        <li>{{ "label.tour_option_profissinal_list" | translate }}</li>
+                                        <li>{{ "label.tour_option_profissinal_list1" | translate }}</li>
+                                        <li>{{ "label.tour_option_profissinal_list2" | translate }}</li>
+                                    </ul>
+                                    <h4>{{ "label.tour_rating_text" | translate }}</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="buyer-block-image">
+                                    <img src="/assets/images/profissional.jpg">
+                                    <button class="btn" [routerLink]="['/register']">{{ "label.tour_register" | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button *ngIf="carouselItem !== 0" class="carousel-control-prev prev-nav" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" (click)="prevSlide()">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button *ngIf="carouselItem !== 2" class="carousel-control-next next-nav" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" (click)="nextSlide()">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <div class="quality-service-wraper">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="quality-service-block">
+                    <span>{{ "label.tour_quality_badge" | translate }}</span>
+                    <h4>{{ "label.tour_quality_heading" | translate }}</h4>
+                    <ul>
+                        <li>{{ "label.tour_quality_list" | translate }}</li>
+                        <li>{{ "label.tour_quality_list1" | translate }}</li>
+                        <li>{{ "label.tour_quality_list2" | translate }}</li>
+                        <li>{{ "label.tour_quality_list3" | translate }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="quality-service-block-image">
+                    <img src="/assets/images/quality-services.jpg">
+                    <button class="btn" [routerLink]="['/partners']">{{ "label.tour_our_partners" | translate }}</button>
+                </div>
+            </div>
+        </div>
+        <h4><a [routerLink]="['/contact-us']">{{ "label.ask_you_text" | translate }}</a></h4>
+    </div>
+</div>
+<app-new-footer></app-new-footer>

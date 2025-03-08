@@ -1,0 +1,207 @@
+.navbar {
+    box-shadow: 0 1px 3px 0;
+    background-color: #ffffff;
+    .navbar-brand {
+        // margin-right: 121px;
+        .slImg {
+            width: 188.6px;
+            height: 48.8px;
+            object-fit: contain;
+            outline: 0;
+        }
+    }
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        border-radius: 0.25rem;
+        border: 1px solid #000;
+        .navbar-toggler-icon {
+            background-color: #000;
+        }
+    }
+    .collapse-menu {
+        justify-content: center !important;
+        .nav-ul {
+            display: flex;
+            list-style-type: none;
+            margin-bottom: 0 !important;
+            font-size: 14px;
+            line-height: 1.2;
+            color: #31567f;
+        }
+        .nav-ul a {
+            color: #6f92b9;
+            margin-right: 20px;
+            font-size: 15px;
+        }
+    }
+    .nav-CreatListning-btn {
+        border-radius: 20px;
+        box-shadow: 2px 2px 4px 0 var(--black-16);
+        background-color: #31567f;
+        color: white;
+        border: none;
+        padding: 9px;
+        align-items: center;
+        outline: none;
+        box-shadow: none;
+        border: 0;
+    }
+    .dropdown-toggle::after {
+        display: inline-block;
+        // margin-left: 3.255em !important;
+        margin-left: 21px !important;
+        color: #31567f !important;
+    }
+    .logout-btn-firm {
+        background-color: #31567f;
+        color: #fff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        outline: none;
+        box-shadow: none;
+        border: 0;
+    }
+    .message-firm {
+        margin-right: 2px;
+        margin-left: 27px;
+    }
+    .num-firm-text {
+        font-size: 12px;
+        text-align: center;
+        color: #ffffff;
+        width: 18px;
+        height: 18px;
+        margin: 0 0 19px 16px;
+        padding: 0px 5px 2px 6px;
+        background-color: #31567f;
+        border-radius: 50%;
+        left: 28px;
+        top: -6px;
+    }
+    .out-menubar {
+        left: -103px;
+    }
+}
+
+.create-btns {
+    padding-left: 38px;
+}
+
+.ul>li>a:hover {
+    background-color: black;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link,
+ul a:hover {
+    color: black !important;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+// navbar starts here
+@media screen and (max-width: 768px) {
+    .navbar {
+        .navbar-brand {
+            .slImg {
+                width: 188.6px;
+                height: 48.8px;
+                object-fit: contain;
+            }
+        }
+        .collapse-menu {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 63px;
+            z-index: 99999;
+            .nav-ul {
+                display: block;
+                background-color: #ffff;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navbar {
+        .navbar-brand {
+            .slImg {
+                width: 188.6px;
+                height: 48.8px;
+                object-fit: contain;
+            }
+        }
+        .collapse-menu {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 63px;
+            z-index: 99999;
+            .nav-ul {
+                display: block;
+                background-color: #ffff;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .navbar {
+        .navbar-brand {
+            .slImg {
+                width: 188.6px;
+                height: 48.8px;
+                object-fit: contain;
+            }
+        }
+        .collapse-menu {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 63px;
+            z-index: 99999;
+            .nav-ul {
+                display: block;
+                background-color: #ffff;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .navbar-brand {
+        margin-right: 0 !important;
+    }
+}
+
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: darkgrey;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
+}

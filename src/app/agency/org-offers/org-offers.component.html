@@ -1,0 +1,114 @@
+<!-- <div>
+    <app-header></app-header>
+</div> -->
+
+<!-- organization-bg starts here-->
+<div class="organization-bg">
+    <div class="d-flex align-items-center summary-bg-firm">
+        <p class="perform-mes-wrapper" (click)="navigateToInfo()">Information</p>
+        <span class="tooltip1">
+            <p class="perform-mes-wrapper tab-active">Offers</p>
+            <span class="tooltiptext">{{"Hover.Comingsoon" | translate}}</span>
+        </span>
+        <!--Will add later routerLink='/agency/billing' -->
+        <p class="perform-mes-wrapper">Billing</p>
+    </div>
+    <!-- offer-main-bg starts here-->
+    <div class="offer-main-bg">
+        <div class="offer-name">
+            <div class="d-flex align-items-center inner-offer-bg">
+                <p class="inner-offer-name">Offer Name</p>
+                <div class="d-flex align-items-center justify-content-center main-euro-firm">
+                    <p class="offer-num">{{setOfferValue}}</p>
+                    <img src="assets/images/euro-blue.png" class="img-fluid" alt="euro">
+                </div>
+            </div>
+            <div class="d-flex align-items-center duration-commitment-firm">
+                <p class="commitment-text">Commitment: </p>
+                <p class="commitment-text">{{commitment}} months</p>
+            </div>
+            <div class="d-flex align-items-center expiration-text">
+                <p class="commitment-text">Expiration Commitment: </p>
+                <p class="commitment-text">{{expirationCommitment | date:'MM/dd/yyyy'}}</p>
+            </div>
+            <p class="renewal-text"><i>Date of payment is every {{dateOfPayment | date:'dd'}}th of {{dateOfPayment |
+                    date:'MMMM'}}</i></p>
+        </div>
+        <div class="d-flex align-items-center select-offer-wrapper">
+            <h4 class="offer-text">Do you want to change your offer?</h4>
+            <p class="guide-text"><u>Download our price guide</u></p>
+        </div>
+        <div class="d-flex main-inner-offer-firm">
+            <div *ngIf="offerValue != 1" class="main-offer-wrapper later-offer-firm">
+                <button class="offer-btn">offer1</button>
+                <div class="offer-card">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="offer-num-text">189</p>
+                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                    </div>
+                    <p class="offer-month text-center">/month </p>
+                    <div class="commitment-wrapper">
+                        <p class="commitment-text">3 Months Commitment</p>
+                        <p class="offer-free-firm">Free for Six Months</p>
+                    </div>
+                    <button type="button" class="select-btn">
+                        <p *ngIf="setCurrentOffer1 && !requestedOffer1">CURRENT OFFER</p>
+                        <p *ngIf="!setCurrentOffer1 && requestedOffer1">REQUESTED OFFER</p>
+                        <p class="sel-off" *ngIf="!setCurrentOffer1 && !requestedOffer1" (click)="selectedOffer(1,189)">
+                            SELECT</p>
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="offerValue != 2" class="position-relative later-offer-firm">
+                <button class="offer-btn">offer2</button>
+                <div class="offer-card">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="offer-num-text">280</p>
+                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                    </div>
+                    <p class="offer-month text-center">/month</p>
+                    <div class="commitment-wrapper">
+                        <p class="commitment-text">6 Months Commitment</p>
+                        <p class="offer-free-firm">Free for Six Months</p>
+                    </div>
+                    <button type="button" class="select-btn">
+                        <p *ngIf="setCurrentOffer2 && !requestedOffer2">CURRENT OFFER</p>
+                        <p *ngIf="!setCurrentOffer2 && !requestedOffer2">REQUESTED OFFER</p>
+                        <p class="sel-off" *ngIf="!setCurrentOffer2 && !requestedOffer2" (click)="selectedOffer(2,280)">
+                            SELECT</p>
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="offerValue != 3" class="position-relative later-offer-firm">
+                <button class="offer-btn">offer3</button>
+                <div class="offer-card">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="offer-num-text">350</p>
+                        <img src="assets/images/euro.png" class="img-fluid" alt="euro">
+                    </div>
+                    <p class="offer-month text-center">/month</p>
+                    <div class="commitment-wrapper">
+                        <p class="commitment-text">1 Year Commitment</p>
+                        <p class="offer-free-firm">Free for Six Months</p>
+                    </div>
+                    <button type="button" class="select-btn">
+                        <p *ngIf="setCurrentOffer3 && !requestedOffer3">CURRENT OFFER</p>
+                        <p *ngIf="!setCurrentOffer3 && requestedOffer3">REQUESTED OFFER</p>
+                        <p class="sel-off" *ngIf="!setCurrentOffer3 && !requestedOffer3" (click)="selectedOffer(3,350)">
+                            SELECT</p>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="h-25">
+            <p *ngIf="errorMsg" class="notValidated">Select any offer</p>
+        </div>
+        <div class="new-btn-firm">
+            <button type="button" class="new-btn" (click)="newContract()" [disabled]="newContractLoader">Ask for new
+                contract<mat-spinner class="spinner" *ngIf="newContractLoader" [diameter]="25"></mat-spinner></button>
+        </div>
+    </div>
+    <!-- offer-main-bg ends here-->
+</div>
+<!-- organization-bg ends here-->
