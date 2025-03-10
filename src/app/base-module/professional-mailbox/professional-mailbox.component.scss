@@ -4,7 +4,16 @@
 // .main-warpper-content{
 //     height: calc(100vh - 86px);
 // }
-
+.mat-tab-group{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+}
+.mat-tab-header{
+    margin: 0px !important;
+}
 .message-firm {
     margin-right: 2px;
     margin-left: 27px;
@@ -37,7 +46,7 @@
         // align-items: center;
         // height: 100vh;
         .discussion-firm {
-            margin-top: 48px;
+            // margin-top: 48px;
             height: calc(100vh - 22vh);
             overflow-y: auto;
             overflow-x: hidden;
@@ -626,7 +635,7 @@
 .required-input {
     width: 320px;
     height: 40px;
-    margin: 22px 40px 1px 33px;
+    // margin: 22px 40px 1px 33px;
     padding: 9px 15px 8px;
     border-radius: 20px;
     border: solid 1px #e2e2e2;
@@ -635,7 +644,7 @@
 
 .discussion-firm {
     // margin: 60px 40px 10px 30px;
-    padding-right: 107px;
+    // padding-right: 107px;
     .discussion-cascade {
         width: 320px;
         height: 140px;

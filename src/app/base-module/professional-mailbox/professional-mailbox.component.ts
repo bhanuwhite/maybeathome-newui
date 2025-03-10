@@ -15,6 +15,7 @@ import * as moment from "moment";
 import * as EventEmitter from "events";
 import { TranslateService } from "@ngx-translate/core";
 
+
 @Component({
   selector: "app-professional-mailbox",
   templateUrl: "./professional-mailbox.component.html",
@@ -106,7 +107,8 @@ export class ProfessionalMailboxComponent implements OnInit {
     public router: Router,
     private sharedservice: sharedService,
     private toastr: ToastrService,
-    public date: DatePipe
+    public date: DatePipe,
+ 
   ) {}
 
   ngOnInit(): void {
@@ -886,4 +888,5 @@ export class ProfessionalMailboxComponent implements OnInit {
   onImgError(event) {
     event.target.src = "assets/images/noImg.png";
   }
+  
 }

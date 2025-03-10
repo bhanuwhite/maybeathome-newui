@@ -221,6 +221,17 @@
       {{ "label.prof_save" | translate }}
       <mat-spinner *ngIf="saveLoader" [diameter]="25"></mat-spinner>
     </button>
+    <button
+    *ngIf="isEdit"
+    type="button"
+    [disabled]="saveLoader"
+    class="save-button-profile AvenirLTStd-Regular position-relative"
+    (click)="goBack()"
+  >
+    {{ "label.prof_cancel" | translate }}
+    <mat-spinner *ngIf="saveLoader" [diameter]="25"></mat-spinner>
+  </button>
+  
   </div>
   </div>
   <div class="img-profile-firm">

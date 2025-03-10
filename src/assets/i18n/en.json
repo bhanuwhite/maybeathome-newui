@@ -729,6 +729,7 @@
         "prof_pnumber": "Phone number",
         "prof_password": "Password",
         "prof_save": "save",
+        "prof_cancel": "cancel",
         "cupasswordp": "Current password",
         "npasswordp": "New password",
         "cpasswordp": "Confirm password",

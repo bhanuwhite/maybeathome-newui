@@ -5,6 +5,7 @@ import { sharedService } from "../../services/sharedService";
 import { environment } from "../../../environments/environment";
 import { DatePipe } from "@angular/common";
 import { TranslateService } from "@ngx-translate/core";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-professional",
@@ -47,7 +48,8 @@ export class ProfessionalComponent implements OnInit {
     private translate: TranslateService,
     private sharedservice: sharedService,
     public router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -271,5 +273,12 @@ export class ProfessionalComponent implements OnInit {
   }
   showHideConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+
+ 
+
+  goBack(): void {
+    this.location.back(); // Go to the previous page
   }
 }
