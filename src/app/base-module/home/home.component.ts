@@ -178,6 +178,9 @@ export class HomeComponent implements OnInit {
     private renderer: Renderer2) {
     this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoURL);
 
+    this.cardList.forEach(() => {
+      this.currentImageIndex.push(0);
+    });
   }
  
   playVideo(event) {
@@ -775,7 +778,7 @@ export class HomeComponent implements OnInit {
 
         }
       }
-
+ 
     }
 
 
@@ -802,6 +805,87 @@ export class HomeComponent implements OnInit {
     this.advancePlace = location.place.name;
   }
 
- 
+  // imageList: string[] = [
+  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+  //   'https://api.maybeathome.com/cache/original/listings/10/photos/YjJqwaCMeU1687766123.jpg',
+  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766124.jpg',
+  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766125.jpg'
+  // ];
+
+  // previous(index: number) {
+  //   console.log('Previous image clicked for index: ', index);
+  // }
+
+  // next(index: number) {
+  //   console.log('Next image clicked for index: ', index);
+  // }
+
+
+  cardList = [
+    {
+      title: 'Beachside Villa',
+      location: 'Goa, India',
+      images: [
+        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg'
+      ]
+    },
+    {
+      title: 'Luxury Resort',
+      location: 'Manali, India',
+      images: [
+        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg'
+      ]
+    },
+    {
+      title: 'Mountain View',
+      location: 'Shimla, India',
+      images: [
+        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
+      ]
+    },
+    {
+      title: 'Mountain View',
+      location: 'Shimla, India',
+      images: [
+        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
+      ]
+    }
+  ];
+
+  // This will hold the current image index for each card
+  currentImageIndex: number[] = [];
+
+  
+  // Go to previous image
+  previous(index: number) {
+    if (this.currentImageIndex[index] > 0) {
+      this.currentImageIndex[index]--;
+    } else {
+      // Loop back to the last image
+      this.currentImageIndex[index] = this.cardList[index].images.length - 1;
+    }
+  }
+
+  // Go to next image
+  next(index: number) {
+    if (this.currentImageIndex[index] < this.cardList[index].images.length - 1) {
+      this.currentImageIndex[index]++;
+    } else {
+      // Loop back to the first image
+      this.currentImageIndex[index] = 0;
+    }
+  }
 }
+
+
+
 

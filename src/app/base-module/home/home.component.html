@@ -141,6 +141,10 @@
         </div>
     </div>
 </div>
+
+  
+  
+
 <!--work-section starts here-->
 <section class="work-section">
     <div class="container work-main-wrapper">
@@ -207,6 +211,39 @@
     </div>
 </section>
 <!--work-section ends here-->
+<div class=" slider-wrapper">
+    <div class="row text-center m-0">
+        <div class="col-12 work-wrapper">
+
+            <h3 class="property-title">{{"label._property"|translate}}</h3>
+            
+        </div>
+    </div>
+    <div class="image-slider-container d-flex row m-0">
+    
+        <div class="image-card col p-0" *ngFor="let card of cardList; let i = index">
+          <div class="image-container">
+            <img class="list-img-wrapper imgDimen img-fluid" [src]="card.images[currentImageIndex[i]]">
+            
+            <button class="control-button previous" (click)="previous(i)">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+                <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+              </svg>
+            </button>
+            
+            <button class="control-button next" (click)="next(i)">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+                <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-title m-0">
+            <h4 class="m-0 fw-bold">{{ card.title }}</h4>
+            <p class="m-0 text-secondary">{{ card.location }}</p>
+          </div>
+        </div>
+    </div>
+</div>
 
 <!--maybe-section starts here-->
 <section class="maybe-section">

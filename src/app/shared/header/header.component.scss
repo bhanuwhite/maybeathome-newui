@@ -58,29 +58,15 @@ ul a:hover {
         color: #b7bdc4;
     }
     .nav-CreatListning-btn {
-        // border-radius: 20px;
-        // outline: none;
-        // box-shadow: none;
-        // background-color: #0600ff;
-        // color: white;
-        // border: none;
-        // padding: 11px 19px;
         justify-content: center;
         width: 169px;
-        border-radius: 20px;
-        box-shadow: 2px 2px 4px 0 var(--black-16);
+        border-radius: 45px;
         background-color: #31567f;
         color: white;
-        border: none;
         padding: 9px;
-        align-items: center;
-        outline: none;
-        box-shadow: none;
+        align-items: center;  
         border: 0;
-        margin-right: 15px;
-        margin-bottom: 4px;
-        height: 41px;
-        white-space: nowrap;
+        height: 46px;
     }
     .nav-CreatListning-btn:focus {
         outline: none;
@@ -88,7 +74,7 @@ ul a:hover {
     .create-btns {
         display: flex;
         align-items: center;
-        // padding-right: 93px;
+       gap: 15px;
         margin-top: 20px;
     }
     .collapse-menu {
@@ -205,7 +191,6 @@ ul a:hover {
     position: relative;
     box-shadow: none;
     border: 0;
-    margin-left: 8px;
     font-size: 16px !important;
     font-weight: 600;
 }
@@ -395,11 +380,11 @@ ul {
     cursor: pointer;
 }
 
-.message-image-wrapper {
-    // margin-left: -34px;
-    margin-left: 8px;
-    margin-right: 8px;
-}
+// .message-image-wrapper {
+//     // margin-left: -34px;
+//     margin-left: 8px;
+//     margin-right: 8px;
+// }
 
 @media screen and (max-width: 768px) {
     .message-image-wrapper {
@@ -647,10 +632,39 @@ ul {
 
 //     .login-section {
 //         .create-btns {
+//             gap: 15px;
 //             .nav-CreatListning-btn {
-//                 display: none;
-//             }
+//                 display: flex;
+//                 justify-content: center;
+//                 border-radius: 20px;
+//                 background-color: $CreatListningBg;
+//                 color: white;
+//                 border: none;
+//                 padding: 9px 20px;
+//                 align-items: center;
+//                 outline: none;
+//                 white-space: nowrap;
 
+//                 .material-icons {
+//                     color: white;
+//                 }
+//             }
+// .user-dropdown-btn{
+//     @extend .nav-CreatListning-btn;
+//     // padding: 15px 15px;
+//     width: 40px;
+//     height: 40px;
+// }
+// .dropdown-menu-center {
+//     right: auto;
+//     // left: 64%;
+//     top: 28px !important;
+//     cursor: pointer;
+//     height: 131px;
+//     -webkit-transform: translate(-100%, 0) !important;
+//     -o-transform: translate(-100%, 0) !important;
+//     transform: translate(-100%, 0) !important;
+// }
 //             .navbar-toggler {
 //                 display: none;
 //             }
