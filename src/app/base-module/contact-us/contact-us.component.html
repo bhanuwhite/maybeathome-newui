@@ -9,14 +9,15 @@
 <!--work-section starts here-->
 <section class="work-section">
     <div class="container work-main-wrapper">
-        <div class="d-flex work-inner-firm">
+        <div class="d-flex work-inner-firm ">
             <div class="border-set">
                 <div class="border-subset">
-                    <h4 class="contact-text ml-3">{{"label.contact"|translate}}</h4>
-                    <div class="d-flex align-items-center subject-wrapper">
-                        <div class="">
+                    <h4 class="contact-text m-0">{{"label.contact"|translate}}</h4>
+                    <div class="d-flex align-items-center subject-wrapper mt-2">
+                        <div class="subject-p">
                             <p class="contact-inner-text mb-0">{{"label.hello"|translate}}!</p>
                         </div>
+                        <div class="form-wrapper">
                         <select class="form-select input-inner-firm custom-select" aria-label="Default select example"
                             [(ngModel)]="subject" name="subject">
                             <option value="" selected disabled hidden>{{"label.contactsubject" |translate}}</option>
@@ -31,14 +32,15 @@
                             <option value="other">{{"label.contactother" |translate}}</option>
                         </select>
                     </div>
+                    </div>
                     <div class="d-flex align-items-center input-wrapper">
-                        <div class="inner-inputfirm1">
+                        <div class="inner-inputfirm1 m-0">
                             <input type="text" placeholder="{{ 'label.contactfirstname' | translate }}*"
-                                class="input-inner-firm" [(ngModel)]="firstName" name="firstName">
+                                class="input-inner-firm m-0" [(ngModel)]="firstName" name="firstName">
                         </div>
                         <div class="inner-inputfirm2">
                             <input type="text" placeholder="{{ 'label.contactlastname' | translate }}*"
-                                class="input-inner-firm" [(ngModel)]="lastName" name="lastName">
+                                class="input-inner-firm m-0" [(ngModel)]="lastName" name="lastName">
                         </div>
                     </div>
                     <div class="input-email-wrapper">

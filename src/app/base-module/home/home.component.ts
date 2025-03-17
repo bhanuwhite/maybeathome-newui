@@ -169,6 +169,7 @@ export class HomeComponent implements OnInit {
   disableRooms: boolean;
   videoURL: string;
   safeURL;
+  propertiesList: Array<any> = [];
   constructor(public router: Router,
     private sharedservice: sharedService,
     private route: ActivatedRoute,
@@ -884,6 +885,11 @@ export class HomeComponent implements OnInit {
       this.currentImageIndex[index] = 0;
     }
   }
+
+ 
+
+
+  
 }
 
 

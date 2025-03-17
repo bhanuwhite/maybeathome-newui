@@ -1,3 +1,49 @@
+.subject-wrapper{
+    width: 100% !important;
+    .subject-p{
+        width: 50% !important;
+        margin-right: 10px !important;
+    }
+    .form-wrapper{
+        width: 50% !important;
+        .custom-select{
+            width: 100% !important;
+            margin-left: 0px !important;
+        }
+    }
+   
+}
+.input-wrapper{
+    width: 100% !important;
+    margin-top: 20px !important; 
+ .inner-inputfirm1{
+    margin-right: 10px !important;
+    width: 50% !important;
+    .input-inner-firm{
+        width: 100% !important;
+    }
+ }
+ .inner-inputfirm2{
+    width: 50% !important;
+    .input-inner-firm{
+        width: 100% !important;
+    }
+ }
+}
+.input-email-wrapper{
+    .input-inner-wrapper{
+        width: 100% !important;
+        margin: 0px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    }
+}
+.area-wrapper{
+    .area-inner-wrapper{
+        width: 100% !important;
+        margin: 0px !important;
+    }
+}
 .main-content-wrapper {
     background-image: url("../../../assets/images/aboutUS.png");
     // background-image: url("../../../assets/images/Group 434.png");
@@ -15,7 +61,8 @@
             margin: 80px 0px 119px 0px;
             .border-set {
                 width: 800px;
-                padding: 20px 127px 35px 0;
+                // padding: 20px 127px 35px 0;
+                padding: 20px;
                 border-radius: 2px;
                 border: solid 1px #e2e2e2;
                 background-color: #ffffff;
@@ -227,7 +274,7 @@
 //media for cards
 @media screen and (max-width: 991px) {
     .work-inner-firm {
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         .border-set {
             width: 100% !important;
         }
@@ -241,12 +288,12 @@
             margin-top: 30px;
         }
     }
-    .subject-wrapper {
-        flex-wrap: wrap;
-    }
-    .input-wrapper {
-        flex-wrap: wrap;
-    }
+    // .subject-wrapper {
+    //     flex-wrap: wrap;
+    // }
+    // .input-wrapper {
+    //     flex-wrap: wrap;
+    // }
     .caret-wrapper {
         margin-left: -27%;
     }
@@ -257,7 +304,7 @@
 
 @media screen and (max-width: 768px) {
     .work-inner-firm {
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         .border-set {
             width: 100% !important;
         }
@@ -271,12 +318,12 @@
             margin-top: 30px;
         }
     }
-    .subject-wrapper {
-        flex-wrap: wrap;
-    }
-    .input-wrapper {
-        flex-wrap: wrap;
-    }
+    // .subject-wrapper {
+    //     flex-wrap: wrap;
+    // }
+    // .input-wrapper {
+    //     flex-wrap: wrap;
+    // }
     .caret-wrapper {
         margin-left: -27%;
     }
@@ -286,9 +333,9 @@
 }
 
 @media screen and (max-width: 568px) {
-    .input-wrapper {
-        flex-wrap: wrap;
-    }
+    // .input-wrapper {
+    //     flex-wrap: wrap;
+    // }
     .border-set {
         height: auto !important;
     }
@@ -299,6 +346,26 @@
         flex-wrap: wrap;
         .office-address {
             margin-top: 30px;
+        }
+        .input-wrapper{
+            display: block !important;
+            .inner-inputfirm1{
+                width: 100% !important;
+                margin-bottom:10px !important;
+            }   
+            .inner-inputfirm2{
+                width: 100% !important; 
+            }
+        }
+        .subject-wrapper{
+            display: block !important;
+            .subject-p{
+                width: 100% !important;
+                margin-bottom:10px !important;
+            }
+            .form-wrapper{
+                width: 100% !important;
+            }
         }
     }
 }
@@ -321,28 +388,28 @@
     }
     .work-section {
         .border-set {
-            padding: 20px 0px 35px 0px !important;
-            .custom-select {
-                margin: 10px 10px !important;
-            }
+            // padding: 20px 0px 35px 0px !important;
+            // .custom-select {
+            //     margin: 10px 10px !important;
+            // }
             .input-wrapper {
-                display: block !important;
-                .inner-inputfirm1 {
-                    margin: 0px 10px !important;
-                    .input-inner-firm {
-                        margin: 25px 0px 15px 0px !important;
-                    }
-                }
-                .inner-inputfirm2 {
-                    margin: 0px 10px !important;
-                    .input-inner-firm {
-                        margin: 25px 0px 15px 0px !important;
-                    }
-                }
+                // display: block !important;
+                // .inner-inputfirm1 {
+                //     margin: 0px 10px !important;
+                //     .input-inner-firm {
+                //         margin: 25px 0px 15px 0px !important;
+                //     }
+                // }
+                // .inner-inputfirm2 {
+                //     margin: 0px 10px !important;
+                //     .input-inner-firm {
+                //         margin: 25px 0px 15px 0px !important;
+                //     }
+                // }
             }
         }
         .input-email-wrapper {
-            margin: 0px 10px;
+            // margin: 0px 10px;
             .input-inner-wrapper {
                 margin: 15px 0px !important;
             }
@@ -362,6 +429,7 @@
         }
     }
     .office-address {
+        width: 100% !important;
         margin-left: 0px !important;
         height: auto !important;
     }
@@ -415,14 +483,15 @@
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .work-section {
-        .custom-select {
-            margin-left: 14px;
-            margin-top: 20px;
-            width: 100% !important;
-        }
-        .border-set {
-            padding: 20px 50px 35px 0 !important;
-        }
+     
+        // .custom-select {
+        //     margin-left: 14px;
+        //     margin-top: 20px;
+        //     // width: 100% !important;
+        // }
+        // .border-set {
+        //     padding: 20px 50px 35px 0 !important;
+        // }
         .input-wrapper {
             justify-content: space-between;
             .inner-inputfirm1,
@@ -431,7 +500,7 @@
             }
         }
         .office-address {
-            width: 100% !important;
+            // width: 100% !important;
             height: auto !important;
             margin-left: 0px !important;
         }

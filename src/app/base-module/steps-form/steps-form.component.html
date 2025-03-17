@@ -19,9 +19,9 @@
             <div class="">
                 <h4 class="info-firm AvenirLTStd-Regular">{{"label.general"|translate}}</h4>
                 <div class="d-flex align-items-center title-texting-firm general-info-block">
-                    <div class="position-relative info-text AvenirLTStd-Regular height ml-5">
+                    <div class="position-relative info-text AvenirLTStd-Regular height m-0">
                         <label for="listingTitle">{{"label.title" | translate}} *</label>
-                        <input type="text" id="listingTitle" maxlength="45" class="form-control info-input ml-2" [(ngModel)]="listingTitle" name="listingTitle" />
+                        <input type="text" id="listingTitle" maxlength="45" class="form-control info-input " [(ngModel)]="listingTitle" name="listingTitle" />
 
                         <div class="notValidated">
                             <div *ngIf="(listingTitle == '' || listingTitle == undefined) && notValidated == true">
@@ -31,7 +31,7 @@
                     <div class="position-relative info-text AvenirLTStd-Regular height">
                         <label for="homeType">{{"label.homeType" | translate}} *</label><br>
 
-                        <select name="pets" id="homeType" class="form-control info-input custom-select ml-2" (change)="getSelectedHomeType($event)" [(ngModel)]="homeType" name="homeType">
+                        <select name="pets" id="homeType" class="form-control info-input custom-select " (change)="getSelectedHomeType($event)" [(ngModel)]="homeType" name="homeType">
                             <option *ngFor="let list of chooseType" value="{{list.value}}">{{list.list}}</option>
                         </select>
                         <div class="notValidated">
@@ -49,7 +49,7 @@
                         <div class="height euro-wrapper">
                             <div>
                                 <label for="listingRefernce">{{"label.reference" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="listingRefernce" value="" [(ngModel)]="listingRefernce" name="listingRefernce">
+                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="listingRefernce" value="" [(ngModel)]="listingRefernce" name="listingRefernce">
                             </div>
                             <div class="notValidated">
 
@@ -58,7 +58,7 @@
                         <div class="height euro-wrapper position-relative">
                             <div>
                                 <label for="availabilityDate">{{"label.AvailabilityDate" | translate}} *</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="availabilityDate" name="availabilityDate" [(ngModel)]="availabilityDate" [min]="minDate" [matDatepicker]="picker1" value="">
+                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="availabilityDate" name="availabilityDate" [(ngModel)]="availabilityDate" [min]="minDate" [matDatepicker]="picker1" value="">
                                 <mat-datepicker-toggle matSuffix [for]="picker1" class="position-absolute event-icon">
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
@@ -73,10 +73,10 @@
                             <div class="height euro-wrapper position-relative">
                                 <div>
                                     <label for="subface1">{{"label.surface" | translate}} *</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" [(ngModel)]="surface" #sur='ngModel' name="subface" id="surface1">
+                                    <input type="text" class="fees-firm AvenirLTStd-Regular " [(ngModel)]="surface" #sur='ngModel' name="subface" id="surface1">
                                 </div>
                                 <div class="position-absolute cstm-sq-firm info-text sq-firm AvenirLTStd-Regular height">
-                                    <select class="form-control info-input-text custom-select ml-2" [(ngModel)]="surafceSQFT" name="surafceSQFT">
+                                    <select class="form-control info-input-text custom-select " [(ngModel)]="surafceSQFT" name="surafceSQFT">
                                         <option class="setMValue" value="m2">m²</option>
                                         <option value="sqft">Sqft</option>
                                         <option value="sqrd">Sqrd</option>
@@ -91,11 +91,11 @@
 
 
                         <div *ngIf="!(selectedHomeType == 'hotel' || selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion')">
-                            <div class="height">
+                            <div class="height euro-wrapper ">
                                 <div class="position-relative info-text AvenirLTStd-Regular">
                                     <label for="propertySubType">{{"label.propertySubtype" | translate}} </label><br>
 
-                                    <select id="propertySubType" class="form-control info-input custom-select ml-2" [(ngModel)]="propertySubType" name="propertySubType">
+                                    <select id="propertySubType" class="form-control info-input custom-select " [(ngModel)]="propertySubType" name="propertySubType">
                                         <option *ngFor="let list of propertySubtypeList" value="{{list.value}}">
                                             {{list.list}}
                                         </option>
@@ -113,7 +113,7 @@
                         <div class="height euro-wrapper" *ngIf="selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType == 'hotel'">
                             <div>
                                 <label for="numberOfRooms">{{"label.NumberRooms" | translate}} *</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
+                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
                             </div>
                             <div class="notValidated">
                                 <div *ngIf="(numberOfRooms == '' || numberOfRooms == undefined) && notValidated == true">
@@ -123,7 +123,7 @@
                         <div class="height euro-wrapper" *ngIf="selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType == 'hotel'">
                             <div>
                                 <label for="landSurface">{{"label.LandSurface" | translate}} *</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="landSurface" [(ngModel)]="landSurface" name="landSurface">
+                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="landSurface" [(ngModel)]="landSurface" name="landSurface">
                             </div>
                             <div class="notValidated">
                                 <div *ngIf="(landSurface == '' || landSurface == undefined) && notValidated == true">
@@ -171,7 +171,7 @@
                             <div class="height euro-wrapper" *ngIf="!(selectedHomeType === 'apartment' || selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
                                 <div>
                                     <label for="terrain">Surface Terrain</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="terrain" [(ngModel)]="surfaceTerrain" name="surfaceTerrain">
+                                    <input type="text" class="fees-firm AvenirLTStd-Regular " id="terrain" [(ngModel)]="surfaceTerrain" name="surfaceTerrain">
                                 </div>
 
                             </div>
@@ -179,7 +179,7 @@
                             <div class="height euro-wrapper" *ngIf="!(selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
                                 <div>
                                     <label for="numberOfRooms">{{"label.NumberRooms" | translate}} *</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
+                                    <input type="text" class="fees-firm AvenirLTStd-Regular " id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
                                 </div>
                                 <div class="notValidated">
                                     <div *ngIf="(numberOfRooms == '' || numberOfRooms == undefined) && notValidated == true">
