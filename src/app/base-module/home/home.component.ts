@@ -886,9 +886,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
- 
-
-
+  
+  navigatetoListing(item): void {
+    this.router.navigate([`listingDetails/${item.listing_id}`]);
+    this.sharedservice.setDisplayedPropertyList(this.propertiesList);
+    this.sharedservice.setLisistingDetails(item);
+    this.sharedservice
+      .logRequest({ listing_id: item.listing_id })
+      .subscribe();
+  }
   
 }
 

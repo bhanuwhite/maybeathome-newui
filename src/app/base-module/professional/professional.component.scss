@@ -20,7 +20,7 @@
         .professional-bg-wrapper {
             width: 100%;
             background-color: #f5f7ff;
-            padding: 40px;
+            // padding: 40px;
 
             // height: calc(100vh - 86px);
             height: 100%;
@@ -120,11 +120,26 @@
                 // margin-top: 40px;
             }
             .save-button-profile {
-                width: 164px;
+                width: 129px;
                 height: 40px;
                 padding: 11px 15px 11px 15px;
                 border-radius: 20px;
                 background-color: blue;
+                border: 0;
+                font-size: 15px;
+                // text-align: left;
+                color: white;
+                outline: none;
+                box-shadow: none;
+                // margin-top: 40px;
+                margin-left: 20px;
+            }
+            .cancel-button-profile {
+                width: 129px;
+                height: 40px;
+                padding: 11px 15px 11px 15px;
+                border-radius: 20px;
+                background-color: #ff6060;
                 border: 0;
                 font-size: 15px;
                 // text-align: left;

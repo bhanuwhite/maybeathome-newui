@@ -115,6 +115,11 @@ export class ProfessionalComponent implements OnInit {
     this.router.navigate(["professionalMailbox"]);
   }
 
+  navigateToProfessional(): void {
+   this.isEdit=false;
+    this.router.navigate(["/professional"]);
+  }
+
   onSelectFile(event): void {
     this.photosOfuser = [];
     this.photosOfuser.push(...event.addedFiles);
@@ -276,9 +281,7 @@ export class ProfessionalComponent implements OnInit {
   }
 
 
- 
-
   goBack(): void {
-    this.location.back(); // Go to the previous page
+    this.location.back(); 
   }
 }

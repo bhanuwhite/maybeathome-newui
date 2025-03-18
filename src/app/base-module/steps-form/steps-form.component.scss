@@ -15,7 +15,8 @@ margin: 0px 23px 0px 30px !important;
     justify-content: center;
     align-items: center;
     .items-menu {
-        width: 335px;
+        // width: 335px;
+        width: 35%;
         height: 50px;
         padding: 9px 100px 9px 100px;
         border-radius: 2px;
@@ -38,8 +39,9 @@ margin: 0px 23px 0px 30px !important;
 
 .fff {
     border: solid 1px #e2e2e2;
-    margin: 0 54px 0 54px;
+    // margin: 0 54px 0 54px;
     background-color: #ffffff;
+    overflow: hidden;
 }
 .nav{
     flex-wrap: nowrap !important;
@@ -50,6 +52,7 @@ margin: 0px 23px 0px 30px !important;
     top: -1px;
     background-color: #ffffff;
     z-index: 99999;
+    max-width: 1140px;
 }
 
 .button-tabs {
@@ -1680,7 +1683,7 @@ input::-webkit-inner-spin-button {
         display: -webkit-inline-box;
         overflow-x: scroll;
         width: 100%;
-        flex-wrap: nowrap;
+        // flex-wrap: nowrap;
         .items-menu {
             width: 250px;
         }
@@ -2060,13 +2063,13 @@ input::-webkit-inner-spin-button {
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .button-tabs {
-        display: -webkit-inline-box;
-        overflow-x: scroll;
+        // display: -webkit-inline-box;
+        // overflow-x: scroll;
         width: 100%;
-        flex-wrap: nowrap;
-        .items-menu {
-            width: 250px;
-        }
+        // flex-wrap: nowrap;
+        // .items-menu {
+        //     width: 250px;
+        // }
     }
     .tab-content {
         .tab-pane {

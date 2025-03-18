@@ -495,19 +495,7 @@
                             </div>
 
                         </div>
-                        <div class="d-flex align-items-center Separate-firm">
-                            <p class="price-text-1 mt-2 ml-3 AvenirLTStd-Regular">{{"label.cave"|translate}}</p>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline-1" class="custom-control-input" value="yes" name="Cave" [(ngModel)]="cave" />
-                                <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-1">{{"label.yes"|translate}}</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline-2" class="custom-control-input" value="no" name="Cave" [(ngModel)]="cave" />
-                                <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-2">{{"label.no"|translate}}
-                                </label>
-                            </div>
-
-                        </div>
+                     
                     </div>
                     <div class="radio-firm AvenirLTStd-Regular req-firm">
                         <div class="d-flex align-items-center Separate-firm ">
@@ -565,6 +553,19 @@
                             </div>
 
                         </div>
+                        <div class="d-flex align-items-center Separate-firm">
+                            <p class="price-text-1 mt-2  AvenirLTStd-Regular">{{"label.cave"|translate}}</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline-1" class="custom-control-input" value="yes" name="Cave" [(ngModel)]="cave" />
+                                <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-1">{{"label.yes"|translate}}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline-2" class="custom-control-input" value="no" name="Cave" [(ngModel)]="cave" />
+                                <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-2">{{"label.no"|translate}}
+                                </label>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex dec-respon-firm dec-respon-firm-tab">
@@ -573,7 +574,7 @@
                         <div class="height euro-wrapper">
                             <div class="form-group">
                                 <label for="year">{{"label.construction" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="year" [(ngModel)]="yearsOfConstruction" name="yearsOfConstruction" />
+                                <input type="text" class="fees-firm AvenirLTStd-Regular" id="year" [(ngModel)]="yearsOfConstruction" name="yearsOfConstruction" />
                             </div>
 
                         </div>
@@ -642,7 +643,7 @@
                         <div class="height euro-wrapper">
                             <div class="form-group">
                                 <label for="car">{{"label.parks" | translate}}</label><br>
-                                <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="car" name="nameOfCarParks" [(ngModel)]="nameOfCarParks" [disabled]="!disableCarPark" />
+                                <input type="number" class="fees-firm AvenirLTStd-Regular " id="car" name="nameOfCarParks" [(ngModel)]="nameOfCarParks" [disabled]="!disableCarPark" />
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
@@ -913,13 +914,13 @@
                     <div class="height euro-wrapper">
                         <div class="form-group">
                             <label for="Architecture">Architecture</label><br>
-                            <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="Architecture" [(ngModel)]="architecture" name="architecture" />
+                            <input type="text" class="fees-firm AvenirLTStd-Regular " id="Architecture" [(ngModel)]="architecture" name="architecture" />
                         </div>
                     </div>
 
                     <div class="position-relative info-text AvenirLTStd-Regular" style="margin-left: 33px;">
                         <label for="type">{{"label.kitchenType" | translate}}</label><br>
-                        <select class="form-control info-input custom-select ml-2" (change)="selectKitchen($event)" [(ngModel)]="kitchenType" name="kitchenType" id="type">
+                        <select class="form-control info-input custom-select" (change)="selectKitchen($event)" [(ngModel)]="kitchenType" name="kitchenType" id="type">
                             <option selected="selected" value="" hidden>{{"label.kitchenType"|translate}}</option>
                             <option *ngFor="let kitchen of kitchenTypeList" value={{kitchen.value}}>{{kitchen.list}}
                             </option>
