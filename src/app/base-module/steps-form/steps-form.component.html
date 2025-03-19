@@ -18,8 +18,8 @@
         <div *ngIf="tabName == 'general'" #setImg class="tab-pane fade show active fff" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="">
                 <h4 class="info-firm AvenirLTStd-Regular">{{"label.general"|translate}}</h4>
-                <div class="d-flex align-items-center title-texting-firm general-info-block">
-                    <div class="position-relative info-text AvenirLTStd-Regular height m-0">
+                <div class="row m-0 m-md-2 title-texting-firm general-info-block">
+                    <div class="position-relative info-text AvenirLTStd-Regular height m-0 col-sm-12 col-md-6  px-1 px-md-4">
                         <label for="listingTitle">{{"label.title" | translate}} *</label>
                         <input type="text" id="listingTitle" maxlength="45" class="form-control info-input " [(ngModel)]="listingTitle" name="listingTitle" />
 
@@ -28,7 +28,7 @@
                                 {{"error._name"|translate}}</div>
                         </div>
                     </div>
-                    <div class="position-relative info-text AvenirLTStd-Regular height">
+                    <div class="position-relative info-text AvenirLTStd-Regular height  col-sm-12 col-md-6 px-1 px-md-4">
                         <label for="homeType">{{"label.homeType" | translate}} *</label><br>
 
                         <select name="pets" id="homeType" class="form-control info-input custom-select " (change)="getSelectedHomeType($event)" [(ngModel)]="homeType" name="homeType">
@@ -42,23 +42,23 @@
                 </div>
             </div>
 
-            <div class="Required-firm required-frim-cstm">
+            <div class="Required-firm required-frim-cstm container p-0">
                 <h4 class="info-firm AvenirLTStd-Regular">{{"label.required"|translate}}</h4>
-                <div class="d-flex justity-content-center interfernce-text-firm">
-                    <div class="">
-                        <div class="height euro-wrapper">
+                <div class="row m-0 m-md-2">
+                    <div class="col-md-6 col-sm-12 px-1 px-md-4">
+                        <div class="height euro-wrapper w-100 m-0">
                             <div>
                                 <label for="listingRefernce">{{"label.reference" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="listingRefernce" value="" [(ngModel)]="listingRefernce" name="listingRefernce">
+                                <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="listingRefernce" value="" [(ngModel)]="listingRefernce" name="listingRefernce">
                             </div>
                             <div class="notValidated">
 
                             </div>
                         </div>
-                        <div class="height euro-wrapper position-relative">
+                        <div class="height euro-wrapper position-relative w-100 m-0">
                             <div>
                                 <label for="availabilityDate">{{"label.AvailabilityDate" | translate}} *</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular " id="availabilityDate" name="availabilityDate" [(ngModel)]="availabilityDate" [min]="minDate" [matDatepicker]="picker1" value="">
+                                <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="availabilityDate" name="availabilityDate" [(ngModel)]="availabilityDate" [min]="minDate" [matDatepicker]="picker1" value="">
                                 <mat-datepicker-toggle matSuffix [for]="picker1" class="position-absolute event-icon">
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
@@ -70,18 +70,19 @@
                         </div>
 
                         <div class="height mb-auto">
-                            <div class="height euro-wrapper position-relative">
-                                <div>
+                            <div class="height euro-wrapper  w-100 m-0">
+                                <div class="position-relative">
                                     <label for="subface1">{{"label.surface" | translate}} *</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular " [(ngModel)]="surface" #sur='ngModel' name="subface" id="surface1">
+                                    <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " [(ngModel)]="surface" #sur='ngModel' name="subface" id="surface1">
+                                    <div class="position-absolute cstm-sq-firm info-text sq-firm AvenirLTStd-Regular height">
+                                        <select class=" form-control info-input-text custom-select " [(ngModel)]="surafceSQFT" name="surafceSQFT">
+                                            <option class="setMValue" value="m2">m²</option>
+                                            <option value="sqft">Sqft</option>
+                                            <option value="sqrd">Sqrd</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="position-absolute cstm-sq-firm info-text sq-firm AvenirLTStd-Regular height">
-                                    <select class="form-control info-input-text custom-select " [(ngModel)]="surafceSQFT" name="surafceSQFT">
-                                        <option class="setMValue" value="m2">m²</option>
-                                        <option value="sqft">Sqft</option>
-                                        <option value="sqrd">Sqrd</option>
-                                    </select>
-                                </div>
+                             
                                 <div class="notValidated">
                                     <div *ngIf="(surface == '' || surface == undefined) && notValidated == true">
                                         {{"error._name"|translate}}</div>
@@ -91,7 +92,7 @@
 
 
                         <div *ngIf="!(selectedHomeType == 'hotel' || selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion')">
-                            <div class="height euro-wrapper ">
+                            <div class="height euro-wrapper w-100 m-0">
                                 <div class="position-relative info-text AvenirLTStd-Regular">
                                     <label for="propertySubType">{{"label.propertySubtype" | translate}} </label><br>
 
@@ -109,7 +110,7 @@
                         </div>
 
                     </div>
-                    <div class="">
+                    <div >
                         <div class="height euro-wrapper" *ngIf="selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType == 'hotel'">
                             <div>
                                 <label for="numberOfRooms">{{"label.NumberRooms" | translate}} *</label><br>
@@ -146,9 +147,10 @@
                         </div> -->
                         <div class="height euro-wrapper" *ngIf="selectedHomeType == 'house' || selectedHomeType == 'villa' || selectedHomeType == 'hotel' || selectedHomeType == 'mansion'">
                             <div class="d-flex align-items-center mt-2" id="furnishedProperty">
-                                <p class="price-text-1 recent-firm1-position mt-2 AvenirLTStd-Regular">
+                                <p class="price-text-1 recent-firm1-position mt-2 AvenirLTStd-Regular mr-2">
                                     {{"label.furnished"|translate}} *
                                 </p>
+                                <div class=""></div>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="customRadioInline-furnishedProperty" class="custom-control-input" value="yes" name="furnishedProperty" [(ngModel)]="furnishedProperty" />
                                     <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-furnishedProperty">{{"label.yes"|translate}}</label>
@@ -166,20 +168,20 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-md-6 col-sm-12 px-1 px-md-4">
                         <div>
-                            <div class="height euro-wrapper" *ngIf="!(selectedHomeType === 'apartment' || selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
+                            <div class="height euro-wrapper w-100 m-0" *ngIf="!(selectedHomeType === 'apartment' || selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
                                 <div>
                                     <label for="terrain">Surface Terrain</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular " id="terrain" [(ngModel)]="surfaceTerrain" name="surfaceTerrain">
+                                    <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="terrain" [(ngModel)]="surfaceTerrain" name="surfaceTerrain">
                                 </div>
 
                             </div>
 
-                            <div class="height euro-wrapper" *ngIf="!(selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
+                            <div class="height euro-wrapper w-100 m-0" *ngIf="!(selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
                                 <div>
                                     <label for="numberOfRooms">{{"label.NumberRooms" | translate}} *</label><br>
-                                    <input type="text" class="fees-firm AvenirLTStd-Regular " id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
+                                    <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="numberOfRooms" [(ngModel)]="numberOfRooms" name="numberOfRooms">
                                 </div>
                                 <div class="notValidated">
                                     <div *ngIf="(numberOfRooms == '' || numberOfRooms == undefined) && notValidated == true">
@@ -187,19 +189,21 @@
                                 </div>
                             </div>
                             <div class="height" *ngIf="!(selectedHomeType === 'house' || selectedHomeType == 'villa' || selectedHomeType == 'mansion' || selectedHomeType === 'hotel')">
-                                <div class="d-flex align-items-center mt-2 furnised-property-radio">
-                                    <p class="price-text-1 recent-firm1-position mt-2 AvenirLTStd-Regular">
+                                <div class="d-flex align-items-center mt-2 furnised-property-radio justity-content-between mr-2">
+                                    <p class="price-text-1 recent-firm1-position mt-2 AvenirLTStd-Regular mr-2">
                                         {{"label.furnished"|translate}} *
                                     </p>
-                                    <div class="custom-control custom-radio custom-control-inline">
+                                    <div class="d-flex justity-content-between gap-2">
+                                    <div class="custom-control custom-radio custom-control-inline mr-2">
                                         <input type="radio" id="customRadioInline-furnishedProperty" class="custom-control-input" value="yes" name="furnishedProperty" [(ngModel)]="furnishedProperty" />
                                         <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-furnishedProperty">{{"label.yes"|translate}}</label>
                                     </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
+                                    <div class="custom-control custom-radio ">
                                         <input type="radio" id="customRadioInline-furnishedProperty1" class="custom-control-input" value="no" name="furnishedProperty" [(ngModel)]="furnishedProperty" />
                                         <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-furnishedProperty1">{{"label.no"|translate}}
                                         </label>
                                     </div>
+                                </div>
                                 </div>
                                 <div class="notValidated">
                                     <div class="furnished-prpty" *ngIf="(furnishedProperty == '' || furnishedProperty == undefined) && notValidated == true">
@@ -209,12 +213,12 @@
                         </div>
                     </div>
                 </div>
-
+                   
                 <div class="price-info AvenirLTStd-Regular">
                     <h4 class="info-firm1 AvenirLTStd-Regular">{{"label.price"|translate}}</h4>
                     <div class="d-flex price-firm budget-options align-items-center req-firm">
                         <div>
-                            <p class="price-text AvenirLTStd-Regular mb-auto">
+                            <p class="price-text AvenirLTStd-Regular mr-2">
                                 {{"label.responsibility"|translate}} *
                             </p>
                             <div class="notValidated">
@@ -227,7 +231,7 @@
                             <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="{{fee.list}}">{{fee.list}}</label>
                         </div>
                     </div>
-                    <div class="height euro-wrapper position-relative">
+                    <div class="height euro-wrapper position-relative w-100 w-100 m-0">
                         <div>
                             <label for="excludingFees">{{"label.excluding" | translate}} *</label><br>
                             <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="excludingFees" [(ngModel)]="excludingFees" #excFees='ngModel' required [value]="getExcludingFee()" name="excludingFees">
@@ -241,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="height euro-wrapper position-relative">
+                    <div class="height euro-wrapper position-relative w-100" >
                         <div>
                             <label for="includingFees">{{"label.including" | translate}} *</label><br>
                             <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="includingFees" [(ngModel)]="includingFees" #incFees='ngModel' required name="includingFees" />
@@ -258,7 +262,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="euro-wrapper position-relative">
+                    <div class="euro-wrapper position-relative w-100">
 
                         <div class="form-group">
                             <label for="ati">{{"label.FeesAti" | translate}} *</label><br>
@@ -274,7 +278,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="euro-wrapper position-relative">
+                    <div class="euro-wrapper position-relative w-100">
 
                         <div class="form-group">
                             <label for="price">{{"label.per"|translate}}</label><br>

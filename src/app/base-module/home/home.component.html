@@ -211,16 +211,14 @@
     </div>
 </section>
 <!--work-section ends here-->
-<div class=" slider-wrapper">
-    <div class="row text-center m-0">
+<div class=" slider-wrapper shadow-sm">
+    <div class="container slider-container">
+<div class="row text-center m-0 justity-content-center">
         <div class="col-12 work-wrapper">
-
             <h3 class="property-title">{{"label._property"|translate}}</h3>
-            
         </div>
-    </div>
-    <div class="image-slider-container d-flex row m-0">
-    
+</div>
+    <div class=" image-slider-container d-flex row m-0">
         <div class="image-card col p-0" *ngFor="let card of cardList; let i = index">
           <div class="image-container">
             <img class="list-img-wrapper imgDimen img-fluid" [src]="card.images[currentImageIndex[i]]">
@@ -244,6 +242,8 @@
           </div>
         </div>
     </div>
+</div>
+
 </div>
 
 <!--maybe-section starts here-->

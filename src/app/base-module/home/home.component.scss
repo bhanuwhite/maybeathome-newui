@@ -1,6 +1,12 @@
 .slider-wrapper{
     margin-top: 80px;
     margin-bottom: 80px;
+    background-color: #f7f9fc;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    .slider-container{
+        max-width: 1366px;
+    }
 }
 .property-title{
     font-size: 35px;
