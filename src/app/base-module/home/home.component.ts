@@ -827,16 +827,18 @@ export class HomeComponent implements OnInit {
     {
       title: 'Beachside Villa',
       location: 'Goa, India',
-      images: [
-        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
-        'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg'
+      listing_id: 120,
+      photos: [
+        '/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        '/listings/120/photos/NPgfSzmvIz1693577333.jpg',
+        '/listings/97/photos/jmXbBp9G441675161881.jpg'
       ]
     },
     {
       title: 'Luxury Resort',
       location: 'Manali, India',
-      images: [
+      listing_id: 2,
+      photos: [
         'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
         'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
         'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg'
@@ -845,7 +847,8 @@ export class HomeComponent implements OnInit {
     {
       title: 'Mountain View',
       location: 'Shimla, India',
-      images: [
+      listing_id: 3,
+      photos: [
         'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
         'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
         'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
@@ -854,7 +857,8 @@ export class HomeComponent implements OnInit {
     {
       title: 'Mountain View',
       location: 'Shimla, India',
-      images: [
+      listing_id: 4,
+      photos: [
         'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
         'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
         'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
@@ -888,6 +892,7 @@ export class HomeComponent implements OnInit {
 
   
   navigatetoListing(item): void {
+    console.log(item)
     this.router.navigate([`listingDetails/${item.listing_id}`]);
     this.sharedservice.setDisplayedPropertyList(this.propertiesList);
     this.sharedservice.setLisistingDetails(item);

@@ -1,0 +1,371 @@
+button:focus {
+  outline: none;
+}
+
+.organization-bg {
+  padding: 0 0 229px;
+  background-color: #f5f7ff;
+}
+.organization-bg .summary-bg-firm {
+  margin-left: 33px;
+}
+.organization-bg .perform-mes-wrapper {
+  margin: 40px 15px;
+  font-size: 16px;
+  color: #969696;
+  height: 34px;
+  background-color: unset;
+  border: none;
+}
+.organization-bg .add-firm:hover {
+  cursor: pointer;
+}
+.organization-bg .tab-active {
+  margin: 40px 15px;
+  border-bottom: 2px solid #31567f;
+  color: #31567f;
+}
+.organization-bg .perform-mes-wrapper:hover {
+  margin: 40px 15px;
+  border-bottom: 2px solid #31567f;
+  color: #31567f;
+}
+.organization-bg .handle-wrapper {
+  margin: -15px 29px 0 37px;
+  padding: 31px 114px 30px 106px;
+  background-color: #ffffff;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper {
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card {
+  width: 240px;
+  min-height: 285px;
+  margin-right: 40px;
+  padding: 25px 0 0;
+  border-radius: 2px;
+  box-shadow: 0 0 5px 0 #e2e2e2;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .person-don-img {
+  width: auto;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+  width: 129px;
+  height: 188px;
+  margin-left: 53px;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .don-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #31567f;
+  text-align: center;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .url-text {
+  font-size: 15px;
+  text-align: center;
+  color: #969696;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .num-text {
+  font-size: 14px;
+  text-align: center;
+  color: #969696;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .btn-wrapper {
+  width: 100%;
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0px !important;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .btn-wrapper .accept-wrapper {
+  border: 1px solid #e2e2e2;
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .btn-wrapper .accept-wrapper .accept-firm-btn {
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #31567f;
+  border: 0;
+  background-color: white;
+  outline: 0;
+  padding: 0;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .btn-wrapper .reject-firm {
+  border: 1px solid #e2e2e2;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.organization-bg .handle-wrapper .avator-card-wrapper .willis-card .btn-wrapper .reject-firm .reject-firm-btn {
+  font-size: 15px;
+  text-align: left;
+  color: #969696;
+  border: 0;
+  background-color: white;
+  outline: 0;
+  padding: 0;
+}
+.organization-bg .handle-wrapper .required-input {
+  width: 240px;
+  height: 45px;
+  margin: 20px 15px 20px 9px;
+  padding: 11px 15px;
+  border-radius: 23px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+}
+.organization-bg .handle-wrapper .required-arrow {
+  position: absolute;
+  top: 8px;
+  right: 19px;
+  color: #969696;
+}
+.organization-bg .handle-wrapper .required-form-input {
+  font-size: 15px;
+  text-align: left;
+  color: #969696;
+  border: 0;
+  background-color: transparent;
+  outline: 0;
+}
+.organization-bg .handle-wrapper .person-firm {
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.organization-bg .handle-wrapper .person-firm .add-firm {
+  margin-right: 47px;
+}
+.organization-bg .handle-wrapper .person-firm .add-firm .Member-text {
+  margin: 3px 0 3px 5px;
+  font-size: 15px;
+  text-align: left;
+  color: #31567f;
+}
+.organization-bg .handle-wrapper .items-page-wrapper {
+  justify-content: flex-end;
+  margin-right: 41px;
+  margin-top: 10px;
+}
+.organization-bg .handle-wrapper .items-page-wrapper .dropdown-firm {
+  border-bottom: 2px solid #001935;
+  margin-top: -20px;
+}
+.organization-bg .handle-wrapper .items-page-wrapper .dropdown-firm .items-firm {
+  font-size: 16px;
+  color: #001935;
+  margin: 0;
+}
+.organization-bg .handle-wrapper .items-page-wrapper .prevBtn {
+  background: unset !important;
+  border: none !important;
+}
+.organization-bg .handle-wrapper .items-page-wrapper .nextBtn {
+  background: unset !important;
+  border: none !important;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep.mat-paginator-page-size-label {
+  margin: 0 4px;
+  margin: 4px 15px 4px 0;
+  font-size: 16px;
+  color: #001935;
+  font-family: "Roboto" !important;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-select-value {
+  margin: 4px 15px 4px 0;
+  display: table-cell;
+  max-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Roboto" !important;
+  font-size: 16px;
+  color: #001935;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-paginator-range-label {
+  margin: 4px 15px 0px 15px;
+  font-size: 16px;
+  color: #001935;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-button.mat-primary.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-button.mat-accent.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-button.mat-warn.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-button.mat-button-disabled.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-icon-button.mat-primary.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-icon-button.mat-accent.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-icon-button.mat-warn.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-icon-button.mat-button-disabled.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-stroked-button.mat-primary.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-stroked-button.mat-accent.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-stroked-button.mat-warn.mat-button-disabled,
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container .mat-stroked-button.mat-button-disabled.mat-button-disabled {
+  color: #001935;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #31567f;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 2px;
+}
+.organization-bg .handle-wrapper ::ng-deep .mat-paginator .mat-paginator-container ::ng-deep .mat-select-arrow {
+  color: #001935;
+}
+
+@media screen and (max-width: 991px) {
+  .avator-card-wrapper {
+    flex-wrap: wrap;
+  }
+  .willis-card {
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .willis-card {
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .avator-card-wrapper {
+    flex-wrap: wrap;
+  }
+  .person-firm {
+    flex-wrap: wrap;
+  }
+  .willis-card {
+    margin-bottom: 20px;
+  }
+  .modal .modal-dialog {
+    margin: 0 !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .avator-card-wrapper {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1290px) {
+  .willis-card .accept-firm-btn {
+    padding: 12px 31px;
+  }
+  .willis-card .reject-firm-btn {
+    padding: 0;
+  }
+}
+.modal {
+  width: 680px;
+  height: 356px;
+  margin: 196px auto;
+  border-radius: 2px;
+  background-color: #ffffff;
+}
+.modal .modal-dialog {
+  margin: 21px;
+}
+.modal .modal-dialog .modal-content {
+  border: 0;
+}
+.modal .modal-dialog .modal-content .modal-header {
+  position: absolute;
+  right: -146px;
+  top: -7px;
+  border-bottom: 0px;
+}
+.modal .modal-dialog .modal-content .modal-body .address-firm {
+  width: 540px;
+  height: 45px;
+  padding: 14px 42px 13px 15px;
+  border-radius: 23px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #969696;
+  outline: 0;
+}
+.modal .modal-dialog .modal-content .modal-body .copy-link-firm {
+  font-size: 16px;
+  color: #969696;
+  margin-top: 40px;
+}
+.modal .modal-dialog .modal-content .modal-body .send-wrapper {
+  font-size: 15px;
+  color: #ffffff;
+  width: 180px;
+  height: 45px;
+  margin: 25px 360px 10px 0;
+  border-radius: 23px;
+  background-color: #31567f;
+  border: 0;
+}
+.modal .modal-dialog .modal-content .modal-body .copy-input {
+  width: 60px;
+  height: 25px;
+  border-radius: 23px;
+  border: solid 1px #31567f;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #31567f;
+  right: -52px;
+  top: 11px;
+  outline: 0;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.286);
+  z-index: 117;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.aplErrorMsg {
+  text-align: center;
+  color: gray;
+}
+
+.items-firm {
+  white-space: nowrap;
+}
+
+.mat-spinner {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 140px;
+  top: 11px;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #fafafa;
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .organization-bg .handle-wrapper {
+    margin: 0px 20px 0 20px;
+    padding: 30px 30px 30px 30px;
+  }
+  .organization-bg .handle-wrapper .avator-card-wrapper {
+    justify-content: center;
+  }
+}/*# sourceMappingURL=org-mem-applications.component.css.map */

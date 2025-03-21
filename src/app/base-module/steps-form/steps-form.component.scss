@@ -131,9 +131,10 @@
         }
         .price-info {
             .info-firm1 {
-                width: 40px;
-                height: 22px;
-                margin: 60px 23px 10px 30px;
+                // width: 40px;
+                height: 37px;
+                border-bottom: 1px solid #e2e2e2;
+                // margin: 60px 23px 10px 30px;
                 font-size: 18px;
                 text-align: left;
                 color: #001935;
@@ -142,14 +143,14 @@
                 .price-text {
                     // width: 261px;
                     // height: 38px;
-                    margin: 30px 9px 30px 30px;
+                    margin:10px;
                     font-size: 15px;
                     text-align: left;
                     color: #969696;
                 }
             }
             .label-price-info {
-                margin: 40px 30px 40px 10px;
+                margin: 10px;
                 font-size: 15px;
                 text-align: left;
                 color: #31567f;
@@ -183,7 +184,7 @@
                 font-size: 15px;
                 text-align: left;
                 color: #969696;
-                margin: 40px 30px 40px 10px;
+                margin: 10px;
             }
         }
         .location-firm {
@@ -223,9 +224,9 @@
                 color: #969696;
             }
             .text-area-info {
-                width: 750px;
+                // width: 750px;
                 height: 240px;
-                margin: 20px 220px 40px 30px;
+                // margin: 20px 220px 40px 30px;
                 border-radius: 2px;
                 border: 1px solid #e2e2e2;
                 background-color: #ffffff;
@@ -308,7 +309,7 @@
                 color: #001935;
             }
             .required-input {
-                width: 360px;
+                // width: 360px;
                 height: 45px;
                 margin: 20px 30px 20px;
                 padding: 12px 233px 13px 20px;
@@ -335,7 +336,11 @@
                 }
             }
             .radio-firm {
-                margin-top: -80px;
+                // margin-top: -80px;
+                display: flex;
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
             }
             .recent-firm1 {
                 margin-right: 32px;
@@ -480,12 +485,12 @@
                 }
             }
             .icons-info1 {
-                margin-left: 314px;
+                // margin-left: 314px;
                 .office-wrapper {
                     .office-firm {
                         width: 24px;
                         height: 24px;
-                        margin: 50px 6px 21px 0;
+                        margin: 30px 6px 21px 0;
                         padding: 4px 2px;
                         .home-call-text {
                             margin: 53px 3px 24px 10px;
@@ -857,7 +862,7 @@
 }
 
 p.home-mail-text {
-    margin: 53px 3px 24px 10px;
+    margin: 30px 3px 24px 10px;
     font-size: 15px;
     text-align: left;
     color: #969696;
@@ -1636,7 +1641,7 @@ input::-webkit-inner-spin-button {
     color: #969696;
     position: absolute;
     top: 44px;
-    left: 32.5%;
+    right: 20px;
     font-size: medium;
 }
 
@@ -1899,11 +1904,11 @@ input::-webkit-inner-spin-button {
                 margin: 0px !important;
                 margin-bottom: 10px !important;
                 justify-content: space-between;
-                .price-text-1 {
-                    margin-left: 0px !important;
-                    margin-right: 0px !important;
-                    width: 55% !important;
-                }
+                // .price-text-1 {
+                //     margin-left: 0px !important;
+                //     margin-right: 0px !important;
+                //     width: 55% !important;
+                // }
             }
             .euro-firm {
                 margin: 0px;
@@ -2081,10 +2086,10 @@ input::-webkit-inner-spin-button {
         .tab-pane {
             padding: 0px 25px;
             //General Info
-            .title-texting-firm {
-                flex-direction: column;
-                align-items: start !important;
-            }
+            // .title-texting-firm {
+            //     flex-direction: column;
+            //     align-items: start !important;
+            // }
             .info-firm {
                 margin: 20px 0px !important;
             }
@@ -2124,7 +2129,7 @@ input::-webkit-inner-spin-button {
                     width: auto;
                 }
                 .price-text {
-                    margin: 30px!important;
+                    margin: 10px !important;
                 }
             }
             .budget-options {
@@ -2145,9 +2150,9 @@ input::-webkit-inner-spin-button {
                 }
             }
             .property-details {
-                .dec-respon-firm {
-                    flex-direction: column;
-                }
+                    // .dec-respon-firm {
+                    //     flex-direction: column;
+                    // }
                 .radio-firm {
                     margin-top: 0px;
                 }

@@ -1,0 +1,171 @@
+.main-content-wrapper {
+  background-image: url("../../../assets/images/qaulity.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 420px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+
+.main-firm .container .summary-bg-firm {
+  margin-left: -84px;
+}
+.main-firm .container .perform-mes-wrapper {
+  margin: 40px 15px;
+  font-size: 16px;
+  color: #969696;
+  height: 34px;
+}
+.main-firm .container .tab-active {
+  margin: 40px 15px;
+  border-bottom: 2px solid #31567f;
+  color: #31567f;
+}
+.main-firm .container .perform-mes-wrapper:hover {
+  border-bottom: 2px solid #31567f;
+  color: #31567f;
+}
+.main-firm .container .plus-img-icon {
+  width: 21px;
+  height: 21px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.main-firm .main-wrapper {
+  justify-content: center;
+}
+.main-firm .main-wrapper .neque-wrapper {
+  width: 300px;
+  margin: 6px 7px 40px 10px;
+  padding: 10px 10px 15px;
+  border-radius: 2px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+.main-firm .main-wrapper .neque-wrapper .ipsum-wrapper {
+  margin: 20px 25px 10px 0;
+  font-size: 18px;
+  color: #001935;
+}
+.main-firm .main-wrapper .neque-wrapper .humour-wrapper {
+  margin: 10px 0 15px;
+  font-size: 13px;
+  color: #001935;
+  line-height: 1.85;
+  width: 280px;
+  height: 106px;
+}
+.main-firm .main-wrapper .neque-wrapper .file-firm {
+  font-size: 15px;
+  color: #31567f;
+}
+.main-firm .main-wrapper {
+  justify-content: center;
+}
+.main-firm .main-wrapper .Testimonials-wrapper {
+  width: 360px;
+  margin: -7px 0px 25px 32px;
+  border-radius: 2px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .quote-img {
+  padding-left: 117px;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .sit-wrapper {
+  margin-top: -77px;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .sit-wrapper .role-text {
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  width: 335px;
+  height: 48px;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .sit-wrapper .humour-text {
+  font-size: 15px;
+  text-align: center;
+  color: #5b5b5b;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .sit-wrapper .michael-text {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  color: #31567f;
+}
+.main-firm .main-wrapper .Testimonials-wrapper .sit-wrapper .role-firm {
+  font-size: 15px;
+  text-align: center;
+  color: #001935;
+}
+
+.askQuestion-wrapper {
+  background-color: #31567f;
+  margin-top: 100px;
+}
+.askQuestion-wrapper .ask-wrapper {
+  max-width: 1366px;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 10px;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm .touch-text {
+  font-size: 24px;
+  line-height: 0.92;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm .touch-btn {
+  width: 160px;
+  height: 40px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0;
+  background-color: #ffffff;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+  color: #31567f;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+@media screen and (max-width: 1240px) {
+  .summary-bg-firm {
+    margin-left: 0 !important;
+  }
+  .main-wrapper {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .summary-bg-firm {
+    margin-left: 0 !important;
+  }
+  .main-wrapper {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 991px) {
+  .summary-bg-firm {
+    margin-left: 0 !important;
+  }
+  .main-wrapper {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 768px) {
+  .summary-bg-firm {
+    margin-left: 0 !important;
+  }
+  .main-wrapper {
+    flex-wrap: wrap;
+  }
+}/*# sourceMappingURL=quality-labels.component.css.map */

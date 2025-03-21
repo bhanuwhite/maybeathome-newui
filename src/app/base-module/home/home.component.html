@@ -221,7 +221,7 @@
     <div class=" image-slider-container d-flex row m-0">
         <div class="image-card col p-0" *ngFor="let card of cardList; let i = index">
           <div class="image-container">
-            <img class="list-img-wrapper imgDimen img-fluid" [src]="card.images[currentImageIndex[i]]">
+            <img class="list-img-wrapper imgDimen img-fluid" [src]="card.photos[currentImageIndex[i]]">
             
             <button class="control-button previous" (click)="previous(i)">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
@@ -236,7 +236,7 @@
             </button>
           </div>
           <div class="card-title m-0">
-            <h4 class="m-0 fw-bold"(click)="navigatetoListing(list)">{{ card.title }}</h4>
+            <h4 class="m-0 fw-bold"(click)="navigatetoListing(card)">{{ card.title }}</h4>
             <p class="m-0 text-secondary">{{ card.location }}</p>
           
           </div>

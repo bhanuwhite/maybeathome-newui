@@ -1,0 +1,195 @@
+.main-content-wrapper {
+  background-image: url("../../../assets/images/partners.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 420px;
+  margin-bottom: 60px;
+}
+.main-content-wrapper .container-main-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0px !important;
+  margin-bottom: 0px !important;
+  height: 420px;
+  justify-content: center;
+}
+
+.us-firm-text {
+  font-size: 45px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.partnerTitle {
+  font-size: 15px;
+  text-align: left;
+  color: #ffffff;
+  height: 30px;
+  padding: 6px 18px 6px 19px;
+  border-radius: 15px;
+  background-color: #31567f;
+  border: 0;
+  outline: 0;
+}
+
+.askQuestion-wrapper {
+  background-color: #31567f;
+  margin-top: 159px;
+}
+.askQuestion-wrapper .ask-wrapper {
+  max-width: 1366px;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 10px;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm .touch-text {
+  font-size: 24px;
+  line-height: 0.92;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+}
+.askQuestion-wrapper .ask-wrapper .question-firm .touch-btn {
+  width: 160px;
+  height: 40px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0;
+  background-color: #ffffff;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+  color: #31567f;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.bnp-card-firm {
+  justify-content: center;
+}
+.bnp-card-firm .bnp-card {
+  width: 300px;
+  margin: 0 13px 0 0;
+  padding: 0 0 13px;
+  border-radius: 2px;
+  border: solid 1px #e2e2e2;
+  background-color: #ffffff;
+  position: relative;
+}
+.bnp-card-firm .bnp-card .bank-img {
+  width: 258px;
+  margin: 24px 21px 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.bnp-card-firm .bnp-card .panel-wrapper {
+  position: relative;
+}
+.bnp-card-firm .bnp-card .panel-wrapper .panel {
+  position: relative;
+  margin: 2em auto;
+  width: 70%;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  width: 280px;
+  margin: 20px 10px 13px;
+  font-size: 15px;
+  color: #969696;
+}
+.bnp-card-firm .bnp-card .panel-wrapper .fade {
+  height: 100px;
+  margin-top: -100px;
+  position: relative;
+}
+.bnp-card-firm .bnp-card .fade-wrapper {
+  width: 300px;
+  height: 6px;
+  margin: 0 0 24px;
+  border-radius: 2px;
+  background-color: #31567f;
+  top: 0;
+}
+.bnp-card-firm .bnp-card .show,
+.bnp-card-firm .bnp-card .hide {
+  position: absolute;
+  bottom: -1em;
+  z-index: 100;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #31567f;
+  box-shadow: none;
+}
+.bnp-card-firm .bnp-card .hide {
+  display: none;
+}
+.bnp-card-firm .bnp-card .show:target {
+  display: none;
+}
+.bnp-card-firm .bnp-card .show:target ~ .hide {
+  display: block;
+}
+.bnp-card-firm .bnp-card .show:target ~ .panel {
+  max-height: 2000px;
+}
+.bnp-card-firm .bnp-card .show:target ~ .fade {
+  margin-top: 0;
+}
+
+.bnp-cardend-content {
+  margin-top: 20px !important;
+}
+
+@media screen and (max-width: 991px) {
+  .bnp-card-firm {
+    flex-wrap: wrap;
+  }
+  .bnp-card-firm .bnp-card {
+    margin-top: 20px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .bnp-card-firm {
+    flex-wrap: wrap;
+  }
+  .bnp-card-firm .bnp-card {
+    margin-top: 20px !important;
+  }
+  .bnp-cardend-content {
+    margin-top: 0px !important;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .bnp-card-firm {
+    flex-wrap: wrap;
+  }
+  .bnp-card-firm .bnp-card {
+    margin-top: 20px !important;
+  }
+}
+.imgSize {
+  height: 150px;
+}
+
+@media screen and (max-width: 767px) {
+  .container-main-wrapper {
+    height: 450px !important;
+    display: flex;
+    align-items: center;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .container-main-wrapper .banner-text {
+    margin-top: 0px !important;
+  }
+  .container-main-wrapper .banner-text .us-firm-text {
+    font-size: 30px !important;
+  }
+}/*# sourceMappingURL=partners.component.css.map */

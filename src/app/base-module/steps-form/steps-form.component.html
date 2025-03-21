@@ -214,11 +214,11 @@
                     </div>
                 </div>
                    
-                <div class="price-info AvenirLTStd-Regular">
-                    <h4 class="info-firm1 AvenirLTStd-Regular">{{"label.price"|translate}}</h4>
-                    <div class="d-flex price-firm budget-options align-items-center req-firm">
+                <div class="price-info AvenirLTStd-Regular m-0 mx-md-2 my-5">
+                    <h4 class="info-firm1 AvenirLTStd-Regular m-0 mx-md-4 mx-0">{{"label.price"|translate}}</h4>
+                    <div class="d-flex price-firm budget-options align-items-center req-firm mx-md-4 mx-0 my-3">
                         <div>
-                            <p class="price-text AvenirLTStd-Regular mr-2">
+                            <p class="price-text AvenirLTStd-Regular m-0">
                                 {{"label.responsibility"|translate}} *
                             </p>
                             <div class="notValidated">
@@ -231,10 +231,11 @@
                             <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="{{fee.list}}">{{fee.list}}</label>
                         </div>
                     </div>
-                    <div class="height euro-wrapper position-relative w-100 w-100 m-0">
+                    <div class="row m-0 ">
+                    <div class="col-md-6 col-sm-12 height euro-wrapper position-relative px-1 px-md-4 w-100  m-0">
                         <div>
                             <label for="excludingFees">{{"label.excluding" | translate}} *</label><br>
-                            <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="excludingFees" [(ngModel)]="excludingFees" #excFees='ngModel' required [value]="getExcludingFee()" name="excludingFees">
+                            <input type="number" class="w-100 fees-firm AvenirLTStd-Regular " id="excludingFees" [(ngModel)]="excludingFees" #excFees='ngModel' required [value]="getExcludingFee()" name="excludingFees">
                             <span class="material-icons euro-icon">
                                 euro_symbol
                             </span>
@@ -245,10 +246,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="height euro-wrapper position-relative w-100" >
+                    <div class="col-md-6 col-sm-12 height euro-wrapper position-relative px-1 px-md-4 w-100 m-0" >
                         <div>
                             <label for="includingFees">{{"label.including" | translate}} *</label><br>
-                            <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="includingFees" [(ngModel)]="includingFees" #incFees='ngModel' required name="includingFees" />
+                            <input type="number" class="fees-firm AvenirLTStd-Regular w-100" id="includingFees" [(ngModel)]="includingFees" #incFees='ngModel' required name="includingFees" />
 
                             <span class="material-icons euro-icon">
                                 euro_symbol
@@ -262,11 +263,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="euro-wrapper position-relative w-100">
+                    <div class="col-md-6 col-sm-12 euro-wrapper position-relative px-1 px-md-4 w-100 m-0">
 
-                        <div class="form-group">
+                        <div class="form-group position-relative">
                             <label for="ati">{{"label.FeesAti" | translate}} *</label><br>
-                            <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="ati" [disabled]="endFees != 'seller'" [value]="getATIval()" #feesAti="ngModel" [(ngModel)]="feesATI" name="feesATI" />
+                            <input type="text" class="fees-firm AvenirLTStd-Regular w-100" id="ati" [disabled]="endFees != 'seller'" [value]="getATIval()" #feesAti="ngModel" [(ngModel)]="feesATI" name="feesATI" />
                             <!-- <span class="material-icons euro-icon">
                                 euro_symbol
                             </span> -->
@@ -278,11 +279,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="euro-wrapper position-relative w-100">
+                    <div class="col-md-6 col-sm-12 euro-wrapper position-relative px-1 px-md-4 w-100 m-0">
 
                         <div class="form-group">
                             <label for="price">{{"label.per"|translate}}</label><br>
-                            <input type="text" disabled class="fees-firm AvenirLTStd-Regular ml-2" id="price" [value]="getPricepesqm()" required [(ngModel)]="priceMiter" name="priceMiter">
+                            <input type="text" disabled class="fees-firm AvenirLTStd-Regular w-100 " id="price" [value]="getPricepesqm()" required [(ngModel)]="priceMiter" name="priceMiter">
                             <span class="material-icons euro-icon">
                                 euro_symbol
                             </span>
@@ -293,7 +294,7 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
                     <div class="d-flex price-firm align-items-center AvenirLTStd-Regular req-firm co-ownership-cstm">
                         <p class="price-text-1 ml-3 AvenirLTStd-Regular">{{"label.ownership" | translate}}</p>
                         <div class="custom-control custom-radio custom-control-inline">
@@ -396,7 +397,7 @@
                         <p class="discription-info AvenirLTStd-Regular">
                             {{"label.remember"|translate}}.
                         </p>
-                        <div class="form-group">
+                        <div class="form-group m-3">
                             <textarea class="form-control text-area-info AvenirLTStd-Regular mb-auto" id="exampleFormControlTextarea1" [(ngModel)]="description" name="description">
                         </textarea>
                             <div class="notValidated">
@@ -472,12 +473,12 @@
                     {{"label.des"|translate}}
                 </h4>
                 <p class="parts-firm">{{"label.parts"|translate}}</p>
-                <div class="d-flex align-items-center justity-content-center dec-respon-firm">
-                    <div class="room-info">
-                        <div class="height euro-wrapper">
+                <div class="row m-0 dec-respon-firm">
+                    <div class="room-info col-md-6 col-sm-12 px-1 px-md-4">
+                        <div class="height euro-wrapper m-0  w-100 ">
                             <div>
                                 <label for="rooms">{{"label.bedrooms" | translate}} *</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="rooms" [(ngModel)]="noOfBedrooms" name="noOfBedrooms" />
+                                <input type="text" class="fees-firm AvenirLTStd-Regular w-100" id="rooms" [(ngModel)]="noOfBedrooms" name="noOfBedrooms" />
                             </div>
                             <div class="notValidated">
                                 <div *ngIf="(noOfBedrooms == '' || noOfBedrooms == undefined) && notValidatedFurther == true">
@@ -485,24 +486,24 @@
                             </div>
                         </div>
 
-                        <div class="height euro-wrapper">
+                        <div class="height euro-wrapper m-0  w-100 ">
                             <div class="form-group">
                                 <label for="form">{{"label.baths" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="form" [(ngModel)]="noOfBathrooms" name="noOfBathrooms" />
+                                <input type="text" class="fees-firm AvenirLTStd-Regular w-100" id="form" [(ngModel)]="noOfBathrooms" name="noOfBathrooms" />
                             </div>
 
                         </div>
-                        <div class="height euro-wrapper">
+                        <div class="height euro-wrapper m-0  w-100 ">
                             <div class="form-group">
                                 <label for="sheet">{{"label.toilets" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="sheet" [(ngModel)]="noOfToilets" name="noOfToilets" />
+                                <input type="text" class="fees-firm AvenirLTStd-Regular w-100" id="sheet" [(ngModel)]="noOfToilets" name="noOfToilets" />
                             </div>
 
                         </div>
                      
                     </div>
-                    <div class="radio-firm AvenirLTStd-Regular req-firm">
-                        <div class="d-flex align-items-center Separate-firm ">
+                    <div class="radio-firm AvenirLTStd-Regular req-firm col-md-6 col-sm-12 px-1 px-md-4">
+                        <div class="d-flex align-items-center justity-content-between Separate-firm m-0">
                             <p class="price-text-1 AvenirLTStd-Regular w-100">{{"label.diningRoom"|translate}}</p>
                             <div class="custom-control custom-radio custom-control-inline dining-inputlabel">
                                 <input type="radio" id="customRadioInlineO" class="custom-control-input" value="yes" name="dining" [(ngModel)]="dining" />
@@ -516,7 +517,7 @@
 
                         </div>
 
-                        <div class="d-flex align-items-center Separate-firm">
+                        <div class="d-flex align-items-center Separate-firm m-0 justity-content-between">
                             <p class="price-text-1 AvenirLTStd-Regular w-100">{{"label.livingRoom"|translate}}</p>
                             <div class="custom-control custom-radio custom-control-inline living-inputlabel">
                                 <input type="radio" id="customRadioInlineT" class="custom-control-input" value="yes" name="living" [(ngModel)]="living" />
@@ -529,7 +530,7 @@
                             </div>
 
                         </div>
-                        <div class="d-flex align-items-center Separate-firm">
+                        <div class="d-flex align-items-center Separate-firm m-0 justity-content-between">
                             <p class="price-text-1 AvenirLTStd-Regular w-100">
                                 {{"label.suitable"|translate}}<br /> {{"label.wheelchairs"|translate}}
                             </p>
@@ -544,7 +545,7 @@
                             </div>
 
                         </div>
-                        <div class="d-flex align-items-center Separate-firm">
+                        <div class="d-flex align-items-center Separate-firm m-0 justity-content-between">
                             <p class="price-text-1 AvenirLTStd-Regular w-100">{{"label.separateToilet"|translate}}</p>
                             <div class="custom-control custom-radio custom-control-inline sperate-mr-firm">
                                 <input type="radio" id="customRadioInlineh" class="custom-control-input" value="yes" name="Separate" [(ngModel)]="Separate" />
@@ -557,7 +558,7 @@
                             </div>
 
                         </div>
-                        <div class="d-flex align-items-center Separate-firm">
+                        <div class="d-flex align-items-center Separate-firm m-0 justity-content-between">
                             <p class="price-text-1 mt-2  AvenirLTStd-Regular">{{"label.cave"|translate}}</p>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline-1" class="custom-control-input" value="yes" name="Cave" [(ngModel)]="cave" />
@@ -572,18 +573,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex dec-respon-firm dec-respon-firm-tab">
-                    <div class="property-firm">
-                        <p class="parts-firm condition-property">{{"label.cond"|translate}}</p>
-                        <div class="height euro-wrapper">
+                <div class="row m-0 dec-respon-firm dec-respon-firm-tab">
+                    <div class="property-firm col-sm-12 col-md-6 px-1 px-md-4">
+                        <p class="parts-firm condition-property mx-0">{{"label.cond"|translate}}</p>
+                        <div class="height euro-wrapper m-0">
                             <div class="form-group">
                                 <label for="year">{{"label.construction" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular" id="year" [(ngModel)]="yearsOfConstruction" name="yearsOfConstruction" />
+                                <input type="text" class="fees-firm AvenirLTStd-Regular w-100" id="year" [(ngModel)]="yearsOfConstruction" name="yearsOfConstruction" />
                             </div>
 
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 mr-recent AvenirLTStd-Regular radio-label-cstm">
+                            <p class="mx-0 price-text-1 recent-firm1 mt-2 mr-recent AvenirLTStd-Regular radio-label-cstm">
                                 {{"label.recent"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline recent-inputlabel">
@@ -597,7 +598,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 AvenirLTStd-Regular radio-label-cstm">
+                            <p class="price-text-1 recent-firm1 mx-0  mt-2 AvenirLTStd-Regular radio-label-cstm">
                                 {{"label.good"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -612,7 +613,7 @@
 
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 AvenirLTStd-Regular radio-label-cstm">
+                            <p class="price-text-1 recent-firm1 mx-0 mt-2 AvenirLTStd-Regular radio-label-cstm">
                                 {{"label.work"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline">
@@ -627,31 +628,31 @@
 
                         </div>
                     </div>
-                    <div class="property-firm color-firm">
-                        <p class="parts-firm">{{"label.parkings"|translate}}</p>
+                    <div class="property-firm color-firm col-sm-12 col-md-6 px-1 px-md-4">
+                        <p class="parts-firm mx-0">{{"label.parkings"|translate}}</p>
                         <div class="d-flex align-items-center">
-                            <p class="price-text-1 recent-firm1 mt-2 AvenirLTStd-Regular radio-label-cstm">
+                            <p class="price-text-1 recent-firm1 mt-2 mx-0 AvenirLTStd-Regular radio-label-cstm">
                                 {{"label.garage"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline garage-inputlabel">
-                                <input type="radio" (change)="disable('nameOfCarParks')" id="customRadioInline-garage" class="custom-control-input" value="yes" name="Garage" [(ngModel)]="Garage" />
+                                <input type="radio" (change)="disable('nameOfCarParks')" id="customRadioInline-garage" class="w-100 custom-control-input" value="yes" name="Garage" [(ngModel)]="Garage" />
                                 <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-garage">{{"label.yes"|translate}}</label>
                             </div>
 
                             <div class="custom-control custom-radio custom-control-inlinel">
-                                <input type="radio" (change)="disable('nameOfCarParks')" id="customRadioInline-garage2" class="custom-control-input" value="nc" name="Garage" [(ngModel)]="Garage" />
+                                <input type="radio" (change)="disable('nameOfCarParks')" id="customRadioInline-garage2" class="w-100 custom-control-input" value="nc" name="Garage" [(ngModel)]="Garage" />
                                 <label class="custom-control-label AvenirLTStd-Regular label-price-info" for="customRadioInline-garage2">{{"label.no"|translate}}
                                 </label>
                             </div>
                         </div>
-                        <div class="height euro-wrapper">
+                        <div class="height euro-wrapper m-0">
                             <div class="form-group">
                                 <label for="car">{{"label.parks" | translate}}</label><br>
-                                <input type="number" class="fees-firm AvenirLTStd-Regular " id="car" name="nameOfCarParks" [(ngModel)]="nameOfCarParks" [disabled]="!disableCarPark" />
+                                <input type="number" class="w-100 fees-firm AvenirLTStd-Regular " id="car" name="nameOfCarParks" [(ngModel)]="nameOfCarParks" [disabled]="!disableCarPark" />
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <p class="price-text-1 recent-firm1 mt-2 AvenirLTStd-Regular radio-label-cstm">
+                            <p class="mx-0 price-text-1 recent-firm1 mt-2 AvenirLTStd-Regular radio-label-cstm">
                                 Boxes
                             </p>
                             <div class="custom-control custom-radio custom-control-inline garage-inputlabel">
@@ -664,69 +665,69 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="height euro-wrapper">
+                        <div class="height euro-wrapper m-0">
                             <div class="form-group">
                                 <label for="box">{{"label.boxes" | translate}}</label><br>
-                                <input type="number" class="fees-firm AvenirLTStd-Regular ml-2" id="box" name="nameOfBoxes" [(ngModel)]="nameOfBoxes" [disabled]="!disableNameOfBoxes" />
+                                <input type="number" class="w-100 fees-firm AvenirLTStd-Regular " id="box" name="nameOfBoxes" [(ngModel)]="nameOfBoxes" [disabled]="!disableNameOfBoxes" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex color-firm dec-respon-firm">
-                    <div class="property-firm floors-block">
-                        <p class="parts-firm">{{"label.floors"|translate}}</p>
+                <div class="row m-0 color-firm dec-respon-firm">
+                    <div class="property-firm floors-block col-sm-12 col-md-6 px-1 px-md-4">
+                        <p class="parts-firm mx-0">{{"label.floors"|translate}}</p>
 
-                        <div class="height euro-firm">
+                        <div class="height euro-firm m-0 mx-0 w-100">
                             <div class="form-group">
                                 <label for="floor">{{"label.numberfloors" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="floor" [(ngModel)]="noOfFloors" name="noOfFloors" />
+                                <input type="text" class="w-100 fees-firm AvenirLTStd-Regular" id="floor" [(ngModel)]="noOfFloors" name="noOfFloors" />
                             </div>
                         </div>
                         <div class="height euro-firm" *ngIf="selectedHomeType === 'apartment'">
                             <div class="form-group">
                                 <label for="floor">{{"label.apartmentfloor" | translate}}</label><br>
-                                <input type="text" class="fees-firm AvenirLTStd-Regular ml-2" id="floor" [(ngModel)]="apartmentFloors" name="apartmentFloors" />
+                                <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="floor" [(ngModel)]="apartmentFloors" name="apartmentFloors" />
                             </div>
                         </div>
 
                     </div>
-                    <div class="property-firm balcony-block">
-                        <p class="parts-firm">{{"label.balconies"|translate}}</p>
-                        <div class="d-flex AvenirLTStd-Regular required-firm">
+                    <div class="property-firm balcony-block col-sm-12 col-md-6 px-1 px-md-4">
+                        <p class="parts-firm mx-0">{{"label.balconies"|translate}}</p>
+                        <div class="d-flex justify-content-between AvenirLTStd-Regular required-firm ">
 
-                            <div class="height euro-firm">
+                            <div class="height euro-firm m-0">
                                 <div class="form-group">
                                     <label for="balconies">{{"label.nameBalconies" | translate}}</label><br>
-                                    <input type="text" (input)="disable('balconySurface')" class="fees-firm AvenirLTStd-Regular ml-2" id="balconies" [(ngModel)]="noOfBalconies" name="noOfBalconies" />
+                                    <input type="text" (input)="disable('balconySurface')" class="fees-firm AvenirLTStd-Regular " id="balconies" [(ngModel)]="noOfBalconies" name="noOfBalconies" />
                                 </div>
                             </div>
                             <div class="surface-innerfirm">
                                 <p>{{"label.surface" | translate}}</p>
-                                <div class="surface-wrapper AvenirLTStd-Regular ml-2 form-group">
+                                <div class="surface-wrapper AvenirLTStd-Regular form-group">
                                     <input type="text" class="surface-custom" id="surface1" [(ngModel)]="balconySurface" name="balconySurface" [disabled]="!disableBalconySurface" />
                                     <span class="surface-custom-display"> m²</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex AvenirLTStd-Regular required-firm">
-                            <div class="height euro-firm">
+                        <div class="d-flex justify-content-between AvenirLTStd-Regular required-firm ">
+                            <div class="height euro-firm m-0">
                                 <div class="form-group">
                                     <label for="Terraces">{{"label.number" | translate}}</label><br>
-                                    <input type="text" (input)="disable('terracesSurface')" class="fees-firm AvenirLTStd-Regular ml-2" id="Terraces" [(ngModel)]="noOfTerraces" name="noOfTerraces" />
+                                    <input type="text" (input)="disable('terracesSurface')" class="fees-firm AvenirLTStd-Regular " id="Terraces" [(ngModel)]="noOfTerraces" name="noOfTerraces" />
                                 </div>
                             </div>
                             <div class="surface-innerfirm">
                                 <p>{{"label.surface" | translate}}</p>
-                                <div class="surface-wrapper AvenirLTStd-Regular ml-2 form-group">
+                                <div class="surface-wrapper AvenirLTStd-Regular  form-group">
                                     <!-- <label for="surface1">Surface</label><br> -->
                                     <input type="text" class="surface-custom" id="surface1" [(ngModel)]="terracesSurface" name="terracesSurface" [disabled]="!disableTerracesSurface" />
                                     <span class="surface-custom-display"> m²</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center color-firm AvenirLTStd-Regular required-firm">
+                        <div class="d-flex justify-content-between align-items-center color-firm AvenirLTStd-Regular required-firm">
                             <div class="d-flex align-items-center custom-margin-garden">
-                                <p class="price-text-1 recent-firm1-position mt-2 AvenirLTStd-Regular">
+                                <p class="price-text-1 recent-firm1-position mt-2 mx-0 AvenirLTStd-Regular">
                                     {{"label.garden"|translate}}
                                 </p>
                                 <div class="custom-control custom-radio custom-control-inline">
@@ -740,8 +741,8 @@
                                 </div>
                             </div>
                             <div class="surface-innerfirm">
-                                <p>{{"label.surface" | translate}}</p>
-                                <div class="surface-wrapper AvenirLTStd-Regular ml-2 form-group">
+                                <p class="mb-1">{{"label.surface" | translate}}</p>
+                                <div class="surface-wrapper AvenirLTStd-Regular  form-group">
                                     <input type="text" class="surface-custom" id="surface1" [(ngModel)]="gardenSurface" name="gardenSurface" [disabled]="!disableGardenSurface" />
                                     <span class="surface-custom-display"> m²</span>
                                 </div>
@@ -750,13 +751,14 @@
 
                     </div>
                 </div>
-                <div class="d-flex align-items-center color-firm dec-respon-firm">
-                    <div class="property-firm other-cretiria">
-                        <p class="parts-firm condition-property">{{"label.other"|translate}}</p>
+                <div class=" my-4 color-firm dec-respon-firm">
+                    <p class="parts-firm condition-property my-3 mx-4">{{"label.other"|translate}}</p>
+                    <div class="row m-0">
 
-
+                  
+                    <div class="property-firm other-cretiria col-sm-12 col-md-6 px-1 px-md-4">
                         <div class="d-flex align-items-center cable-wrapper">
-                            <p class="price-text-1 recent-firm1 w-100 text-left mt-2 AvenirLTStd-Regular">
+                            <p class="price-text-1 recent-firm1 w-100 text-left mt-2 AvenirLTStd-Regular mx-0">
                                 {{"label.cableTV"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline tv-radiofirm cabel-inputlabel">
@@ -771,7 +773,7 @@
 
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular">
+                            <p class="price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular mx-0">
                                 {{"label.swimmingPool"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline pool-inputlabel">
@@ -786,7 +788,7 @@
 
                         </div>
                         <div class="d-flex align-items-center cable-wrapper color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular mr-elevator">
+                            <p class="mx-0 price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular mr-elevator">
                                 {{"label.elevator"|translate}}
                             </p>
                             <div class="d-flex">
@@ -803,7 +805,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 mr-5 w-100 text-left AvenirLTStd-Regular">
+                            <p class="mx-0 price-text-1 recent-firm1 mt-2 mr-5 w-100 text-left AvenirLTStd-Regular">
                                 {{"label.convertible"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline convertible-inputlabel">
@@ -818,7 +820,7 @@
 
                         </div>
                         <div class="d-flex align-items-center color-firm">
-                            <p class="price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular">
+                            <p class="mx-0 price-text-1 recent-firm1 mt-2 w-100 text-left AvenirLTStd-Regular">
                                 {{"label.parkingPrice"|translate}}<br>{{"label.include"|translate}}
                             </p>
                             <div class="custom-control custom-radio custom-control-inline park-inputlabel">
@@ -833,7 +835,7 @@
 
                         </div>
                     </div>
-                    <div style="margin-left: 55px; margin-top: 54px;" class="other-cretiria-one">
+                    <div class=" col-sm-12 col-md-6 px-1 px-md-4 other-cretiria-one">
                         <div class="d-flex align-items-center color-firm">
                             <p class="price-text-1 recent-firm1 mt-2 w-100 AvenirLTStd-Regular">
                                 {{"label.fireplace"|translate}}
@@ -913,16 +915,16 @@
                         </div>
                     </div>
                 </div>
+                </div>
                 <div class="fade-wrapper">
-
-                    <div class="height euro-wrapper">
+         <div class="row m-0">
+                    <div class="height euro-wrapper col-sm-12 col-md-6 px-1 px-md-4 m-0">
                         <div class="form-group">
                             <label for="Architecture">Architecture</label><br>
-                            <input type="text" class="fees-firm AvenirLTStd-Regular " id="Architecture" [(ngModel)]="architecture" name="architecture" />
+                            <input type="text" class="w-100 fees-firm AvenirLTStd-Regular " id="Architecture" [(ngModel)]="architecture" name="architecture" />
                         </div>
                     </div>
-
-                    <div class="position-relative info-text AvenirLTStd-Regular" style="margin-left: 33px;">
+                    <div class="position-relative info-text AvenirLTStd-Regular col-sm-12 col-md-6 px-1 px-md-4" >
                         <label for="type">{{"label.kitchenType" | translate}}</label><br>
                         <select class="form-control info-input custom-select" (change)="selectKitchen($event)" [(ngModel)]="kitchenType" name="kitchenType" id="type">
                             <option selected="selected" value="" hidden>{{"label.kitchenType"|translate}}</option>
@@ -930,7 +932,7 @@
                             </option>
                         </select>
                     </div>
-
+                </div>
                     <div class="">
                         <p class="orientation-firm tb-ml">{{"label.orientation"|translate}}</p>
                         <div class="d-flex orientation-firm-block">
@@ -971,12 +973,12 @@
 
                     </div>
                     <div class="color-firm">
-                        <p class="diagnosis-firm condition-property AvenirLTStd-Regular tb-ml">
+                        <p class="diagnosis-firm condition-property AvenirLTStd-Regular mx-4 tb-ml">
                             {{"label.performance"|translate}}
                         </p>
-                        <div class="position-relative info-text AvenirLTStd-Regular">
+                        <div class="position-relative info-text AvenirLTStd-Regular  col-sm-12 col-md-6 px-1 px-md-4">
                             <label for="head">{{"label.HeatType" | translate}}</label><br>
-                            <select class="form-control info-input custom-select ml-2" (change)="selectedHeat($event)" name="typeOfHeating" [(ngModel)]="typeOfHeating" id="head">
+                            <select class="form-control info-input custom-select " (change)="selectedHeat($event)" name="typeOfHeating" [(ngModel)]="typeOfHeating" id="head">
                                 <option *ngFor="let heating of heatingTypeList" value="{{heating.value}}">
                                     {{heating.list}}
                                 </option>
@@ -1078,7 +1080,7 @@
 
 
                 <!-- Contact details -->
-                <div class="d-flex align-items-center color-firm">
+                <div class="d-flex align-items-start color-firm">
                     <p class="price-text-1 recent-firm1 alarm-radio mt-2 AvenirLTStd-Regular">
                         {{"label.specific"|translate}}
                     </p>
@@ -1088,61 +1090,61 @@
                         <!-- <div class="" [(ngModel)]="specificContact"></div> -->
                         <label *ngIf="clickedChange" class=" AvenirLTStd-Regular label-price-info" (click)="onSelectionChange('yes')">{{"label.changecoordinate"|translate}}</label>
                         <label *ngIf="!clickedChange" class=" AvenirLTStd-Regular label-price-info" (click)="onSelectionChange('no')">{{"label.changecoordinate"|translate}}</label>
-
-                    </div>
-
-
-                </div>
-                <div class="icons-info1">
-                    <div class="d-flex align-items-center justity-content-center office-wrapper">
-                        <span class="material-icons office-firm" style="color:  #969696;">local_post_office</span>
-                        <div class='row' *ngIf="hidePstOfField">
-                            <div class="position-relative contact-firm mt-5">
-                                <input type="text" class="contact-firm-input AvenirLTStd-Regular ml-2" [(ngModel)]="pstOfc" #pstofc="ngModel" placeholder="Email" email name="postOffice" />
-                            </div>
-                            <div class="notValidated set-position mt-2" *ngIf="pstofc.invalid && (pstofc.dirty || pstofc.touched)">
-                                <p class="inside-postion">{{"error.valid"|translate}}</p>
-                            </div>
-                            <div *ngIf="pstofc.valid">
-                                <span class="material-icons office-firm" (click)="savePstOfcContent(pstofc)" style="color:  #969696; cursor: pointer;">check_circle</span>
-                                <span class="material-icons office-firm" (click)="cancelPstOfContent()" style="color:  #969696; cursor: pointer;">close</span>
-                            </div>
-                        </div>
-                        <p *ngIf="!hidePstOfField" class="home-mail-text mb-2">{{pstOfc}}</p>
-                    </div>
-                    <div class="d-flex align-items-center justity-content-center">
-                        <span class="material-icons  office-firm mr-2" style="color:  #969696; cursor: pointer;">call</span>
-                        <div class="row" *ngIf="hideCellField">
-                            <div class="position-relative contact-firm ">
-                                <!-- <span class="material-icons contact-firm-icon ">
-                                    keyboard_arrow_down
-                                </span> -->
-                                <select class="contact-firm-icon border-right" [(ngModel)]="countryCode" (change)="updateObjValue2($event)" [ngStyle]="styleObject">
-                                    <!-- <option class="contact-firm-icon-option">Country</option>  [(ngModel)]="countryCode" #countryCode="ngModel" -->
-                                    <option class="contact-firm-icon-option"
-                                        *ngFor="let allCountriesLists of allCountriesList"
-                                        [value]="allCountriesLists.dial_code">
-                                        {{allCountriesLists.dial_code}} : {{allCountriesLists.name}}</option>
-
-                                </select>
-                                <input type="text" appNumberDirective class="contact-firm-input AvenirLTStd-Regular ml-2" [(ngModel)]="cellNo" #cellno="ngModel" [pattern]="mobNumberPattern" mask="000-000-0000" placeholder="Cell Number" name="cellNumber" />
-                                <!-- {{countryCode}} -->
-
-                            </div>
-                            <div class="notValidated mt-2 " *ngIf="cellno.invalid && (cellno.dirty || cellno.touched)">
-                                <div *ngIf="cellno.errors.pattern" class="set-position">
-                                    <p class="inside-postion1"> {{"error.digit"|translate}}</p>
+                        <div class="icons-info1">
+                            <div class="d-flex align-items-center justity-content-center office-wrapper">
+                                <span class="material-icons office-firm" style="color:  #969696;">local_post_office</span>
+                                <div class='row' *ngIf="hidePstOfField">
+                                    <div class="position-relative contact-firm mt-5">
+                                        <input type="text" class="contact-firm-input AvenirLTStd-Regular ml-2" [(ngModel)]="pstOfc" #pstofc="ngModel" placeholder="Email" email name="postOffice" />
+                                    </div>
+                                    <div class="notValidated set-position mt-2" *ngIf="pstofc.invalid && (pstofc.dirty || pstofc.touched)">
+                                        <p class="inside-postion">{{"error.valid"|translate}}</p>
+                                    </div>
+                                    <div *ngIf="pstofc.valid">
+                                        <span class="material-icons office-firm" (click)="savePstOfcContent(pstofc)" style="color:  #969696; cursor: pointer;">check_circle</span>
+                                        <span class="material-icons office-firm" (click)="cancelPstOfContent()" style="color:  #969696; cursor: pointer;">close</span>
+                                    </div>
                                 </div>
+                                <p *ngIf="!hidePstOfField" class="home-mail-text mb-2">{{pstOfc}}</p>
                             </div>
-
-                            <div class="mt-4" *ngIf="cellno.valid">
-                                <span class="material-icons office-firm" (click)="saveCellContent(cellno)" style="color:  #969696;cursor: pointer;">check_circle</span>
-                                <span class="material-icons office-firm" (click)="cancelCellContent()" style="color:  #969696;cursor: pointer;">close</span>
+                            <div class="d-flex align-items-center justity-content-center">
+                                <span class="material-icons  office-firm mr-2" style="color:  #969696; cursor: pointer;">call</span>
+                                <div class="row" *ngIf="hideCellField">
+                                    <div class="position-relative contact-firm ">
+                                        <!-- <span class="material-icons contact-firm-icon ">
+                                            keyboard_arrow_down
+                                        </span> -->
+                                        <select class="contact-firm-icon border-right" [(ngModel)]="countryCode" (change)="updateObjValue2($event)" [ngStyle]="styleObject">
+                                            <!-- <option class="contact-firm-icon-option">Country</option>  [(ngModel)]="countryCode" #countryCode="ngModel" -->
+                                            <option class="contact-firm-icon-option"
+                                                *ngFor="let allCountriesLists of allCountriesList"
+                                                [value]="allCountriesLists.dial_code">
+                                                {{allCountriesLists.dial_code}} : {{allCountriesLists.name}}</option>
+        
+                                        </select>
+                                        <input type="text" appNumberDirective class="contact-firm-input AvenirLTStd-Regular ml-2" [(ngModel)]="cellNo" #cellno="ngModel" [pattern]="mobNumberPattern" mask="000-000-0000" placeholder="Cell Number" name="cellNumber" />
+                                        <!-- {{countryCode}} -->
+        
+                                    </div>
+                                    <div class="notValidated mt-2 " *ngIf="cellno.invalid && (cellno.dirty || cellno.touched)">
+                                        <div *ngIf="cellno.errors.pattern" class="set-position">
+                                            <p class="inside-postion1"> {{"error.digit"|translate}}</p>
+                                        </div>
+                                    </div>
+        
+                                    <div class="mt-4" *ngIf="cellno.valid">
+                                        <span class="material-icons office-firm" (click)="saveCellContent(cellno)" style="color:  #969696;cursor: pointer;">check_circle</span>
+                                        <span class="material-icons office-firm" (click)="cancelCellContent()" style="color:  #969696;cursor: pointer;">close</span>
+                                    </div>
+                                </div>
+                                <p *ngIf="!hideCellField" class="home-call-text mt-3">{{cellNo | mask: '0000000000'}}</p>
                             </div>
                         </div>
-                        <p *ngIf="!hideCellField" class="home-call-text mt-3">{{cellNo | mask: '0000000000'}}</p>
                     </div>
+
+
                 </div>
+               
 
                 <div class="d-flex info-wrapper-btns req-firm button-firm-cstm">
                     <button type="submit" class="save-btn AvenirLTStd-Regular" (click)="saveFurtherInfoDraft()">
@@ -1470,6 +1472,7 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex justify-content-between">
             <div class="performance-wrapper">
                 <h4 class="list-wrapper">{{"label.performance"|translate}}</h4>
                 <div class="Criteria-labels">
@@ -1507,6 +1510,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="d-flex info-wrapper-btns req-firm button-firm-cstm">
                 <button type="submit" class="save-btn AvenirLTStd-Regular" style="padding: 14px 69px 13px;" (click)="back()">
                     {{"label.back"|translate}}

@@ -23,7 +23,6 @@
                     <i class="fa fa-angle-down ml-2"></i>
                 </button>
                 <div class="drop-show" *ngIf="showDropDown">
-
                     <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
                         <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
                         <span>{{ list.list }}</span>
@@ -40,7 +39,6 @@
             </div>
         </div>
         <div class="position-relative firm">
-
             <div class="model-width-align">
                 <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advPriceDropDown=!advPriceDropDown">
                     <div class="d-flex align-items-center">
@@ -57,8 +55,6 @@
         </div>
 
         <div class="position-relative firm">
-
-
             <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-room-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
                 {{"label.room"|translate}}
             </span>
@@ -75,8 +71,6 @@
         </div>
 
         <div class="position-relative firm">
-
-
             <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-bed-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
                 {{"label.beds"|translate}}
             </span>
@@ -91,7 +85,6 @@
             </div>
         </div>
         <div class="position-relative firm">
-
             <div class="model-width-align">
                 <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advsizeDropDown=!advsizeDropDown">
                     <div class="d-flex align-items-center">
@@ -106,7 +99,6 @@
             </div>
         </div>
         <div class="position-relative firm">
-
             <button class="form-control searchBeds ml-2 text_custom_alignment" (click)="onClickMore()">
                 {{"label.moreAdvanced" | translate}} </button>
         </div>
@@ -121,7 +113,6 @@
                 <i class="fa fa-angle-down ml-2"></i>
             </button>
                 <div class="drop-show" *ngIf="showDropDown">
-
                     <lable class="custom-select-checkbox text-left" *ngFor="let list of houseList;let i = index" (click)="checkmarkGetValue(list.checked, list.value,i )">
                         <input class="mr-2 custom-input-width" type="checkbox" [(ngModel)]="list.checked" [checked]="list.checked" />
                         <span>{{ list.list }}</span>
@@ -138,7 +129,6 @@
             </div>
         </div>
         <div class="position-relative firm">
-
             <div class="model-width-align">
                 <button class="custom-select ml-2 modal-input-firm mr-3 clps-firm" (click)="advPriceDropDown=!advPriceDropDown">
                 <div class="d-flex align-items-center">
@@ -155,8 +145,6 @@
         </div>
 
         <div class="position-relative firm">
-
-
             <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-room-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
             {{"label.room"|translate}}
         </span>
@@ -173,8 +161,6 @@
         </div>
 
         <div class="position-relative firm">
-
-
             <span class="custom-select  ml-2 clps-firm " data-toggle="collapse" href="#clps-bed-btn" role="button" aria-expanded="false" aria-controls="clps-btn-mod">
             {{"label.beds"|translate}}
         </span>
