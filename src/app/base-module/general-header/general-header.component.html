@@ -1,10 +1,8 @@
-<nav class="navbar navbar-expand-xl nav-sm">
+<nav class="navbar navbar-expand-xl nav-sm shadow-sm">
     <a class="navbar-brand" href="#">
         <img src="assets/images/searchListingsGrid/SLGLogo.png" class="d-inline-block align-top slImg" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="material-icons">menu</span>
-    </button>
+ 
     <div class="collapse navbar-collapse collapse-menu" id="navbarSupportedContent">
         <ul class="nav-ul mt-3 AvenirLTStd-Regular">
             <li class="nav-item" (click)="navigateToHomePage()">
@@ -24,8 +22,8 @@
             </li>
         </ul>
     </div>
-    <div class="create-btns mt-3 AvenirLTStd-Regular d-flex align-items-center">
-        <button class="nav-CreatListning-btn d-flex mr-2" (click)="navigateToCreateListings()" [disabled]="createListingLoader">
+    <div class="create-btns mt-3 AvenirLTStd-Regular d-flex align-items-center gap-3">
+        <button class="nav-CreatListning-btn d-flex " (click)="navigateToCreateListings()" [disabled]="createListingLoader">
             <span *ngIf="!createListingLoader" class="material-icons nav-material-icons mr-1">add_circle_outline</span>
             <span *ngIf="!createListingLoader" class="icon-layout">{{"label.create"|translate}}</span>
             <mat-spinner *ngIf="createListingLoader" [diameter]="25"></mat-spinner>
@@ -46,6 +44,9 @@
             <img src="assets/images/message-icon.png" alt="message" (click)="onMessageClick()" class="img-fluid message-firm">
             <span class="position-absolute num-firm-text" *ngIf="unseen > 0">{{unseen}}</span>
         </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-icons">menu</span>
+        </button>
         <button class="nav-link dropdown-toggle logout-btn-firm" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="isAuthenticated">
             <span class="textfield-drop">{{thumbnailUser}}</span>
         </button>
@@ -60,5 +61,6 @@
                 </a>
             </div>
         </div>
+      
     </div>
 </nav>

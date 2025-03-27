@@ -6,7 +6,39 @@
     padding-bottom: 60px;
     .slider-container{
         max-width: 1366px;
+       
     }
+    .image-card {
+        transition: transform 0.5s ease-in-out;
+      }
+}
+.card-container {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  
+  .card-container > div {
+    transition: transform 0.5s ease;
+  }
+  .card-loc{
+    // display: none;
+    position: absolute;
+    top: 60%;
+    padding: 10px;
+    color: white;
+    line-height: 1.5;
+    background-color: #46424240;
+    width: 100%;
+    text-align: left;
+  }
+  .image-card {
+    position: relative;
+  }
+.card-headtitle{
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
 }
 .property-title{
     font-size: 35px;
@@ -23,7 +55,7 @@
   }
   
   .image-card {
-    width: 300px;
+    // width: 300px;
     height: auto; 
    border-radius: 8px;
    
@@ -46,12 +78,12 @@
   
   .control-button {
     position: absolute;
-    top: 41%;
+    top: 45%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color:#a6763a;
     color: white;
     border: none;
-    padding: 6px;
+    padding: 2px;
     border-radius: 25px;
     cursor: pointer;
     font-size: 20px;
@@ -63,11 +95,11 @@
   }
   
   .control-button.previous {
-    left: 10px;
+    left: 5px;
   }
   
   .control-button.next {
-    right: 10px;
+    right: 5px;
   }
 .card-title{
     padding: 10px;
@@ -890,23 +922,23 @@ option {
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .container-main-wrapper {
-        // .neque-wrapper {
-        //     font-size: 31px !important;
-        //     margin-top: 12.5px !important;
-        // }
-        // .lorium-wrapper {
-        //     font-size: 13px !important;
-        //     margin-bottom: 35px !important;
-        // }
-    }
-    .modal {
-        .beds-firm {
-            margin-bottom: 20px;
-        }
-    }
-}
+// @media screen and (max-width: 1200px) {
+//     .container-main-wrapper {
+//         // .neque-wrapper {
+//         //     font-size: 31px !important;
+//         //     margin-top: 12.5px !important;
+//         // }
+//         // .lorium-wrapper {
+//         //     font-size: 13px !important;
+//         //     margin-bottom: 35px !important;
+//         // }
+//     }
+//     .modal {
+//         .beds-firm {
+//             margin-bottom: 20px;
+//         }
+//     }
+// }
 
 .modal {
     .modal-dialog {

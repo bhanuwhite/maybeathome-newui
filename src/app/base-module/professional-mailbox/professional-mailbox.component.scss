@@ -1,9 +1,7 @@
-// .main-warpper-content-header{
-//     height: 86px;
-// }
-// .main-warpper-content{
-//     height: calc(100vh - 86px);
-// }
+.mat-tab-header{
+    width: auto !important;
+}
+
 .mat-tab-group{
     display: flex;
     flex-direction: column;
@@ -476,13 +474,13 @@
             flex-wrap: wrap;
             justify-content: center !important;
             .discussion-firm {
-                margin-top: 15px !important;
-                height: auto;
-                overflow: hidden;
-                padding: 0px 20px;
-                width: 100%;
+                // margin-top: 15px !important;
+                // height: auto;
+                // overflow: hidden;
+                // padding: 0px 20px;
+                // width: 100%;
                 .required-input {
-                    width: 100%;
+                    // width: 100%;
                     margin: 10px 0px;
                 }
                 .discussion-cascade {
@@ -865,13 +863,13 @@
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .discussion-inner-wrapper {
-        padding: 15px;
+        // padding: 15px;
         justify-content: space-between;
         .discussion-firm {
-            width: 40% !important;
+            // width: 40% !important;
             padding-right: 15px !important;
             .required-input {
-                width: 100%;
+                // width: 100%;
                 margin: 10px 0px !important;
             }
             .discussion-cascade {

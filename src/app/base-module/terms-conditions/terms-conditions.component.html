@@ -3,12 +3,14 @@
 </div>
 <!--terms section starts here-->
 <div class="container">
-    <div style="float: right;">
-        <button class="nav-CreatListning-btn d-flex mr-3" (click)="askForPDF()">
+    <div class="terms-head d-flex flex-col-sm justify-content-between">
+        <h4 class="terms-text">{{"Term_Condition.Terms_Condition-Title" | translate}}</h4>
+        <button class="nav-CreatListning-btn d-flex " (click)="askForPDF()">
             {{"Term_Condition.Download_terms_condition" | translate}}
         </button>
+        
     </div>
-    <h4 class="terms-text">{{"Term_Condition.Terms_Condition-Title" | translate}}</h4>
+ 
     <p class="terms-paragragh-text">{{"Term_Condition.TopText1" | translate}}<br>
         <br> {{"Term_Condition.TopText2" | translate}}. {{"Term_Condition.LastUpdate" | translate}}:
         {{"Term_Condition.LastUpdateDate" | translate}}

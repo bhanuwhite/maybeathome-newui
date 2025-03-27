@@ -210,42 +210,56 @@
         </div>
     </div>
 </section>
-<!--work-section ends here-->
-<div class=" slider-wrapper shadow-sm">
-    <div class="container slider-container">
-<div class="row text-center m-0 justity-content-center">
-        <div class="col-12 work-wrapper">
-            <h3 class="property-title">{{"label._property"|translate}}</h3>
-        </div>
-</div>
-    <div class=" image-slider-container d-flex row m-0">
-        <div class="image-card col p-0" *ngFor="let card of cardList; let i = index">
-          <div class="image-container">
-            <img class="list-img-wrapper imgDimen img-fluid" [src]="card.photos[currentImageIndex[i]]">
-            
-            <button class="control-button previous" (click)="previous(i)">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+
+ <div class="slider-wrapper shadow-sm mx-2">
+    <div class="container slider-container ">
+      <div class="row text-center mb-4">
+        <div class="col-12 d-flex justify-content-between p-0">
+          <h3 class="property-title">Latest Properties</h3>
+          <div>
+            <button class="btn btn-light rounded-circle p-1" (click)="scrollPrev()">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                 <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
               </svg>
             </button>
-            
-            <button class="control-button next" (click)="next(i)">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+            <button class="btn btn-light rounded-circle p-1" (click)="scrollNext()">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                 <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
               </svg>
             </button>
           </div>
-          <div class="card-title m-0">
-            <h4 class="m-0 fw-bold"(click)="navigatetoListing(card)">{{ card.title }}</h4>
-            <p class="m-0 text-secondary">{{ card.location }}</p>
-          
+        </div>
+      </div>
+      <div class="row">
+        <div #cardContainer class="d-flex justify-content-start flex-nowrap overflow-hidden">
+          <div class="p-2 flex-grow-0 flex-shrink-0" style="flex: 0 0 calc(100% / 5);" *ngFor="let card of getVisibleCards()">
+            <div class="image-card">
+              <img [src]="card.images[card.currentImageIndex]" class="card-img-top img-fluid" 
+                   alt="Property Image" style="height: 200px; object-fit: cover; width: 100%;">
+              <div class=" text-center">
+                <button class="control-button previous" (click)="prevImage(card)">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+                    <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                  </svg>
+                </button>
+                <button class="control-button next" (click)="nextImage(card)">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F3F3F3">
+                    <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+                  </svg>
+                </button>
+                <div class="card-title m-0 shadow-sm">
+                  <h4 class="m-0 fw-bold card-headtitle" (click)="navigatetoListing(card)">{{ card.title }}</h4>
+                  <p class="m-0 text-secondary">{{ card.location }}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     </div>
-</div>
+</div> 
 
-</div>
-
+  
 <!--maybe-section starts here-->
 <section class="maybe-section">
     <div class="container maybe-wrapper">

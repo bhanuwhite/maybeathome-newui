@@ -19,7 +19,7 @@ body {
 .group-label-wrapper {
     .mat-tab-header {
         // margin: 17px 30px -45px 30px !important;
-        width: 26% !important;
+        // width: 26% !important;
         z-index: 99999;
     }
     .mat-tab-label {
@@ -38,7 +38,7 @@ body {
 @media screen and (max-width: 991px) {
     .group-label-wrapper {
         .mat-tab-header {
-            width: 75% !important;
+            // width: 75% !important;
             text-align: center;
         }
         .mat-tab-labels {
@@ -66,11 +66,11 @@ body {
     }
 }
 
-@media screen and (min-width: 1600px) {
-    .group-label-wrapper .mat-tab-header {
-        width: 15% !important;
-    }
-}
+// @media screen and (min-width: 1600px) {
+//     .group-label-wrapper .mat-tab-header {
+//         // width: 15% !important;
+//     }
+// }
 
 .custom-control {
     &.material-checkbox {
@@ -435,7 +435,7 @@ body {
 @media screen and (max-device-width: 768px) {
     .group-label-wrapper {
         .mat-tab-header {
-            width: 100% !important;
+            // width: 100% !important;
             margin: 20px 0px 0px 0px !important;
         }
     }

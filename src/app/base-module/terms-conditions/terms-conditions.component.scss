@@ -30,9 +30,12 @@
   text-align: left;
   color: #969696;
 }
+.terms-head{
+  margin: 30px 51px;
+}
 .terms-text {
-  width: 75%;
-  margin: 60px 904px 30px 83px;
+  // width: 75%;
+  // margin: 60px 904px 30px 83px;
   font-size: 24px;
   font-weight: 500;
   text-align: left;
@@ -110,6 +113,9 @@ a[aria-expanded="true"] {
   }
 }
 @media screen and (max-width: 1240px) {
+  .terms-head{
+    margin: 30px 0px;
+  }
   .terms-paragragh-text {
     width: 100%;
     height: auto;
@@ -133,7 +139,7 @@ a[aria-expanded="true"] {
 }
 @media screen and (max-width: 768px) {
   .terms-text {
-    margin: 60px 0px 30px 8px;
+    // margin: 60px 0px 30px 8px;
     .terms-paragragh-text {
       width: 100%;
       height: auto;

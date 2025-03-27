@@ -14,6 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('cardContainer') cardContainer: ElementRef;
   modal: string;
   collapse: boolean;
   houseList: [{ "value": string, "list": string, "checked": boolean }];
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('clickCheckmark') clickCheckmark: ElementRef;
 
   @ViewChild('advancedsearch') advancedsearch: ElementRef;
-
+  @ViewChild('sliderContainer', { static: false }) sliderContainer!: ElementRef;
   address: string;
   houseName: string;
   noOfBedrooms: string;
@@ -179,9 +180,10 @@ export class HomeComponent implements OnInit {
     private renderer: Renderer2) {
     this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoURL);
 
-    this.cardList.forEach(() => {
-      this.currentImageIndex.push(0);
-    });
+    // this.card.forEach(() => {
+    //   this.currentImageIndex.push(0);
+    // });
+    // this.updateVisibleCards();
   }
  
   playVideo(event) {
@@ -781,11 +783,6 @@ export class HomeComponent implements OnInit {
       }
  
     }
-
-
-   
-
-
   }
 
   // make beds active
@@ -805,93 +802,149 @@ export class HomeComponent implements OnInit {
     this.place = location.place.name;
     this.advancePlace = location.place.name;
   }
-
-  // imageList: string[] = [
-  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-  //   'https://api.maybeathome.com/cache/original/listings/10/photos/YjJqwaCMeU1687766123.jpg',
-  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766124.jpg',
-  //   'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766125.jpg'
-  // ];
-
-  // previous(index: number) {
-  //   console.log('Previous image clicked for index: ', index);
-  // }
-
-  // next(index: number) {
-  //   console.log('Next image clicked for index: ', index);
-  // }
-
-
-  cardList = [
+  cards = [
     {
-      title: 'Beachside Villa',
-      location: 'Goa, India',
-      listing_id: 120,
-      photos: [
-        '/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-        '/listings/120/photos/NPgfSzmvIz1693577333.jpg',
-        '/listings/97/photos/jmXbBp9G441675161881.jpg'
-      ]
+      title: 'Luxury Villa',
+      location: 'New York',
+      images: [
+      'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/pwvpM9efFQ1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/0VLfapCtG61693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/W596tpWIeJ1693577333.jpg'
+      ],
+      currentImageIndex: 0
     },
     {
-      title: 'Luxury Resort',
-      location: 'Manali, India',
-      listing_id: 2,
-      photos: [
-        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
-        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-        'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg'
-      ]
+      title: 'Modern Apartment',
+      location: 'Los Angeles',
+      images: [
+       'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/107/photos/byyDZHOfZo1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/107/photos/gTOE6Xvujh1687766121.jpg',
+        'https://api.maybeathome.com/cache/original/listings/107/photos/1oFmiQd0DF1687766121.jpg'
+      ],    
+      currentImageIndex: 0
     },
     {
-      title: 'Mountain View',
-      location: 'Shimla, India',
-      listing_id: 3,
-      photos: [
-        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-        'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
-        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
-      ]
+      title: 'Beach House',
+      location: 'Miami',
+      images: [
+       'https://api.maybeathome.com/cache/original/listings/97/photos/jmXbBp9G441675161881.jpg',
+        'https://api.maybeathome.com/cache/original/listings/97/photos/rhrEuOjPdL1675161881.jpg',
+        'https://api.maybeathome.com/cache/original/listings/97/photos/6dXxODmi9Y1675161881.jpg'
+      ],
+      currentImageIndex: 0
     },
     {
-      title: 'Mountain View',
-      location: 'Shimla, India',
-      listing_id: 4,
-      photos: [
-        'https://api.maybeathome.com/cache/original/listings/107/photos/YjJqwaCMeU1687766121.jpg',
-        'https://api.maybeathome.com/cache/original/listings/109/photos/YjJqwaCMeU1687766142.jpg',
-        'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg'
-      ]
-    }
+      title: 'Skyline Penthouse',
+      location: 'Chicago',
+      images: [
+       'https://api.maybeathome.com/cache/original/listings/57/photos/NXH5DjDMMi1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/rSKehsS2h11647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/HinBq84PuP1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/U7jCBDe8Iq1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/IVhKcZvmlW1647868109.jpg'
+      ],
+      currentImageIndex: 0
+    },
+    {
+      title: 'Mountain Retreat',
+      location: 'Denver',
+      images: [
+       'https://api.maybeathome.com/cache/original/listings/45/photos/pmhE8eL8Wo1646067015.jpg',
+        'https://api.maybeathome.com/cache/original/listings/45/photos/2rqMb2dYK61646067015.jpg',
+      ],
+      currentImageIndex: 0
+    },
+    {
+      title: 'Luxury Villa',
+      location: 'New York',
+      images: [
+      'https://api.maybeathome.com/cache/original/listings/120/photos/NPgfSzmvIz1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/pwvpM9efFQ1693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/0VLfapCtG61693577333.jpg',
+        'https://api.maybeathome.com/cache/original/listings/120/photos/W596tpWIeJ1693577333.jpg'
+      ],
+      currentImageIndex: 0
+    },
+    {
+      title: 'Skyline Penthouse',
+      location: 'Chicago',
+      images: [
+       'https://api.maybeathome.com/cache/original/listings/57/photos/NXH5DjDMMi1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/rSKehsS2h11647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/HinBq84PuP1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/U7jCBDe8Iq1647868109.jpg',
+        'https://api.maybeathome.com/cache/original/listings/57/photos/IVhKcZvmlW1647868109.jpg'
+      ],
+      currentImageIndex: 0
+    },
   ];
 
-  // This will hold the current image index for each card
-  currentImageIndex: number[] = [];
+currentIndex = 0;
+cardsPerPage = 5;
 
+getVisibleCards() {
+  return this.cards.slice(this.currentIndex, this.currentIndex + this.cardsPerPage);
+}
+
+scrollNext() {
+  if (this.cards.length === 0) return; // Stop if no cards are present
+
+  const maxIndex = this.cards.length - this.cardsPerPage;
   
-  // Go to previous image
-  previous(index: number) {
-    if (this.currentImageIndex[index] > 0) {
-      this.currentImageIndex[index]--;
+  if (this.currentIndex < maxIndex) {
+    this.currentIndex++;
+  } else {
+    this.currentIndex = 0; // Loop back to the first card
+  }
+  
+  this.scrollToCurrentIndex();
+}
+
+scrollPrev() {
+  if (this.cards.length === 0) return; 
+
+  if (this.currentIndex > 0) {
+    this.currentIndex--;
+  } else {
+    this.currentIndex = Math.max(this.cards.length - this.cardsPerPage, 0); 
+  }
+  
+  this.scrollToCurrentIndex();
+}
+
+private scrollToCurrentIndex() {
+  const container = this.cardContainer?.nativeElement;
+  if (!container) return; 
+
+  const card = container.querySelector('.p-2');
+  if (!card) return; 
+
+  const cardWidth = card.offsetWidth;
+  
+  container.scrollTo({
+    left: this.currentIndex * cardWidth,
+    behavior: 'smooth'
+  });
+}
+
+  nextImage(card: any) {
+    if (card.currentImageIndex < card.images.length - 1) {
+      card.currentImageIndex++;
     } else {
-      // Loop back to the last image
-      this.currentImageIndex[index] = this.cardList[index].images.length - 1;
+      card.currentImageIndex = 0;
     }
   }
 
-  // Go to next image
-  next(index: number) {
-    if (this.currentImageIndex[index] < this.cardList[index].images.length - 1) {
-      this.currentImageIndex[index]++;
+  prevImage(card: any) {
+    if (card.currentImageIndex > 0) {
+      card.currentImageIndex--;
     } else {
-      // Loop back to the first image
-      this.currentImageIndex[index] = 0;
+      card.currentImageIndex = card.images.length - 1;
     }
   }
-
-  
-  navigatetoListing(item): void {
+   navigatetoListing(item): void {
     console.log(item)
     this.router.navigate([`listingDetails/${item.listing_id}`]);
     this.sharedservice.setDisplayedPropertyList(this.propertiesList);
@@ -900,8 +953,15 @@ export class HomeComponent implements OnInit {
       .logRequest({ listing_id: item.listing_id })
       .subscribe();
   }
-  
+ 
+
 }
+
+
+
+
+
+
 
 
 
